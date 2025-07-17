@@ -26,7 +26,8 @@ const Header = () => {
       <div className="bg-custom-dark text-white py-2 px-4">
         <div className="container mx-auto flex items-center justify-between text-sm">
           <div className="flex items-center space-x-2">
-            <span>Call to schedule a private appointment to view our showroom</span>
+            <span className="hidden md:inline">Call to schedule a private appointment to view our showroom</span>
+            <span className="md:hidden">Call to schedule an appointment</span>
             <a href="tel:(480) 997-9781" className="font-semibold hover:text-gray-300 transition-colors">
               (480) 997-9781
             </a>
