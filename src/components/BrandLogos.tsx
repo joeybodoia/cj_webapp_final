@@ -1,20 +1,35 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const BrandLogos = () => {
+  const navigate = useNavigate();
+
   const brands = [
     {
-      name: 'Brand 1',
-      logo: 'https://i.imgur.com/XkLcjuG.png'
+      name: 'Aspen Spas',
+      logo: 'https://i.imgur.com/XkLcjuG.png',
+      company: 'Aspen Spas'
     },
     {
-      name: 'Brand 2', 
-      logo: 'https://i.imgur.com/rtVjFJJ.png'
+      name: 'Nordic Hot Tubs', 
+      logo: 'https://i.imgur.com/rtVjFJJ.png',
+      company: 'Nordic Hot Tubs'
     },
     {
-      name: 'Brand 3',
-      logo: 'https://i.imgur.com/R1VMD4b.png'
+      name: 'Bellagio Spas',
+      logo: 'https://i.imgur.com/R1VMD4b.png',
+      company: 'Bellagio Spas'
     }
   ];
+
+  const handleBrandClick = (company: string) => {
+    // Navigate to spas page and pass the brand filter in state
+    navigate('/spas', { 
+      state: { 
+        filterBrand: company 
+      } 
+    });
+  };
 
   return (
     <section className="py-12 md:py-16 bg-custom-dark">
@@ -32,9 +47,10 @@ const BrandLogos = () => {
           {brands.map((brand, index) => (
             <div
               key={index}
+              onClick={() => handleBrandClick(brand.company)}
               className="group cursor-pointer transform transition-all duration-300 hover:scale-110"
             >
-              <div className="w-24 h-24 md:w-32 md:h-32 lg:w-36 lg:h-36 rounded-full overflow-hidden bg-white p-2 shadow-lg group-hover:shadow-2xl transition-shadow duration-300">
+              <div className="w-30 h-30 md:w-40 md:h-40 lg:w-45 lg:h-45 rounded-full overflow-hidden bg-white p-2 shadow-lg group-hover:shadow-2xl transition-shadow duration-300">
                 <img
                   src={brand.logo}
                   alt={brand.name}
