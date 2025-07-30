@@ -9,9 +9,10 @@ interface ProductGridProps {
   productType: string;
   title: string;
   description: string;
+  initialBrandFilter?: string;
 }
 
-const ProductGrid: React.FC<ProductGridProps> = ({ productType, title, description }) => {
+const ProductGrid: React.FC<ProductGridProps> = ({ productType, title, description, initialBrandFilter }) => {
   const { products, loading, error } = useProducts(productType);
   const {
     filters,
@@ -21,7 +22,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ productType, title, descripti
     handleFilterChange,
     clearFilters,
     toggleFilterPanel
-  } = useProductFilters(products);
+  } = useProductFilters(products, initialBrandFilter);
 
   if (loading) {
     return (

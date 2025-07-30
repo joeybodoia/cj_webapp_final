@@ -2,15 +2,15 @@ import { useState, useMemo } from 'react';
 import { InventoryItem } from '../lib/supabase';
 import { FilterOptions } from '../components/ProductFilters';
 
-export const useProductFilters = (products: InventoryItem[]) => {
+export const useProductFilters = (products: InventoryItem[], initialBrandFilter?: string) => {
   const [filters, setFilters] = useState<FilterOptions>({
-    brand: [],
+    brand: initialBrandFilter ? [initialBrandFilter] : [],
     capacity: [],
     size: [],
     jets: []
   });
 
-  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [isFilterOpen, setIsFilterOpen] = useState(!!initialBrandFilter);
 
   // Get available brands from products
   const availableBrands = useMemo(() => {
