@@ -50,7 +50,7 @@ const BrandLogos = () => {
               onClick={() => handleBrandClick(brand.company)}
               className="group cursor-pointer transform transition-all duration-300 hover:scale-110"
             >
-              <div className="w-30 h-30 md:w-40 md:h-40 lg:w-45 lg:h-45 rounded-full overflow-hidden bg-white p-2 shadow-lg group-hover:shadow-2xl transition-shadow duration-300">
+              <div className="w-48 h-48 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden bg-white p-4 shadow-lg group-hover:shadow-2xl transition-shadow duration-300">
                 <img
                   src={brand.logo}
                   alt={brand.name}
