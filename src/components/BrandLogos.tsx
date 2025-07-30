@@ -54,7 +54,9 @@ const BrandLogos = () => {
                 <img
                   src={brand.logo}
                   alt={brand.name}
-                  className="w-full h-full object-contain rounded-full"
+                  className={`w-full h-full object-contain rounded-full ${
+                    brand.company === 'Aspen Spas' ? 'p-4' : ''
+                  }`}
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
