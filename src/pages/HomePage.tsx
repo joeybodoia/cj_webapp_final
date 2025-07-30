@@ -1,6 +1,7 @@
 import React from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
+import BrandLogos from '../components/BrandLogos';
 import ProductNavigation from '../components/ProductNavigation';
 import OurStory from '../components/OurStory';
 import ProductSection from '../components/ProductSection';
@@ -13,6 +14,7 @@ const HomePage = () => {
     <div className="min-h-screen">
       <Header />
       <Hero />
+      <BrandLogos />
       <ProductNavigation />
       <OurStory />
       
