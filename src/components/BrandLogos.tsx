@@ -7,7 +7,7 @@ const BrandLogos = () => {
   const brands = [
     {
       name: 'Aspen Spas',
-      logo: 'https://i.imgur.com/XkLcjuG.png',
+      logo: 'https://i.imgur.com/sBU8bR4.png',
       company: 'Aspen Spas'
     },
     {
