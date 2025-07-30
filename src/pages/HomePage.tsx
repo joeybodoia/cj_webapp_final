@@ -14,8 +14,8 @@ const HomePage = () => {
     <div className="min-h-screen">
       <Header />
       <Hero />
-      <BrandLogos />
       <ProductNavigation />
+      <BrandLogos />
       <OurStory />
       
       <Contact />
