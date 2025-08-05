@@ -50,7 +50,7 @@ const Header = () => {
             <Link to="/" className="flex-shrink-0">
               <div className="w-12 h-12 rounded-full overflow-hidden bg-white p-1">
                 <img 
-                  src="/hero-banner.png" 
+                  src="https://i.imgur.com/p59g2OD.png" 
                   alt="D's Outdoor Living Logo"
                   className="w-full h-full object-contain bg-white rounded-full"
                 />
