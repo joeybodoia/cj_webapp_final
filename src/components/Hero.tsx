@@ -23,7 +23,7 @@ const Hero = () => {
           <div className="flex justify-center items-center my-6 lg:hidden">
             <div className="w-48 h-48 md:w-64 md:h-64 rounded-full overflow-hidden shadow-2xl bg-white p-1">
               <img 
-                src="/hero-banner.png" 
+                src="https://i.imgur.com/dVNqGLc.png" 
                 alt="D's Outdoor Living Logo"
                 className="w-full h-full object-contain bg-white rounded-full"
               />
@@ -64,7 +64,7 @@ const Hero = () => {
         <div className="hidden lg:flex flex-1 justify-center items-center mt-6 lg:mt-0">
           <div className="w-48 h-48 md:w-64 md:h-64 lg:w-80 lg:h-80 xl:w-[28rem] xl:h-[28rem] rounded-full overflow-hidden shadow-2xl bg-white p-1">
             <img 
-              src="/hero-banner.png" 
+              src="https://i.imgur.com/dVNqGLc.png" 
               alt="D's Outdoor Living Logo"
               className="w-full h-full object-contain bg-white rounded-full"
             />
