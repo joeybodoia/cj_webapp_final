@@ -10,23 +10,19 @@ const OurStory = () => {
           
           <div className="space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed">
             <p>
-              I first started in the pool and spa business in 1987 cleaning pools as a high school kid trying to earn some extra money. After working summers with the same business through college and starting a career and family after college, I decided to go full time into the pool & spa industry. After several years of figuring out how to purchase the business, we somehow did it and we were blessed with owing & operating one of the largest pool & spa retail businesses in the State of Washington (which is still going great today). It was a lot of hard work the past 30 years, but my family and I were blessed beyond anything we could have imagined with the great help of so many great employees (and of course all my kids growing up in the business as well) and friendships over the years. After my four children finished college in Arizona, they all fell in love with Arizona and decided to continue living here and as fate would have it, we were able to sell the business in Washington and move full-time to state of Arizona to be with the people that mean the most to us. My 35+ years in the pool & spa business allowed me to develop some very close relationships along the way with lifetime friends and employees, retailers, distributors, & manufacturers and I wanted to build a new business with my kids that allowed me some freedoms, help them grow in their careers, and also be with the ones I love the most. So, we started D's Outdoor Living in Arizona: a company with a fresh idea and a way to give our customers the best products at the very best prices and not sacrifice the service our customers will need after the product is delivered.
+              I started in the pool and spa industry in 1987, cleaning pools as a high school student. After years of working in the business and growing my family, my family and I bought one of the largest pool and spa retail businesses in Washington, which I successfully ran for over 30 years. When my children fell in love with Arizona after college, I then sold the business in Washington and moved to Arizona to be closer to my family.
             </p>
             
             <p>
-              D's Outdoor Living is a new approach to retailing in the spa industry, as we have removed the overhead of the business that every company experiences (thus, the need to drive the price up). We have partnered with the best manufacturers, worked with them to design the hot tubs & swim spas we know our customers desire and have built spas and swim spas that withstand the Arizona landscape & heat. We have come to market with proven products, the most knowledge in the industry, and a way to service our customers the best! Without having the overhead of high retail rent & utilities, the 35+ years of negotiating the best price on the wholesale side of the process, and being the parts distributor of these brands for the entire United States, our customers not only get the best pricing, they also receive the best service for years to come (we ARE the service center for the entire United States for Bellagio Spas) without sacrificing any quality for our customers.
+              Along with my decades of experience, myself, along with my kids, launched D's Outdoor Living in Arizona. The new company offers a fresh approach to retailing spas by cutting overhead costs, allowing them to offer high-quality products at better prices while maintaining top-notch customer service. We have partnered with the best manufacturers and designed products that can withstand the Arizona heat, making sure our customers get the best pricing and long-term service.
             </p>
             
             <p>
-              Added to that, you are always dealing with family and never dealing with anyone else. We are normal people who want you to have our cell numbers so if you ever need anything, we are just a simple phone call away. We truly want to build long term friendships with our customers and get business the old-fashioned way: by taking care of customers and getting new business by referrals. We encourage you to call, e-mail, or better yet come and see our way of doing business: no high pressure "commissioned salespeople", as we feel our process & products sells itself. Our motto is simple: "Drive a little, Save a Lot". We personally guarantee that buying your products through D's Outdoor Living will be the best decision you make when buying your outdoor products and are trying to preserve the old way of doing business!
-            </p>
-            
-            <p className="text-center mt-6 md:mt-8">
-              We look forward to meeting you soon!
+              D's Outdoor Living stands out by providing direct family involvement with no high-pressure salespeople, and a motto of "Drive a little, Save a Lot." We focus on building long-term customer relationships and rely on referrals for business, aiming to offer personalized service that reflects old-fashioned business values.
             </p>
             
             <div className="text-center mt-4 md:mt-6">
-              <p className="font-semibold">Sincerely In Service,</p>
+              <p className="font-semibold">Sincerely,</p>
               <p className="text-lg md:text-xl font-bold mt-2">Chris, CJ, & Levi</p>
             </div>
           </div>
