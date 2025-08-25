@@ -48,7 +48,7 @@ const Contact = () => {
                 <p className="text-sm md:text-base text-gray-700">Phoenix AZ 85086</p>
                 <div className="flex items-center space-x-2 mt-3">
                   <Phone size={16} className="text-teal-600" />
-                  <p className="text-sm md:text-base text-gray-700">(480) 997-9781</p>
+                  <p className="text-sm md:text-base text-gray-700">(480) 997-9447</p>
                 </div>
               </div>
             </div>
@@ -64,7 +64,7 @@ const Contact = () => {
                 <p className="text-sm md:text-base text-gray-700">Surprise AZ 85379 Suite 104</p>
                 <div className="flex items-center space-x-2 mt-3">
                   <Phone size={16} className="text-teal-600" />
-                  <p className="text-sm md:text-base text-gray-700">(480) 571-1692</p>
+                  <p className="text-sm md:text-base text-gray-700">(480) 997-9447</p>
                 </div>
               </div>
             </div>
