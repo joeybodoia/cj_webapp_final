@@ -28,8 +28,8 @@ const Header = () => {
           <div className="flex items-center space-x-2">
             <span className="hidden md:inline">Call to schedule a private appointment to view our showroom</span>
             <span className="md:hidden">Call to schedule an appointment</span>
-            <a href="tel:(480) 997-9781" className="font-semibold hover:text-gray-300 transition-colors">
-              (480) 997-9781
+            <a href="tel:(480) 997-9447" className="font-semibold hover:text-gray-300 transition-colors">
+              (480) 997-9447
             </a>
           </div>
           <div className="hidden md:block">

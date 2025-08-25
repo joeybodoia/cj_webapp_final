@@ -16,7 +16,7 @@ const Contact = () => {
               <Phone size={24} className="text-teal-400" />
               <h3 className="text-2xl font-bold text-white">Phone</h3>
             </div>
-            <p className="text-xl text-gray-300">(480) 997-9781</p>
+            <p className="text-xl text-gray-300">(480) 997-9447</p>
           </div>
 
           {/* Emails */}
