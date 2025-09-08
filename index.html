@@ -304,12 +304,20 @@
     </script>
     
     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=AW-16759662604"></script>
+    <!-- Global site tag: GA4 + Google Ads -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-1FNN33TSN7"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
+      function gtag(){ dataLayer.push(arguments); }
       gtag('js', new Date());
 
+      // GA4
+      gtag('config', 'G-1FNN33TSN7', {
+        anonymize_ip: true,
+        send_page_view: false // keep false if you use GA4 Enhanced Measurement or manual SPA pageviews
+      });
+
+      // Google Ads
       gtag('config', 'AW-16759662604');
     </script>
   </head>
