@@ -6,6 +6,9 @@ interface ProductSchemaProps {
 }
 
 const ProductSchema: React.FC<ProductSchemaProps> = ({ product }) => {
+  // Debug logging to verify component is rendering
+  console.log('ProductSchema component rendering for:', product.product_name);
+
   // Helper function to extract specifications
   const getSpecification = (category: string, field: string) => {
     if (product.product_specifications && Array.isArray(product.product_specifications)) {
@@ -137,6 +140,9 @@ const ProductSchema: React.FC<ProductSchemaProps> = ({ product }) => {
       "audienceType": "Homeowners interested in outdoor living and relaxation"
     }
   };
+
+  // Debug the final schema object
+  console.log('Generated product schema:', productSchema);
 
   return (
     <script

@@ -74,7 +74,7 @@ const ProductDetailPage = () => {
       <Header />
       
       {/* Product Schema Markup */}
-      <ProductSchema product={product} />
+      {product && <ProductSchema product={product} />}
       
       {/* Product Image Banner */}
       <div className="pt-20">
