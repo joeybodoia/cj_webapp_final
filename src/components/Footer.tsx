@@ -132,7 +132,7 @@ const Footer = () => {
             <p className="text-teal-100 mb-4 text-sm">
               Premium spas, hot tubs, swim spas, and gazebos serving Phoenix and Surprise, Arizona
             </p>
-            <div className="flex space-x-4">
+            <div className="space-y-2">
               <div className="flex items-center space-x-2">
                 <Phone size={16} />
                 <span className="text-sm">(480) 997-9447</span>
