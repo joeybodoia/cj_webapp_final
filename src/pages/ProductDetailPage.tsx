@@ -4,6 +4,7 @@ import { ChevronDown, ChevronUp } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 import ProductImageBanner from '../components/ProductImageBanner';
+import ProductSchema from '../components/ProductSchema';
 import { InventoryItem } from '../lib/supabase';
 
 const ProductDetailPage = () => {
@@ -71,6 +72,9 @@ const ProductDetailPage = () => {
   return (
     <div className="min-h-screen">
       <Header />
+      
+      {/* Product Schema Markup */}
+      <ProductSchema product={product} />
       
       {/* Product Image Banner */}
       <div className="pt-20">
