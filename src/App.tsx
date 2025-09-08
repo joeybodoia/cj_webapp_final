@@ -6,6 +6,7 @@ import SpasPage from './pages/SpasPage';
 import SwimSpasPage from './pages/SwimSpasPage';
 import GazebosPage from './pages/GazebosPage';
 import ProductDetailPage from './pages/ProductDetailPage';
+import LocationsPage from './pages/LocationsPage';
 
 function App() {
   useEffect(() => {
@@ -30,6 +31,7 @@ function App() {
         <Route path="/spas" element={<SpasPage />} />
         <Route path="/swim-spas" element={<SwimSpasPage />} />
         <Route path="/gazebos" element={<GazebosPage />} />
+        <Route path="/locations" element={<LocationsPage />} />
         <Route path="/product/:slug" element={<ProductDetailPage />} />
       </Routes>
     </Router>

@@ -94,6 +94,12 @@ const Header = () => {
             >
               Contact Us
             </button>
+            <Link 
+              to="/locations"
+              className="text-white hover:text-gray-300 transition-colors font-medium"
+            >
+              Locations
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -142,6 +148,13 @@ const Header = () => {
               >
                 Contact Us
               </button>
+              <Link 
+                to="/locations"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-white hover:text-gray-300 transition-colors text-left font-medium"
+              >
+                Locations
+              </Link>
             </div>
           </nav>
         )}
