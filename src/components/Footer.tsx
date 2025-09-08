@@ -15,15 +15,135 @@ const Footer = () => {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify([
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Organization",
+            "name": "D's Outdoor Living",
+            "alternateName": "DS Outdoor Living",
+            "url": "https://dsoutdoorliving.com",
+            "logo": "https://i.imgur.com/p59g2OD.png",
+            "description": "Arizona's premier destination for premium spas, hot tubs, swim spas, and gazebos. Family-owned business serving Phoenix, Surprise, and surrounding areas with quality outdoor living products.",
+            "foundingDate": "2023",
+            "founders": [
+              {
+                "@type": "Person",
+                "name": "Chris"
+              }
+            ],
+            "slogan": "Drive a little, save a lot",
+            "telephone": "(480) 997-9447",
+            "email": "CJ@ds-outdoorliving.com",
+            "areaServed": [
+              {
+                "@type": "City",
+                "name": "Phoenix",
+                "containedInPlace": {
+                  "@type": "State",
+                  "name": "Arizona"
+                }
+              },
+              {
+                "@type": "City", 
+                "name": "Surprise",
+                "containedInPlace": {
+                  "@type": "State",
+                  "name": "Arizona"
+                }
+              },
+              {
+                "@type": "State",
+                "name": "Arizona"
+              }
+            ],
+            "serviceArea": {
+              "@type": "GeoCircle",
+              "geoMidpoint": {
+                "@type": "GeoCoordinates",
+                "latitude": "33.6575",
+                "longitude": "-112.2834"
+              },
+              "geoRadius": "50000"
+            },
+            "knowsAbout": [
+              "Hot Tubs",
+              "Spas", 
+              "Swim Spas",
+              "Gazebos",
+              "Outdoor Living",
+              "Pool Equipment",
+              "Spa Installation",
+              "Spa Maintenance"
+            ],
+            "hasOfferCatalog": {
+              "@type": "OfferCatalog",
+              "name": "Outdoor Living Products & Services",
+              "itemListElement": [
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Product",
+                    "name": "Premium Spas and Hot Tubs",
+                    "category": "Spa Equipment",
+                    "brand": ["Aspen Spas", "Nordic Hot Tubs", "Bellagio Spas"]
+                  },
+                  "availability": "https://schema.org/InStock",
+                  "businessFunction": "https://schema.org/Sell"
+                },
+                {
+                  "@type": "Offer", 
+                  "itemOffered": {
+                    "@type": "Product",
+                    "name": "Swim Spas",
+                    "category": "Exercise Equipment"
+                  },
+                  "availability": "https://schema.org/InStock",
+                  "businessFunction": "https://schema.org/Sell"
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Product", 
+                    "name": "Outdoor Gazebos",
+                    "category": "Outdoor Structures"
+                  },
+                  "availability": "https://schema.org/InStock",
+                  "businessFunction": "https://schema.org/Sell"
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service",
+                    "name": "Spa Installation Services",
+                    "category": "Installation Services"
+                  },
+                  "availability": "https://schema.org/InStock",
+                  "businessFunction": "https://schema.org/Sell"
+                },
+                {
+                  "@type": "Offer",
+                  "itemOffered": {
+                    "@type": "Service", 
+                    "name": "Spa Maintenance and Repair",
+                    "category": "Maintenance Services"
+                  },
+                  "availability": "https://schema.org/InStock", 
+                  "businessFunction": "https://schema.org/Sell"
+                }
+              ]
+            },
+            "location": [
             {
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "D's Outdoor Living - North Phoenix",
-              "description": "Premium spas, hot tubs, swim spas, and gazebos in North Phoenix, Arizona",
-              "url": "https://www.dsoutdoorliving.com",
+              "name": "D's Outdoor Living",
+              "alternateName": "D's Outdoor Living - North Phoenix",
+              "description": "Premium spas, hot tubs, swim spas, and gazebos in North Phoenix, Arizona. Family-owned business with over 30 years of experience.",
+              "url": "https://dsoutdoorliving.com",
               "telephone": "(480) 997-9447",
               "email": "CJ@ds-outdoorliving.com",
+              "priceRange": "$$-$$$",
+              "paymentAccepted": ["Cash", "Credit Card", "Financing"],
+              "currenciesAccepted": "USD",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "3106 W Blue Eagle Lane",
@@ -37,45 +157,40 @@ const Footer = () => {
                 "latitude": "33.6846",
                 "longitude": "-112.1962"
               },
-              "openingHours": "Mo-Su 09:00-18:00",
-              "priceRange": "$$",
-              "servesCuisine": [],
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Outdoor Living Products",
-                "itemListElement": [
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Product",
-                      "name": "Premium Spas and Hot Tubs"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Product",
-                      "name": "Swim Spas"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Product",
-                      "name": "Outdoor Gazebos"
-                    }
-                  }
-                ]
-              }
+              "openingHours": ["Mo-Fr 09:00-18:00", "Sa 09:00-17:00", "Su 10:00-16:00"],
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                  "opens": "09:00",
+                  "closes": "18:00"
+                },
+                {
+                  "@type": "OpeningHoursSpecification", 
+                  "dayOfWeek": "Saturday",
+                  "opens": "09:00",
+                  "closes": "17:00"
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": "Sunday", 
+                  "opens": "10:00",
+                  "closes": "16:00"
+                }
+              ]
             },
             {
               "@context": "https://schema.org",
               "@type": "LocalBusiness",
-              "name": "D's Outdoor Living - Surprise",
-              "description": "Premium spas, hot tubs, swim spas, and gazebos in Surprise, Arizona",
-              "url": "https://www.dsoutdoorliving.com",
+              "name": "D's Outdoor Living",
+              "alternateName": "D's Outdoor Living - Surprise", 
+              "description": "Premium spas, hot tubs, swim spas, and gazebos in Surprise, Arizona. Family-owned business with over 30 years of experience.",
+              "url": "https://dsoutdoorliving.com",
               "telephone": "(480) 997-9447",
               "email": "CJ@ds-outdoorliving.com",
+              "priceRange": "$$-$$$",
+              "paymentAccepted": ["Cash", "Credit Card", "Financing"],
+              "currenciesAccepted": "USD",
               "address": {
                 "@type": "PostalAddress",
                 "streetAddress": "11304 North Dysart Road, Suite 104",
@@ -89,38 +204,34 @@ const Footer = () => {
                 "latitude": "33.6303",
                 "longitude": "-112.3707"
               },
-              "openingHours": "Mo-Su 09:00-18:00",
-              "priceRange": "$$",
-              "servesCuisine": [],
-              "hasOfferCatalog": {
-                "@type": "OfferCatalog",
-                "name": "Outdoor Living Products",
-                "itemListElement": [
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Product",
-                      "name": "Premium Spas and Hot Tubs"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Product",
-                      "name": "Swim Spas"
-                    }
-                  },
-                  {
-                    "@type": "Offer",
-                    "itemOffered": {
-                      "@type": "Product",
-                      "name": "Outdoor Gazebos"
-                    }
-                  }
-                ]
-              }
+              "openingHours": ["Mo-Fr 09:00-18:00", "Sa 09:00-17:00", "Su 10:00-16:00"],
+              "openingHoursSpecification": [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                  "opens": "09:00", 
+                  "closes": "18:00"
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": "Saturday",
+                  "opens": "09:00",
+                  "closes": "17:00"
+                },
+                {
+                  "@type": "OpeningHoursSpecification",
+                  "dayOfWeek": "Sunday",
+                  "opens": "10:00", 
+                  "closes": "16:00"
+                }
+              ]
             }
-          ])
+            ],
+            "sameAs": [
+              "https://www.facebook.com/dsoutdoorliving",
+              "https://www.instagram.com/dsoutdoorliving"
+            ]
+          })
         }}
       />
       
