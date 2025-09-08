@@ -1,33 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <!-- Add your sitemap URLs here -->
   <url>
-    <loc>https://yourdomain.com/</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://dsoutdoorliving.com/</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/spas</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://dsoutdoorliving.com/spas</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/swim-spas</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://dsoutdoorliving.com/swim-spas</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/gazebos</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://dsoutdoorliving.com/gazebos</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://yourdomain.com/locations</loc>
-    <lastmod>2024-01-01</lastmod>
+    <loc>https://dsoutdoorliving.com/locations</loc>
+    <lastmod>2025-01-27</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
