@@ -15,7 +15,7 @@ const Footer = () => {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
+          __html: JSON.stringify([{
             "@context": "https://schema.org",
             "@type": "Organization",
             "name": "D's Outdoor Living",
@@ -231,7 +231,53 @@ const Footer = () => {
               "https://www.facebook.com/dsoutdoorliving",
               "https://www.instagram.com/dsoutdoorliving"
             ]
-          })
+          }, {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "D's Outdoor Living - North Phoenix",
+            "description": "Premium spas, hot tubs, swim spas, and gazebos in North Phoenix, Arizona. Family-owned business with over 30 years of experience.",
+            "url": "https://dsoutdoorliving.com",
+            "telephone": "(480) 997-9447",
+            "email": "CJ@ds-outdoorliving.com",
+            "priceRange": "$$-$$$",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "3106 W Blue Eagle Lane",
+              "addressLocality": "Phoenix",
+              "addressRegion": "AZ",
+              "postalCode": "85086",
+              "addressCountry": "US"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "33.6846",
+              "longitude": "-112.1962"
+            },
+            "openingHours": ["Mo-Fr 09:00-18:00", "Sa 09:00-17:00", "Su 10:00-16:00"]
+          }, {
+            "@context": "https://schema.org",
+            "@type": "LocalBusiness",
+            "name": "D's Outdoor Living - Surprise",
+            "description": "Premium spas, hot tubs, swim spas, and gazebos in Surprise, Arizona. Family-owned business with over 30 years of experience.",
+            "url": "https://dsoutdoorliving.com",
+            "telephone": "(480) 997-9447",
+            "email": "CJ@ds-outdoorliving.com",
+            "priceRange": "$$-$$$",
+            "address": {
+              "@type": "PostalAddress",
+              "streetAddress": "11304 North Dysart Road, Suite 104",
+              "addressLocality": "Surprise",
+              "addressRegion": "AZ",
+              "postalCode": "85379",
+              "addressCountry": "US"
+            },
+            "geo": {
+              "@type": "GeoCoordinates",
+              "latitude": "33.6303",
+              "longitude": "-112.3707"
+            },
+            "openingHours": ["Mo-Fr 09:00-18:00", "Sa 09:00-17:00", "Su 10:00-16:00"]
+          }])
         }}
       />
       
