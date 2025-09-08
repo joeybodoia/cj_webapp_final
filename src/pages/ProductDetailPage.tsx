@@ -110,6 +110,8 @@ const ProductDetailPage = () => {
                         <img
                           src={feature.image_url}
                           alt={feature.title}
+                          loading="lazy"
+                          decoding="async"
                           className="w-full h-full object-contain"
                           onError={(e) => {
                             const target = e.target as HTMLImageElement;
@@ -354,6 +356,8 @@ const ProductDetailPage = () => {
                           <img
                             src={accessory.image_url}
                             alt={accessory.title}
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-full object-contain"
                             onError={(e) => {
                               const target = e.target as HTMLImageElement;

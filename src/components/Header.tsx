@@ -52,6 +52,9 @@ const Header = () => {
                 <img 
                   src="https://i.imgur.com/p59g2OD.png" 
                   alt="D's Outdoor Living Logo"
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                   className="w-full h-full object-contain bg-white rounded-full p-0.5"
                 />
               </div>

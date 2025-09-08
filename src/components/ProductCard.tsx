@@ -71,6 +71,8 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               <img 
                 src={primaryImage} 
                 alt={product.product_name}
+                loading="lazy"
+                decoding="async"
                 className={`max-w-60 max-h-44 md:max-w-72 md:max-h-60 border-2 md:border-4 border-black rounded-lg transition-transform duration-300 hover:scale-105 ${
                   product.product_company === 'Aspen Spas' 
                     ? 'object-cover' 

@@ -39,6 +39,8 @@ const ProductNavigation = () => {
                 <img
                   src={product.image}
                   alt={product.title}
+                  loading="lazy"
+                  decoding="async"
                   className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 brightness-125"
                 />
                 <div className="absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-300 group-hover:bg-opacity-30"></div>

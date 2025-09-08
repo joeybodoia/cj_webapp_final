@@ -54,6 +54,8 @@ const BrandLogos = () => {
                 <img
                   src={brand.logo}
                   alt={brand.name}
+                  loading="lazy"
+                  decoding="async"
                   className={`w-full h-full object-contain rounded-full ${
                     brand.company === 'Aspen Spas' ? 'p-4' : ''
                   }`}

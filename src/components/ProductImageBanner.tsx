@@ -140,6 +140,9 @@ const ProductImageBanner: React.FC<ProductImageBannerProps> = ({
                 <img
                   src={images[selectedImageIndex]}
                   alt={`${productName} - Image ${selectedImageIndex + 1}`}
+                  loading="eager"
+                  decoding="async"
+                  fetchPriority="high"
                   className={`w-full h-64 md:h-80 bg-black ${
                     product?.product_company === 'Aspen Spas' 
                       ? 'object-cover' 
@@ -186,6 +189,8 @@ const ProductImageBanner: React.FC<ProductImageBannerProps> = ({
                       <img
                         src={image}
                         alt={`${productName} thumbnail ${index + 1}`}
+                        loading="lazy"
+                        decoding="async"
                         className={`w-full h-full bg-black ${
                           product?.product_company === 'Aspen Spas' 
                             ? 'object-cover' 

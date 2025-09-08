@@ -25,6 +25,9 @@ const Hero = () => {
               <img 
                 src="https://i.imgur.com/dVNqGLc.png" 
                 alt="D's Outdoor Living Logo"
+                loading="eager"
+                decoding="async"
+                fetchPriority="high"
                 className="w-full h-full object-contain bg-white rounded-full"
               />
             </div>
@@ -66,6 +69,9 @@ const Hero = () => {
             <img 
               src="https://i.imgur.com/dVNqGLc.png" 
               alt="D's Outdoor Living Logo"
+              loading="eager"
+              decoding="async"
+              fetchPriority="high"
               className="w-full h-full object-contain bg-white rounded-full"
             />
           </div>
