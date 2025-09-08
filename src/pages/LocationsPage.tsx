@@ -9,7 +9,7 @@ const LocationsPage = () => {
       <Header />
       
       {/* Hero Section */}
-      <div className="pt-48 py-12 md:py-20">
+      <div className="mt-32 py-12 md:py-20">
         <div className="container mx-auto px-4">
           <div className="text-center mb-16">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-6">
