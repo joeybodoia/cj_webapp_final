@@ -1,5 +1,5 @@
 import React from 'react';
-import { MapPin, Phone } from 'lucide-react';
+import { MapPin, Phone, Clock } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -44,6 +44,17 @@ const LocationsPage = () => {
                     (480) 997-9447
                   </a>
                 </div>
+                
+                <div className="flex items-start space-x-2">
+                  <Clock size={18} className="text-teal-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="text-gray-700 font-medium mb-1">Hours:</p>
+                    <div className="text-sm text-gray-600 space-y-1">
+                      <p>Mon-Sat: 10am-5pm</p>
+                      <p>Sunday: 11am-4pm</p>
+                    </div>
+                  </div>
+                </div>
               </div>
               
               <div className="text-sm text-gray-600">
@@ -72,6 +83,17 @@ const LocationsPage = () => {
                   >
                     (480) 997-9447
                   </a>
+                </div>
+                
+                <div className="flex items-start space-x-2">
+                  <Clock size={18} className="text-teal-600 mt-1 flex-shrink-0" />
+                  <div>
+                    <p className="text-gray-700 font-medium mb-1">Hours:</p>
+                    <div className="text-sm text-gray-600 space-y-1">
+                      <p>Mon-Sat: 10am-6pm</p>
+                      <p>Sunday: 11am-4pm</p>
+                    </div>
+                  </div>
                 </div>
               </div>
               
