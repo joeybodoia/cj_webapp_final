@@ -43,6 +43,7 @@ const Footer = () => {
                     <p className="font-semibold text-white">North Phoenix</p>
                     <p className="text-sm">3106 W Blue Eagle Lane</p>
                     <p className="text-sm">Phoenix, AZ 85086</p>
+                    <p className="text-xs text-teal-200 font-medium mt-1">**by appointment only, call to arrange**</p>
                   </div>
                 </div>
               </div>

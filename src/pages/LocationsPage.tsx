@@ -33,6 +33,7 @@ const LocationsPage = () => {
                 <div>
                   <p className="text-gray-700 font-medium">3106 W Blue Eagle Lane</p>
                   <p className="text-gray-700">Phoenix AZ 85086</p>
+                  <p className="text-sm text-gray-600 font-medium mt-2">**by appointment only, call to arrange**</p>
                 </div>
                 
                 <div className="flex items-center space-x-2">

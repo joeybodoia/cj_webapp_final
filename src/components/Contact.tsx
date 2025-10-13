@@ -46,6 +46,7 @@ const Contact = () => {
               <div className="space-y-2">
                 <p className="text-sm md:text-base text-gray-700">3106 W Blue Eagle Lane</p>
                 <p className="text-sm md:text-base text-gray-700">Phoenix AZ 85086</p>
+                <p className="text-xs text-gray-600 font-medium mt-2">**by appointment only, call to arrange**</p>
                 <div className="flex items-center space-x-2 mt-3">
                   <Phone size={16} className="text-teal-600" />
                   <p className="text-sm md:text-base text-gray-700">(480) 997-9447</p>
