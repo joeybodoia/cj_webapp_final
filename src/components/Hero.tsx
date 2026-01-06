@@ -14,7 +14,10 @@ const Hero = () => {
         <div className="container mx-auto px-4 pt-8 md:pt-12 h-full flex flex-col lg:flex-row items-center justify-between">
         {/* Mobile Layout */}
         <div className="flex-1 max-w-2xl text-center lg:text-left lg:hidden">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 leading-tight text-white">
+          <h1
+            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 leading-tight text-white"
+            style={{ textShadow: '0 0 2px rgba(42, 45, 50, 0.7)' }}
+          >
             Welcome to D's
             <span className="block">Outdoor Living</span>
           </h1>
@@ -47,7 +50,10 @@ const Hero = () => {
         {/* Desktop Layout */}
         <div className="hidden lg:flex flex-1 max-w-2xl text-left">
           <div className="flex-1">
-            <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 leading-tight text-white">
+            <h1
+              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 leading-tight text-white"
+              style={{ textShadow: '0 0 2px rgba(42, 45, 50, 0.7)' }}
+            >
               Welcome to D's
               <span className="block">Outdoor Living</span>
             </h1>
