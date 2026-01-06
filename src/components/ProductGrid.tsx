@@ -89,7 +89,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({ productType, title, descripti
             </button>
           </div>
         ) : (
-          <div className={`grid gap-8 ${
+          <div className={`grid gap-8 items-stretch ${
             filteredProducts.length === 1 
               ? 'grid-cols-1 justify-items-center max-w-sm md:max-w-md mx-auto'
               : filteredProducts.length === 2

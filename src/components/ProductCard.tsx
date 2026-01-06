@@ -62,9 +62,9 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
   return (
     <div 
       onClick={handleProductClick}
-      className="bg-teal-700 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer mx-auto max-w-sm"
+      className="bg-teal-700 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer mx-auto max-w-sm w-full h-full"
     >
-      <div className="relative overflow-hidden">
+      <div className="relative overflow-hidden flex flex-col h-full">
         <div className="h-48 md:h-64 bg-teal-700 pt-4 md:pt-6 px-3 md:px-4 pb-4 md:pb-6">
           <div className="h-full flex items-center justify-center">
             <div className="relative inline-block">
@@ -86,7 +86,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             </div>
           </div>
         </div>
-        <div className="p-4 md:p-6">
+        <div className="p-4 md:p-6 flex flex-col flex-1">
         <h3 className="text-xl font-bold text-white mb-2">{product.product_name}</h3>
         {product.product_company && (
           <p className="text-sm text-teal-200 font-medium mb-2">by {product.product_company}</p>
@@ -110,7 +110,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             e.stopPropagation();
             handleProductClick();
           }}
-          className="w-full bg-white hover:bg-gray-100 text-teal-700 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-colors duration-300 flex items-center justify-center space-x-2"
+          className="mt-auto w-full bg-white hover:bg-gray-100 text-teal-700 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-colors duration-300 flex items-center justify-center space-x-2"
         >
           <span>View Product</span>
           <ArrowRight size={16} />
