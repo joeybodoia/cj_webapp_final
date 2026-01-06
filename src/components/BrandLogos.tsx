@@ -51,15 +51,13 @@ const BrandLogos = () => {
               onClick={() => handleBrandClick(brand.company)}
               className="group cursor-pointer transform transition-all duration-300 hover:scale-110"
             >
-              <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden bg-white p-3 sm:p-4 shadow-lg group-hover:shadow-2xl transition-shadow duration-300">
+              <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-56 md:h-56 lg:w-64 lg:h-64 rounded-full overflow-hidden bg-white p-1 sm:p-2 shadow-lg group-hover:shadow-2xl transition-shadow duration-300">
                 <img
                   src={brand.logo}
                   alt={brand.name}
                   loading="lazy"
                   decoding="async"
-                  className={`w-full h-full object-contain rounded-full ${
-                    brand.company === 'Aspen Spas' ? 'p-4' : ''
-                  }`}
+                  className="w-full h-full object-contain rounded-full"
                   onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.style.display = 'none';
