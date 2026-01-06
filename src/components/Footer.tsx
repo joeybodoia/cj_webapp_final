@@ -93,7 +93,7 @@ const Footer = () => {
         {/* Copyright */}
         <div className="border-t border-teal-600 mt-8 pt-8 text-center">
           <p className="text-teal-200 text-sm">
-            © 2024 D's Outdoor Living. All rights reserved. | Serving Phoenix, Surprise, and surrounding Arizona areas.
+            © 2026 D's Outdoor Living. All rights reserved. | Serving Phoenix, Surprise, and surrounding Arizona areas.
           </p>
         </div>
       </div>

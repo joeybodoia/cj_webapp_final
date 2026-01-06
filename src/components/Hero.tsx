@@ -15,7 +15,7 @@ const Hero = () => {
         {/* Mobile Layout */}
         <div className="flex-1 max-w-2xl text-center lg:text-left lg:hidden">
           <h1
-            className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 leading-tight text-white"
+            className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6 leading-tight text-white"
             style={{ textShadow: '0 0 2px rgba(42, 45, 50, 0.7)' }}
           >
             Welcome to D's
@@ -51,7 +51,7 @@ const Hero = () => {
         <div className="hidden lg:flex flex-1 max-w-2xl text-left">
           <div className="flex-1">
             <h1
-              className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 leading-tight text-white"
+              className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6 leading-tight text-white"
               style={{ textShadow: '0 0 2px rgba(42, 45, 50, 0.7)' }}
             >
               Welcome to D's

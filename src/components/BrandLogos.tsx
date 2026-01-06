@@ -36,10 +36,10 @@ const BrandLogos = () => {
     <section className="py-12 md:py-16 bg-custom-dark">
       <div className="container mx-auto px-4">
         <div className="text-center mb-8 md:mb-12">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+          <h2 className="text-5xl md:text-6xl font-bold text-white mb-5">
             Trusted Brand Partners
           </h2>
-          <p className="text-lg text-gray-300 max-w-2xl mx-auto">
+          <p className="text-lg md:text-xl text-gray-300 max-w-2xl mx-auto">
             We proudly represent these premium spa manufacturers
           </p>
         </div>
