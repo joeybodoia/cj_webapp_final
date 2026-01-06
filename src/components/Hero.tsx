@@ -10,7 +10,7 @@ const Hero = () => {
 
   return (
     <section id="home" className="relative h-[85vh] bg-custom-dark text-white overflow-hidden pt-36 md:pt-32 px-4 md:px-6">
-      <div className="bg-teal-700 rounded-2xl h-full">
+      <div className="bg-gradient-to-br from-teal-700 via-teal-700 to-teal-800 rounded-3xl h-full shadow-[0_20px_60px_rgba(8,84,78,0.45)] border border-white/10">
         <div className="container mx-auto px-4 pt-8 md:pt-12 h-full flex flex-col lg:flex-row items-center justify-between">
         {/* Mobile Layout */}
         <div className="flex-1 max-w-2xl text-center lg:text-left lg:hidden">
@@ -41,7 +41,7 @@ const Hero = () => {
           </p>
           <button 
             onClick={scrollToProducts}
-            className="bg-white text-teal-700 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-base md:text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+            className="bg-white/95 text-teal-800 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-base md:text-lg transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-xl"
           >
             Start Exploring
           </button>
@@ -62,7 +62,7 @@ const Hero = () => {
             </p>
             <button 
               onClick={scrollToProducts}
-              className="bg-white text-teal-700 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-base md:text-lg transition-all duration-300 transform hover:scale-105 hover:shadow-lg"
+              className="bg-white/95 text-teal-800 px-6 md:px-8 py-3 md:py-4 rounded-full font-semibold text-base md:text-lg transition-all duration-300 transform hover:-translate-y-0.5 hover:shadow-xl"
             >
               Start Exploring
             </button>

@@ -1,3 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+@layer base {
+  html {
+    font-family: 'Manrope', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body {
+    background: radial-gradient(circle at top, rgba(26, 32, 44, 0.45), rgba(42, 45, 50, 0.95)),
+      linear-gradient(180deg, #22262b 0%, #2a2d32 55%, #1f2328 100%);
+  }
+
+  h1,
+  h2,
+  h3 {
+    font-family: 'Cormorant Garamond', ui-serif, Georgia, Cambria, 'Times New Roman', serif;
+    letter-spacing: 0.01em;
+  }
+}

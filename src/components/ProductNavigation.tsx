@@ -33,7 +33,7 @@ const ProductNavigation = () => {
             <div
               key={product.id}
               onClick={() => navigate(product.route)}
-              className="relative overflow-hidden rounded-xl shadow-lg cursor-pointer transform transition-all duration-300 hover:scale-105 hover:shadow-2xl group"
+              className="relative overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.35)] cursor-pointer transform transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_25px_55px_rgba(8,84,78,0.35)] group"
             >
               <div className="relative h-64">
                 <img
@@ -41,11 +41,11 @@ const ProductNavigation = () => {
                   alt={product.title}
                   loading="lazy"
                   decoding="async"
-                  className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-110 brightness-125"
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 brightness-110"
                 />
-                <div className="absolute inset-0 bg-black bg-opacity-40 transition-opacity duration-300 group-hover:bg-opacity-30"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent transition-opacity duration-300 group-hover:from-black/60"></div>
                 <div className="absolute inset-0 flex items-center justify-center">
-                  <h3 className="text-3xl md:text-4xl font-bold text-white text-center drop-shadow-lg">
+                  <h3 className="text-3xl md:text-4xl font-bold text-white text-center drop-shadow-lg tracking-wide">
                     {product.title}
                   </h3>
                 </div>

@@ -10,12 +10,12 @@ const Footer = () => {
   };
 
   return (
-    <footer className="bg-teal-700 text-white py-12">
+    <footer className="bg-gradient-to-b from-teal-800 via-teal-800 to-teal-900 text-white py-12 border-t border-teal-600/40">
       <div className="container mx-auto px-4">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Company Info */}
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
-            <h3 className="text-2xl font-bold mb-4">D's Outdoor Living</h3>
+            <h3 className="text-2xl font-bold mb-4 tracking-wide">D's Outdoor Living</h3>
             <p className="text-teal-100 mb-4 text-sm">
               Premium spas, hot tubs, swim spas, and gazebos serving Phoenix and Surprise, Arizona
             </p>
@@ -33,7 +33,7 @@ const Footer = () => {
           
           {/* Business Locations */}
           <div className="col-span-1 md:col-span-2 lg:col-span-1">
-            <h4 className="text-lg font-semibold mb-4">Our Locations</h4>
+            <h4 className="text-lg font-semibold mb-4 tracking-wide">Our Locations</h4>
             <div className="space-y-4">
               {/* North Phoenix Location */}
               <div className="text-teal-100">
@@ -65,7 +65,7 @@ const Footer = () => {
           
           {/* Products */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Products</h4>
+            <h4 className="text-lg font-semibold mb-4 tracking-wide">Products</h4>
             <ul className="space-y-2 text-teal-100">
               <li><a href="#spas" className="hover:text-white transition-colors">Spas & Hot Tubs</a></li>
               <li><a href="#swim-spas" className="hover:text-white transition-colors">Swim Spas</a></li>
@@ -75,7 +75,7 @@ const Footer = () => {
           
           {/* Company Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Company</h4>
+            <h4 className="text-lg font-semibold mb-4 tracking-wide">Company</h4>
             <ul className="space-y-2 text-teal-100">
               <li>
                 <button 

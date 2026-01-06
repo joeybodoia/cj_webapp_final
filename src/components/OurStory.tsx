@@ -3,12 +3,12 @@ import React from 'react';
 const OurStory = () => {
   return (
     <section id="our-story" className="py-12 md:py-20 bg-custom-dark px-4 md:px-6">
-      <div className="bg-teal-700 rounded-2xl text-white">
+      <div className="bg-gradient-to-br from-teal-800 via-teal-700 to-teal-700/90 rounded-3xl text-white shadow-[0_18px_50px_rgba(8,84,78,0.35)] border border-white/10">
         <div className="container mx-auto px-4 py-12 md:py-20">
           <div className="max-w-4xl mx-auto">
-          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12">Our Story</h2>
+          <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-8 md:mb-12 tracking-wide">Our Story</h2>
           
-          <div className="space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed">
+          <div className="space-y-4 md:space-y-6 text-base md:text-lg leading-relaxed text-teal-50/90">
             <p>
               I started in the pool and spa industry in 1987, cleaning pools as a high school student. After years of working in the business and growing my family, my family and I bought one of the largest pool and spa retail businesses in Washington, which I successfully ran for over 30 years. When my children fell in love with Arizona after college, I then sold the business in Washington and moved to Arizona to be closer to my family.
             </p>

@@ -40,9 +40,9 @@ const Header = () => {
   }, [isMaintenanceOpen]);
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 shadow-lg">
+    <header className="fixed top-0 left-0 right-0 z-50 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
       {/* Green Contact Bar */}
-      <div className="bg-custom-dark text-white py-2 px-4">
+      <div className="bg-custom-dark/90 backdrop-blur-md text-white/90 py-2 px-4 border-b border-white/5">
         <div className="container mx-auto flex items-center justify-between text-sm">
           <div className="flex items-center space-x-2">
             <span className="hidden md:inline">Call to schedule a private appointment to view our showroom</span>
@@ -60,7 +60,7 @@ const Header = () => {
       </div>
       
       {/* Main Navigation */}
-      <div className="bg-teal-700">
+      <div className="bg-teal-800/90 backdrop-blur-md border-b border-teal-600/40">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo and Left Navigation */}
@@ -83,28 +83,28 @@ const Header = () => {
             <nav className="hidden md:flex items-center space-x-6">
               <Link 
                 to="/spas"
-                className="text-white hover:text-gray-300 transition-colors font-medium"
+                className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Spas
               </Link>
               <Link 
                 to="/swim-spas"
-                className="text-white hover:text-gray-300 transition-colors font-medium"
+                className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Swim Spas
               </Link>
               <Link 
                 to="/gazebos"
-                className="text-white hover:text-gray-300 transition-colors font-medium"
+                className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Gazebos
               </Link>
               <button
                 onClick={() => setIsMaintenanceOpen(true)}
-                className="text-red-300 hover:text-red-200 transition-colors font-medium"
+                className="text-amber-200 hover:text-amber-100 transition-colors font-medium tracking-wide"
                 style={{ textShadow: '0 0 2px rgba(0, 0, 0, 0.75)' }}
               >
                 Maintenance Plans
@@ -116,21 +116,21 @@ const Header = () => {
           <nav className="hidden md:flex items-center space-x-6">
             <button 
               onClick={() => scrollToSection('our-story')}
-              className="text-white hover:text-gray-300 transition-colors font-medium"
+              className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
               style={navTextShadow}
             >
               Our Story
             </button>
             <button 
               onClick={() => scrollToSection('contact')}
-              className="text-white hover:text-gray-300 transition-colors font-medium"
+              className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
               style={navTextShadow}
             >
               Contact Us
             </button>
             <Link 
               to="/locations"
-              className="text-white hover:text-gray-300 transition-colors font-medium"
+              className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
               style={navTextShadow}
             >
               Locations
@@ -153,7 +153,7 @@ const Header = () => {
               <Link 
                 to="/spas"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-white hover:text-gray-300 transition-colors text-left font-medium"
+                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Spas
@@ -161,7 +161,7 @@ const Header = () => {
               <Link 
                 to="/swim-spas"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-white hover:text-gray-300 transition-colors text-left font-medium"
+                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Swim Spas
@@ -169,7 +169,7 @@ const Header = () => {
               <Link 
                 to="/gazebos"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-white hover:text-gray-300 transition-colors text-left font-medium"
+                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Gazebos
@@ -179,21 +179,21 @@ const Header = () => {
                   setIsMenuOpen(false);
                   setIsMaintenanceOpen(true);
                 }}
-                className="text-red-300 hover:text-red-200 transition-colors text-left font-medium"
+                className="text-amber-200 hover:text-amber-100 transition-colors text-left font-medium tracking-wide"
                 style={{ textShadow: '0 0 2px rgba(0, 0, 0, 0.75)' }}
               >
                 Maintenance Plans
               </button>
               <button 
                 onClick={() => scrollToSection('our-story')}
-                className="text-white hover:text-gray-300 transition-colors text-left font-medium"
+                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Our Story
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="text-white hover:text-gray-300 transition-colors text-left font-medium"
+                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Contact Us
@@ -201,7 +201,7 @@ const Header = () => {
               <Link 
                 to="/locations"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-white hover:text-gray-300 transition-colors text-left font-medium"
+                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Locations

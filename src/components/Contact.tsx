@@ -6,7 +6,7 @@ const Contact = () => {
     <section id="contact" className="py-20 bg-custom-dark">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">Contact Us</h2>
+          <h2 className="text-4xl md:text-5xl font-bold text-white mb-6 tracking-wide">Contact Us</h2>
         </div>
         
         <div className="max-w-4xl mx-auto">
@@ -38,7 +38,7 @@ const Contact = () => {
           {/* Locations */}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {/* Location 1 */}
-            <div className="bg-white p-4 md:p-6 rounded-xl shadow-lg">
+            <div className="bg-white/95 p-4 md:p-6 rounded-2xl border border-white/40 shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
               <div className="flex items-center space-x-3 mb-4">
                 <MapPin size={20} className="text-teal-600" />
                 <h4 className="text-lg md:text-xl font-bold text-gray-900">North Phoenix</h4>
@@ -55,7 +55,7 @@ const Contact = () => {
             </div>
 
             {/* Location 2 */}
-            <div className="bg-white p-4 md:p-6 rounded-xl shadow-lg">
+            <div className="bg-white/95 p-4 md:p-6 rounded-2xl border border-white/40 shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
               <div className="flex items-center space-x-3 mb-4">
                 <MapPin size={20} className="text-teal-600" />
                 <h4 className="text-lg md:text-xl font-bold text-gray-900">Surprise</h4>
@@ -71,7 +71,7 @@ const Contact = () => {
             </div>
 
             {/* Location 3 */}
-            <div className="bg-white p-4 md:p-6 rounded-xl shadow-lg opacity-75">
+            <div className="bg-white/90 p-4 md:p-6 rounded-2xl border border-white/40 shadow-[0_15px_40px_rgba(0,0,0,0.2)] opacity-75">
               <div className="flex items-center space-x-3 mb-4">
                 <MapPin size={20} className="text-gray-400" />
                 <h4 className="text-lg md:text-xl font-bold text-gray-600">Tucson</h4>
