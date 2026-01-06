@@ -15,7 +15,7 @@ const Hero = () => {
         {/* Mobile Layout */}
         <div className="flex-1 max-w-2xl text-center lg:text-left lg:hidden">
           <h1 className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold mb-4 md:mb-6 leading-tight text-white">
-            Welcome to Joey's
+            Welcome to D's
             <span className="block">Outdoor Living</span>
           </h1>
           
