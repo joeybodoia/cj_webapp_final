@@ -3,22 +3,23 @@ import { useNavigate } from 'react-router-dom';
 
 const BrandLogos = () => {
   const navigate = useNavigate();
+  const baseUrl = import.meta.env.BASE_URL;
 
   const brands = [
     {
       name: 'Aspen Spas',
-      logo: 'https://i.imgur.com/sBU8bR4.png',
+      logo: `${baseUrl}imgs/aspen.png`,
       company: 'Aspen Spas'
     },
     {
       name: 'Nordic Hot Tubs', 
-      logo: 'https://i.imgur.com/rtVjFJJ.png',
+      logo: `${baseUrl}imgs/nordic.png`,
       company: 'Nordic Hot Tubs'
     },
     {
-      name: 'Bellagio Spas',
-      logo: 'https://i.imgur.com/R1VMD4b.png',
-      company: 'Bellagio Spas'
+      name: 'Coast Spas',
+      logo: `${baseUrl}imgs/coast_spas.png`,
+      company: 'Coast Spas'
     }
   ];
 
