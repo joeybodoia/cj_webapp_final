@@ -222,9 +222,14 @@ const Header = () => {
             onClick={(event) => event.stopPropagation()}
           >
             <div className="flex items-start justify-between border-b border-teal-600/40 px-6 py-5">
-              <h2 className="text-2xl md:text-3xl font-bold" style={modalGreenShadow}>
-                What's included in a Maintenance Plan?
-              </h2>
+              <div className="space-y-2">
+                <h2 className="text-2xl md:text-3xl font-bold" style={modalGreenShadow}>
+                  What's included in a Maintenance Plan?
+                </h2>
+                <p className="text-base md:text-lg font-semibold text-teal-700">
+                  Call or text today to get a quote! 480-997-9781
+                </p>
+              </div>
               <button
                 onClick={() => setIsMaintenanceOpen(false)}
                 className="text-white/70 hover:text-white transition-colors"
