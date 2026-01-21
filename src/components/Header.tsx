@@ -100,7 +100,7 @@ const Header = () => {
                 className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
                 style={navTextShadow}
               >
-                Gazebos
+                Contrast Therapy Spas
               </Link>
               <button
                 onClick={() => setIsMaintenanceOpen(true)}
@@ -172,7 +172,7 @@ const Header = () => {
                 className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
-                Gazebos
+                Contrast Therapy Spas
               </Link>
               <button 
                 onClick={() => {

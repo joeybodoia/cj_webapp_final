@@ -8,9 +8,9 @@ const GazebosPage = () => {
     <div className="min-h-screen bg-custom-dark">
       <Header />
       <ProductGrid
-        productType="Gazebo"
-        title="Outdoor Gazebos"
-        description="Create a stunning focal point in your outdoor space with our handcrafted gazebos. Perfect for entertaining, dining, or simply enjoying nature in comfort and style."
+        productType="Contrast Therapy Spa"
+        title="Contrast Therapy Spas"
+        description="Experience the restorative benefits of contrast therapy with our cold plunge and hot spa combinations, designed for recovery, circulation, and everyday wellness."
       />
       <Footer />
     </div>
