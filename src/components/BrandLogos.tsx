@@ -24,8 +24,8 @@ const BrandLogos = () => {
   ];
 
   const handleBrandClick = (company: string) => {
-    // Navigate to spas page and pass the brand filter in state
-    navigate('/spas', { 
+    // Navigate to hot tubs page and pass the brand filter in state
+    navigate('/hot-tubs', { 
       state: { 
         filterBrand: company 
       } 

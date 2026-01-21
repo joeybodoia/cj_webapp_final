@@ -28,9 +28,9 @@ function App() {
     <Router>
       <Routes>
         <Route path="/" element={<HomePage />} />
-        <Route path="/spas" element={<SpasPage />} />
+        <Route path="/hot-tubs" element={<SpasPage />} />
         <Route path="/swim-spas" element={<SwimSpasPage />} />
-        <Route path="/gazebos" element={<GazebosPage />} />
+        <Route path="/contrast-therapy-spas" element={<GazebosPage />} />
         <Route path="/locations" element={<LocationsPage />} />
         <Route path="/product/:slug" element={<ProductDetailPage />} />
       </Routes>

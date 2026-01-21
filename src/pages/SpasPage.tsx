@@ -13,8 +13,8 @@ const SpasPage = () => {
       <Header />
       <ProductGrid
         productType="Spa"
-        title="Premium Spas"
-        description="Indulge in luxury with our collection of premium spas. From intimate models to spacious retreats, each spa is designed for ultimate relaxation and therapeutic benefits."
+        title="Premium Hot Tubs"
+        description="Indulge in luxury with our collection of premium hot-tubs. From intimate models to spacious retreats, each hot-tub is designed for ultimate relaxation and therapeutic benefits."
         initialBrandFilter={initialBrandFilter}
       />
       <Footer />

@@ -7,9 +7,9 @@ const ProductNavigation = () => {
   const products = [
     {
       id: 'spa',
-      title: 'Spas',
+      title: 'Hot Tubs',
       image: 'https://i.imgur.com/DhGg8Q9.png',
-      route: '/spas'
+      route: '/hot-tubs'
     },
     {
       id: 'swim-spa',
@@ -19,9 +19,9 @@ const ProductNavigation = () => {
     },
     {
       id: 'gazebo',
-      title: 'Gazebos',
-      image: 'https://i.imgur.com/ef9gG9n.png',
-      route: '/gazebos'
+      title: 'Contrast Therapy Spas',
+      image: 'https://i.imgur.com/J4mylLL.jpeg',
+      route: '/contrast-therapy-spas'
     }
   ];
 

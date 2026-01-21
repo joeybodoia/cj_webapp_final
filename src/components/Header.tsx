@@ -98,11 +98,11 @@ const Header = () => {
                   <div className="absolute left-0 mt-3 w-56 rounded-xl border border-teal-600/40 bg-custom-dark/95 shadow-2xl backdrop-blur-md">
                     <div className="py-2">
                       <Link
-                        to="/spas"
+                        to="/hot-tubs"
                         onClick={() => setIsProductsOpen(false)}
                         className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-700/70 transition-colors"
                       >
-                        Spas
+                        Hot Tubs
                       </Link>
                       <Link
                         to="/swim-spas"
@@ -112,7 +112,7 @@ const Header = () => {
                         Swim Spas
                       </Link>
                       <Link
-                        to="/gazebos"
+                        to="/contrast-therapy-spas"
                         onClick={() => setIsProductsOpen(false)}
                         className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-700/70 transition-colors"
                       >
@@ -180,14 +180,14 @@ const Header = () => {
               {isProductsOpen && (
                 <div className="flex flex-col space-y-3 border-l border-teal-600/60 pl-4">
                   <Link
-                    to="/spas"
+                    to="/hot-tubs"
                     onClick={() => {
                       setIsMenuOpen(false);
                       setIsProductsOpen(false);
                     }}
                     className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
                   >
-                    Spas
+                    Hot Tubs
                   </Link>
                   <Link
                     to="/swim-spas"
@@ -200,7 +200,7 @@ const Header = () => {
                     Swim Spas
                   </Link>
                   <Link
-                    to="/gazebos"
+                    to="/contrast-therapy-spas"
                     onClick={() => {
                       setIsMenuOpen(false);
                       setIsProductsOpen(false);
