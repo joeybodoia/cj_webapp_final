@@ -6,6 +6,7 @@ const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMaintenanceOpen, setIsMaintenanceOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
+  const [isLocationsOpen, setIsLocationsOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const navTextShadow = { textShadow: '0 0 2px rgba(42, 45, 50, 0.7)' };
@@ -42,6 +43,7 @@ const Header = () => {
 
   useEffect(() => {
     setIsProductsOpen(false);
+    setIsLocationsOpen(false);
   }, [location.pathname]);
 
   return (
@@ -122,13 +124,35 @@ const Header = () => {
                   </div>
                 )}
               </div>
-              <Link 
-                to="/locations"
-                className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
-                style={navTextShadow}
-              >
-                Locations
-              </Link>
+              <div className="relative">
+                <button
+                  onClick={() => setIsLocationsOpen((prev) => !prev)}
+                  className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
+                  style={navTextShadow}
+                >
+                  Locations
+                </button>
+                {isLocationsOpen && (
+                  <div className="absolute left-0 mt-3 w-48 rounded-xl border border-teal-600/40 bg-custom-dark/95 shadow-2xl backdrop-blur-md">
+                    <div className="py-2">
+                      <Link
+                        to="/phoenix"
+                        onClick={() => setIsLocationsOpen(false)}
+                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-700/70 transition-colors"
+                      >
+                        Phoenix
+                      </Link>
+                      <Link
+                        to="/surprise"
+                        onClick={() => setIsLocationsOpen(false)}
+                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-700/70 transition-colors"
+                      >
+                        Surprise
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
               <button
                 onClick={() => setIsMaintenanceOpen(true)}
                 className="text-amber-200 hover:text-amber-100 transition-colors font-medium tracking-wide"
@@ -208,6 +232,37 @@ const Header = () => {
                     className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
                   >
                     Contrast Therapy Spas
+                  </Link>
+                </div>
+              )}
+              <button
+                onClick={() => setIsLocationsOpen((prev) => !prev)}
+                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
+                style={navTextShadow}
+              >
+                Locations
+              </button>
+              {isLocationsOpen && (
+                <div className="flex flex-col space-y-3 border-l border-teal-600/60 pl-4">
+                  <Link
+                    to="/phoenix"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsLocationsOpen(false);
+                    }}
+                    className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
+                  >
+                    Phoenix
+                  </Link>
+                  <Link
+                    to="/surprise"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsLocationsOpen(false);
+                    }}
+                    className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
+                  >
+                    Surprise
                   </Link>
                 </div>
               )}

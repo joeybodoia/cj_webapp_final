@@ -67,9 +67,9 @@ const Footer = () => {
           <div>
             <h4 className="text-lg font-semibold mb-4 tracking-wide">Products</h4>
             <ul className="space-y-2 text-teal-100">
-              <li><a href="#spas" className="hover:text-white transition-colors">Spas & Hot Tubs</a></li>
-              <li><a href="#swim-spas" className="hover:text-white transition-colors">Swim Spas</a></li>
-              <li><a href="#gazebos" className="hover:text-white transition-colors">Gazebos</a></li>
+              <li><a href="/hot-tubs" className="hover:text-white transition-colors">Hot Tubs</a></li>
+              <li><a href="/swim-spas" className="hover:text-white transition-colors">Swim Spas</a></li>
+              <li><a href="/contrast-therapy-spas" className="hover:text-white transition-colors">Contrast Therapy Spas</a></li>
             </ul>
           </div>
           
