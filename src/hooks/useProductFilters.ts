@@ -55,7 +55,7 @@ export const useProductFilters = (products: InventoryItem[], initialBrandFilter?
     if (product.product_specifications && Array.isArray(product.product_specifications)) {
       const jetSpec = product.product_specifications.find((spec: any) => spec['Jets Specifications']);
       if (jetSpec && jetSpec['Jets Specifications']) {
-        const totalJets = jetSpec['Jets Specifications']['Total Jets (without blower)'];
+        const totalJets = jetSpec['Jets Specifications']['Total Jets'];
         
         if (typeof totalJets === 'number') {
           if (totalJets <= 20) return '1-20';
