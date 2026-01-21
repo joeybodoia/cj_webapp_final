@@ -5,6 +5,7 @@ import { Menu, X } from 'lucide-react';
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMaintenanceOpen, setIsMaintenanceOpen] = useState(false);
+  const [isProductsOpen, setIsProductsOpen] = useState(false);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const navTextShadow = { textShadow: '0 0 2px rgba(42, 45, 50, 0.7)' };
@@ -38,6 +39,10 @@ const Header = () => {
       document.body.style.overflow = '';
     };
   }, [isMaintenanceOpen]);
+
+  useEffect(() => {
+    setIsProductsOpen(false);
+  }, [location.pathname]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
@@ -81,26 +86,48 @@ const Header = () => {
             
             {/* Left Navigation - Desktop */}
             <nav className="hidden md:flex items-center space-x-6">
+              <div className="relative">
+                <button
+                  onClick={() => setIsProductsOpen((prev) => !prev)}
+                  className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
+                  style={navTextShadow}
+                >
+                  Products
+                </button>
+                {isProductsOpen && (
+                  <div className="absolute left-0 mt-3 w-56 rounded-xl border border-teal-600/40 bg-custom-dark/95 shadow-2xl backdrop-blur-md">
+                    <div className="py-2">
+                      <Link
+                        to="/spas"
+                        onClick={() => setIsProductsOpen(false)}
+                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-700/70 transition-colors"
+                      >
+                        Spas
+                      </Link>
+                      <Link
+                        to="/swim-spas"
+                        onClick={() => setIsProductsOpen(false)}
+                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-700/70 transition-colors"
+                      >
+                        Swim Spas
+                      </Link>
+                      <Link
+                        to="/gazebos"
+                        onClick={() => setIsProductsOpen(false)}
+                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-700/70 transition-colors"
+                      >
+                        Contrast Therapy Spas
+                      </Link>
+                    </div>
+                  </div>
+                )}
+              </div>
               <Link 
-                to="/spas"
+                to="/locations"
                 className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
                 style={navTextShadow}
               >
-                Spas
-              </Link>
-              <Link 
-                to="/swim-spas"
-                className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
-                style={navTextShadow}
-              >
-                Swim Spas
-              </Link>
-              <Link 
-                to="/gazebos"
-                className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
-                style={navTextShadow}
-              >
-                Contrast Therapy Spas
+                Locations
               </Link>
               <button
                 onClick={() => setIsMaintenanceOpen(true)}
@@ -128,13 +155,6 @@ const Header = () => {
             >
               Contact Us
             </button>
-            <Link 
-              to="/locations"
-              className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
-              style={navTextShadow}
-            >
-              Locations
-            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -150,30 +170,47 @@ const Header = () => {
         {isMenuOpen && (
           <nav className="md:hidden py-4 border-t border-teal-600">
             <div className="flex flex-col space-y-4">
-              <Link 
-                to="/spas"
-                onClick={() => setIsMenuOpen(false)}
+              <button
+                onClick={() => setIsProductsOpen((prev) => !prev)}
                 className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
-                Spas
-              </Link>
-              <Link 
-                to="/swim-spas"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
-                style={navTextShadow}
-              >
-                Swim Spas
-              </Link>
-              <Link 
-                to="/gazebos"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
-                style={navTextShadow}
-              >
-                Contrast Therapy Spas
-              </Link>
+                Products
+              </button>
+              {isProductsOpen && (
+                <div className="flex flex-col space-y-3 border-l border-teal-600/60 pl-4">
+                  <Link
+                    to="/spas"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsProductsOpen(false);
+                    }}
+                    className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
+                  >
+                    Spas
+                  </Link>
+                  <Link
+                    to="/swim-spas"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsProductsOpen(false);
+                    }}
+                    className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
+                  >
+                    Swim Spas
+                  </Link>
+                  <Link
+                    to="/gazebos"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsProductsOpen(false);
+                    }}
+                    className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
+                  >
+                    Contrast Therapy Spas
+                  </Link>
+                </div>
+              )}
               <button 
                 onClick={() => {
                   setIsMenuOpen(false);
