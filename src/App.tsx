@@ -12,6 +12,9 @@ import SurprisePage from './pages/SurprisePage';
 import PhoenixHotTubsPage from './pages/PhoenixHotTubsPage';
 import PhoenixSwimSpasPage from './pages/PhoenixSwimSpasPage';
 import PhoenixContrastTherapySpasPage from './pages/PhoenixContrastTherapySpasPage';
+import SurpriseHotTubsPage from './pages/SurpriseHotTubsPage';
+import SurpriseSwimSpasPage from './pages/SurpriseSwimSpasPage';
+import SurpriseContrastTherapySpasPage from './pages/SurpriseContrastTherapySpasPage';
 
 function App() {
   useEffect(() => {
@@ -42,6 +45,9 @@ function App() {
         <Route path="/phoenix/swim-spas" element={<PhoenixSwimSpasPage />} />
         <Route path="/phoenix/contrast-therapy-spas" element={<PhoenixContrastTherapySpasPage />} />
         <Route path="/surprise" element={<SurprisePage />} />
+        <Route path="/surprise/hot-tubs" element={<SurpriseHotTubsPage />} />
+        <Route path="/surprise/swim-spas" element={<SurpriseSwimSpasPage />} />
+        <Route path="/surprise/contrast-therapy-spas" element={<SurpriseContrastTherapySpasPage />} />
         <Route path="/product/:slug" element={<ProductDetailPage />} />
       </Routes>
     </Router>
