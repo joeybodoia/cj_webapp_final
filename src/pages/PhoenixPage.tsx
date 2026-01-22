@@ -69,6 +69,20 @@ const PhoenixPage = () => {
           <h2 className="mt-4 text-xl md:text-2xl lg:text-3xl font-semibold text-teal-100 text-center">
             Your Local Hot Tub &amp; Swim Spa Destination Serving Phoenix and the North Valley
           </h2>
+          <h3 className="mt-6 text-lg md:text-xl lg:text-2xl font-semibold text-white text-center">
+            Products Available at Our Phoenix Location
+          </h3>
+          <div className="mt-4 flex flex-col items-center gap-2 text-teal-100">
+            <a href="/phoenix/hot-tubs" className="hover:text-white transition-colors">
+              Hot tubs available at our Phoenix showroom
+            </a>
+            <a href="/phoenix/swim-spas" className="hover:text-white transition-colors">
+              Swim spas in Phoenix, AZ
+            </a>
+            <a href="/phoenix/contrast-therapy-spas" className="hover:text-white transition-colors">
+              Contrast therapy spas in Phoenix
+            </a>
+          </div>
           <div className="mt-12">
             <h2 className="text-2xl md:text-3xl font-bold text-white text-center">
               Location Details

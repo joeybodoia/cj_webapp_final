@@ -9,6 +9,9 @@ import ProductDetailPage from './pages/ProductDetailPage';
 import LocationsPage from './pages/LocationsPage';
 import PhoenixPage from './pages/PhoenixPage';
 import SurprisePage from './pages/SurprisePage';
+import PhoenixHotTubsPage from './pages/PhoenixHotTubsPage';
+import PhoenixSwimSpasPage from './pages/PhoenixSwimSpasPage';
+import PhoenixContrastTherapySpasPage from './pages/PhoenixContrastTherapySpasPage';
 
 function App() {
   useEffect(() => {
@@ -35,6 +38,9 @@ function App() {
         <Route path="/contrast-therapy-spas" element={<GazebosPage />} />
         <Route path="/locations" element={<LocationsPage />} />
         <Route path="/phoenix" element={<PhoenixPage />} />
+        <Route path="/phoenix/hot-tubs" element={<PhoenixHotTubsPage />} />
+        <Route path="/phoenix/swim-spas" element={<PhoenixSwimSpasPage />} />
+        <Route path="/phoenix/contrast-therapy-spas" element={<PhoenixContrastTherapySpasPage />} />
         <Route path="/surprise" element={<SurprisePage />} />
         <Route path="/product/:slug" element={<ProductDetailPage />} />
       </Routes>
