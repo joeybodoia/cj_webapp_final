@@ -60,12 +60,207 @@ const SurprisePage = () => {
       "name": "Surprise, AZ"
     }
   };
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "about": {
+      "@id": "https://dsoutdoorliving.com/surprise#location"
+    },
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Do you have hot tubs in stock at your Surprise showroom?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Our Surprise showroom carries rotating in-stock hot tub inventory across all brands we sell, typically 10-15 models per brand."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I purchase a hot tub directly from the Surprise showroom?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Customers may purchase any in-stock model directly from our Surprise location, or special-order any spa shown on our website."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you provide hot tub delivery and installation in Surprise, AZ?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. We offer professional hot tub delivery and installation throughout Surprise and nearby areas, including placement, setup, water fill, and startup."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How long does hot tub delivery take in Surprise?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "In-stock spas are usually delivered within days to a couple of weeks. Special orders depend on model and brand and typically take several weeks."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer hot tub maintenance plans in Surprise?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes. Our Surprise maintenance plans include drain and refill service, chemical balancing, filter cleaning, and cover cleaning. One-time service visits are also available."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are warranties and financing available?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "All hot tubs come with manufacturer warranties, which vary by model. Financing options are also available through our Surprise showroom."
+        }
+      }
+    ]
+  };
+  const faqItems = [
+    {
+      question: 'Do you have hot tubs in stock at the Surprise showroom?',
+      answer: (
+        <>
+          <p className="text-base md:text-lg leading-relaxed">
+            Yes — our Surprise showroom maintains a rotating inventory of in-stock hot tubs from each brand we carry.
+            We typically stock 10-15 models per brand that are available for immediate purchase.
+          </p>
+          <p className="mt-3 text-base md:text-lg leading-relaxed">
+            Inventory changes frequently, so we recommend visiting the showroom or calling ahead to confirm
+            availability.
+          </p>
+        </>
+      )
+    },
+    {
+      question: 'Can I purchase a hot tub directly from the Surprise showroom?',
+      answer: (
+        <>
+          <p className="text-base md:text-lg leading-relaxed">
+            Yes. You can buy any in-stock model directly at our Surprise location. After purchase, our team handles
+            delivery, placement, and installation.
+          </p>
+          <p className="mt-3 text-base md:text-lg leading-relaxed">
+            If the model you want is not currently available in Surprise, we are happy to special-order it for you.
+          </p>
+        </>
+      )
+    },
+    {
+      question: 'What if the hot tub I want is not in stock?',
+      answer: (
+        <>
+          <p className="text-base md:text-lg leading-relaxed">
+            Our website displays all models from the brands we carry, even if they are not physically on the showroom
+            floor.
+          </p>
+          <p className="mt-3 text-base md:text-lg leading-relaxed">
+            If your preferred spa is not currently in stock, we will place a factory order and manage the entire
+            process — from shipping to delivery and setup.
+          </p>
+        </>
+      )
+    },
+    {
+      question: 'Do you offer delivery and installation in Surprise?',
+      answer: (
+        <>
+          <p className="text-base md:text-lg leading-relaxed">
+            Yes — we provide complete delivery and installation services throughout Surprise and surrounding areas,
+            including:
+          </p>
+          <ul className="mt-3 space-y-2 text-base md:text-lg list-disc list-inside">
+            <li>Transportation to your home</li>
+            <li>Spa placement</li>
+            <li>Electrical coordination (if required)</li>
+            <li>Water fill and startup</li>
+            <li>Walkthrough of features and operation</li>
+          </ul>
+          <p className="mt-3 text-base md:text-lg leading-relaxed">
+            We make sure everything is ready so you can enjoy your spa right away.
+          </p>
+        </>
+      )
+    },
+    {
+      question: 'Do you offer maintenance or service plans?',
+      answer: (
+        <>
+          <p className="text-base md:text-lg leading-relaxed">
+            Yes — we offer professional maintenance plans for Surprise customers, including:
+          </p>
+          <ul className="mt-3 space-y-2 text-base md:text-lg list-disc list-inside">
+            <li>Drain and refill service</li>
+            <li>Chemical balancing and administration</li>
+            <li>Filter cleaning</li>
+            <li>Spa cover cleaning</li>
+          </ul>
+          <p className="mt-3 text-base md:text-lg leading-relaxed">
+            These plans help extend the life of your hot tub while keeping water crystal clear. One-time service visits
+            are also available.
+          </p>
+        </>
+      )
+    },
+    {
+      question: 'Can I visit the Surprise showroom to see models in person?',
+      answer: (
+        <p className="text-base md:text-lg leading-relaxed">
+          Absolutely. Visiting our Surprise showroom allows you to compare seating layouts, jet configurations, and
+          features in person while speaking directly with our spa specialists.
+        </p>
+      )
+    },
+    {
+      question: 'Do you help customers choose the right hot tub?',
+      answer: (
+        <>
+          <p className="text-base md:text-lg leading-relaxed">
+            Yes — our team will help match you with the right spa based on:
+          </p>
+          <ul className="mt-3 space-y-2 text-base md:text-lg list-disc list-inside">
+            <li>Space and layout</li>
+            <li>Number of users</li>
+            <li>Budget</li>
+            <li>Therapeutic goals</li>
+            <li>Feature preferences</li>
+          </ul>
+          <p className="mt-3 text-base md:text-lg leading-relaxed">
+            We focus on finding the best fit for your lifestyle.
+          </p>
+        </>
+      )
+    },
+    {
+      question: 'Do you offer financing?',
+      answer: (
+        <p className="text-base md:text-lg leading-relaxed">
+          Yes. Financing options are available. Please ask our Surprise showroom staff about current programs.
+        </p>
+      )
+    },
+    {
+      question: 'Do your hot tubs come with warranties?',
+      answer: (
+        <p className="text-base md:text-lg leading-relaxed">
+          All hot tubs include manufacturer warranties. Coverage varies by model and brand, and our team will walk you
+          through the details.
+        </p>
+      )
+    }
+  ];
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   return (
     <div className="min-h-screen bg-custom-dark">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(locationSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
       />
       <Header />
       <div className="pt-32 py-16">
@@ -247,6 +442,37 @@ const SurprisePage = () => {
                   title="Surprise showroom location map"
                 />
               </div>
+            </div>
+          </div>
+          <div className="mt-20">
+            <h2 className="text-2xl md:text-3xl font-bold text-white text-center">
+              Surprise Showroom - Frequently Asked Questions
+            </h2>
+            <div className="mt-8 max-w-4xl mx-auto space-y-4 text-teal-100">
+              {faqItems.map((item, index) => {
+                const isOpen = openFaqIndex === index;
+                return (
+                  <div key={item.question} className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+                    <button
+                      type="button"
+                      onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                      className="w-full flex items-center justify-between gap-4 text-left"
+                      aria-expanded={isOpen}
+                    >
+                      <span className="text-lg md:text-xl font-semibold text-white">{item.question}</span>
+                      <span
+                        className={`text-2xl text-teal-100 transition-transform duration-200 ${
+                          isOpen ? 'rotate-45' : ''
+                        }`}
+                        aria-hidden="true"
+                      >
+                        +
+                      </span>
+                    </button>
+                    {isOpen && <div className="mt-4">{item.answer}</div>}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>
