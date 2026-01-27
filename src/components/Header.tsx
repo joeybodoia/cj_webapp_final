@@ -71,8 +71,8 @@ const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
       {/* Green Contact Bar */}
       <div className="bg-custom-dark/90 backdrop-blur-md text-white/90 py-2 px-4 border-b border-white/5">
-        <div className="container mx-auto flex items-center justify-between text-sm">
-          <div className="flex items-center space-x-2">
+        <div className="container mx-auto flex flex-wrap items-center justify-between text-sm gap-y-1">
+          <div className="flex flex-wrap items-center gap-x-2">
             <span className="hidden md:inline">Call to schedule a private appointment to view our showroom</span>
             <span className="md:hidden">Call to schedule an appointment</span>
             <a href="tel:(480) 997-9447" className="font-semibold hover:text-gray-300 transition-colors">

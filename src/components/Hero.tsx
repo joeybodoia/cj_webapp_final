@@ -9,7 +9,7 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="relative h-[85vh] bg-custom-dark text-white overflow-hidden pt-36 md:pt-32 px-4 md:px-6">
+    <section id="home" className="relative min-h-[85vh] bg-custom-dark text-white overflow-visible pt-36 md:pt-32 px-4 md:px-6">
       <div className="bg-gradient-to-br from-teal-700 via-teal-700 to-teal-800 rounded-3xl h-full shadow-[0_20px_60px_rgba(8,84,78,0.45)] border border-white/10">
         <div className="container mx-auto px-4 pt-8 md:pt-12 h-full flex flex-col lg:flex-row items-center justify-between">
         {/* Mobile Layout */}

@@ -83,32 +83,32 @@ const ProductImageBanner: React.FC<ProductImageBannerProps> = ({
               {/* Product Specifications */}
               <div className="space-y-3">
                 {capacity && (
-                  <div className="flex items-center justify-center">
-                    <span className="text-white font-semibold w-32">Capacity:</span>
+                  <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left gap-1 sm:gap-3">
+                    <span className="text-white font-semibold sm:w-32">Capacity:</span>
                     <span className="text-teal-100">{capacity} People</span>
                   </div>
                 )}
                 {measurements && (
-                  <div className="flex items-center justify-center">
-                    <span className="text-white font-semibold w-32">Measurements:</span>
+                  <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left gap-1 sm:gap-3">
+                    <span className="text-white font-semibold sm:w-32">Measurements:</span>
                     <span className="text-teal-100">{measurements}</span>
                   </div>
                 )}
                 {seats && (
-                  <div className="flex items-center justify-center">
-                    <span className="text-white font-semibold w-32">Number of Seats:</span>
+                  <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left gap-1 sm:gap-3">
+                    <span className="text-white font-semibold sm:w-32">Number of Seats:</span>
                     <span className="text-teal-100">{seats}</span>
                   </div>
                 )}
                 {dryWeight && (
-                  <div className="flex items-center justify-center">
-                    <span className="text-white font-semibold w-32">Dry Weight:</span>
+                  <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left gap-1 sm:gap-3">
+                    <span className="text-white font-semibold sm:w-32">Dry Weight:</span>
                     <span className="text-teal-100">{dryWeight} lbs</span>
                   </div>
                 )}
                 {gallons && (
-                  <div className="flex items-center justify-center">
-                    <span className="text-white font-semibold w-32">Gallons:</span>
+                  <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left gap-1 sm:gap-3">
+                    <span className="text-white font-semibold sm:w-32">Gallons:</span>
                     <span className="text-teal-100">{gallons}</span>
                   </div>
                 )}
@@ -222,32 +222,32 @@ const ProductImageBanner: React.FC<ProductImageBannerProps> = ({
               {/* Product Specifications */}
               <div className="space-y-2 md:space-y-3">
                 {capacity && (
-                  <div className="flex items-center">
-                    <span className="text-white font-semibold w-32">Capacity:</span>
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-3 text-center sm:text-left">
+                    <span className="text-white font-semibold sm:w-32">Capacity:</span>
                     <span className="text-teal-100">{capacity} People</span>
                   </div>
                 )}
                 {measurements && (
-                  <div className="flex items-center">
-                    <span className="text-white font-semibold w-32">Measurements:</span>
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-3 text-center sm:text-left">
+                    <span className="text-white font-semibold sm:w-32">Measurements:</span>
                     <span className="text-teal-100">{measurements} inches</span>
                   </div>
                 )}
                 {seats && (
-                  <div className="flex items-center">
-                    <span className="text-white font-semibold w-32">Number of Seats:</span>
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-3 text-center sm:text-left">
+                    <span className="text-white font-semibold sm:w-32">Number of Seats:</span>
                     <span className="text-teal-100">{seats}</span>
                   </div>
                 )}
                 {dryWeight && (
-                  <div className="flex items-center">
-                    <span className="text-white font-semibold w-32">Dry Weight:</span>
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-3 text-center sm:text-left">
+                    <span className="text-white font-semibold sm:w-32">Dry Weight:</span>
                     <span className="text-teal-100">{dryWeight} lbs</span>
                   </div>
                 )}
                 {gallons && (
-                  <div className="flex items-center">
-                    <span className="text-white font-semibold w-32">Gallons:</span>
+                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-3 text-center sm:text-left">
+                    <span className="text-white font-semibold sm:w-32">Gallons:</span>
                     <span className="text-teal-100">{gallons}</span>
                   </div>
                 )}
