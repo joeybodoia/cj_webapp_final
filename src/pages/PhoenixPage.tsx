@@ -1,8 +1,15 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
 const PhoenixPage = () => {
+  const showroomImages = [
+    'https://i.imgur.com/cjTb9Nn.png',
+    'https://i.imgur.com/qHMDfnU.png',
+    'https://i.imgur.com/OkrSzTF.png'
+  ];
+  const [activeImageIndex, setActiveImageIndex] = useState(0);
+
   const locationSchema = {
     "@context": "https://schema.org",
     "@type": "Store",
@@ -61,7 +68,7 @@ const PhoenixPage = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(locationSchema) }}
       />
       <Header />
-      <div className="pt-24 py-16">
+      <div className="pt-32 py-16">
         <div className="container mx-auto px-4">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center">
             D's Outdoorliving - Phoenix, AZ
@@ -69,47 +76,160 @@ const PhoenixPage = () => {
           <h2 className="mt-4 text-xl md:text-2xl lg:text-3xl font-semibold text-teal-100 text-center">
             Your Local Hot Tub &amp; Swim Spa Destination Serving Phoenix and the North Valley
           </h2>
-          <h3 className="mt-6 text-lg md:text-xl lg:text-2xl font-semibold text-white text-center">
+          <h3 className="mt-24 text-xl md:text-2xl lg:text-3xl font-semibold text-white text-center">
             Products Available at Our Phoenix Location
           </h3>
-          <div className="mt-4 flex flex-col items-center gap-2 text-teal-100">
-            <a href="/phoenix/hot-tubs" className="hover:text-white transition-colors">
-              Hot tubs available at our Phoenix showroom
-            </a>
-            <a href="/phoenix/swim-spas" className="hover:text-white transition-colors">
-              Swim spas in Phoenix, AZ
-            </a>
-            <a href="/phoenix/contrast-therapy-spas" className="hover:text-white transition-colors">
-              Contrast therapy spas in Phoenix
-            </a>
+          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="flex flex-col items-center gap-3">
+              <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
+                <div className="relative h-56">
+                  <img
+                    src="https://i.imgur.com/DhGg8Q9.png"
+                    alt="Phoenix Hot Tubs"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover brightness-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <h3 className="text-2xl md:text-3xl font-bold text-white text-center drop-shadow-lg tracking-wide">
+                      Phoenix Hot Tubs
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <a
+                href="/phoenix/hot-tubs"
+                className="text-teal-100 hover:text-white transition-colors text-center text-lg md:text-xl lg:text-2xl"
+              >
+                Hot Tubs at our Phoenix showroom
+              </a>
+            </div>
+            <div className="flex flex-col items-center gap-3">
+              <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
+                <div className="relative h-56">
+                  <img
+                    src="https://i.imgur.com/G4nM8Hz.png"
+                    alt="Phoenix Swim Spas"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover brightness-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <h3 className="text-2xl md:text-3xl font-bold text-white text-center drop-shadow-lg tracking-wide">
+                      Phoenix Swim Spas
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <a
+                href="/phoenix/swim-spas"
+                className="text-teal-100 hover:text-white transition-colors text-center text-lg md:text-xl lg:text-2xl"
+              >
+                Swim Spas at our Phoenix showroom
+              </a>
+            </div>
+            <div className="flex flex-col items-center gap-3">
+              <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
+                <div className="relative h-56">
+                  <img
+                    src="https://i.imgur.com/J4mylLL.jpeg"
+                    alt="Phoenix Contrast Therapy Spas"
+                    loading="lazy"
+                    decoding="async"
+                    className="w-full h-full object-cover brightness-110"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+                  <div className="absolute inset-0 flex items-center justify-center">
+                    <h3 className="text-2xl md:text-3xl font-bold text-white text-center drop-shadow-lg tracking-wide">
+                      Phoenix Contrast Therapy Spas
+                    </h3>
+                  </div>
+                </div>
+              </div>
+              <a
+                href="/phoenix/contrast-therapy-spas"
+                className="text-teal-100 hover:text-white transition-colors text-center text-lg md:text-xl lg:text-2xl"
+              >
+                Contrast Therapy Spas at our Phoenix showroom
+              </a>
+            </div>
           </div>
-          <div className="mt-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-white text-center">
+          <div className="mt-32">
+            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white text-center">
               Location Details
             </h2>
             <div className="mt-8 flex flex-col items-center gap-10">
-              <div className="w-full max-w-xl flex flex-col items-center">
+              <div className="w-full max-w-4xl flex flex-col items-center">
                 <h3 className="text-xl md:text-2xl font-semibold text-teal-100 mb-4 text-center">
                   Store Details
                 </h3>
-                <div className="bg-white/95 rounded-2xl shadow-2xl px-6 py-6 md:px-8 md:py-8 w-fit">
-                  <div className="space-y-6 text-gray-700 text-center">
-                    <div>
-                      <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Address</p>
-                      <p className="text-lg font-medium">3106 W Blue Eagle Lane</p>
-                      <p className="text-lg font-medium">Phoenix AZ 85086</p>
-                      <p className="text-sm text-gray-600 font-medium mt-2">
-                        **by appointment only, call to arrange**
-                      </p>
+                <div className="bg-white/95 rounded-2xl shadow-2xl px-6 py-6 md:px-8 md:py-8 w-full">
+                  <div className="flex flex-col md:flex-row items-center md:items-stretch gap-8">
+                    <div className="space-y-6 text-gray-700 text-center md:text-left md:w-1/2">
+                      <div>
+                        <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Address</p>
+                        <p className="text-lg font-medium">3106 W Blue Eagle Lane</p>
+                        <p className="text-lg font-medium">Phoenix AZ 85086</p>
+                        <p className="text-sm text-gray-600 font-medium mt-2">
+                          **by appointment only, call to arrange**
+                        </p>
+                      </div>
+                      <div>
+                        <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Phone Number</p>
+                        <p className="text-lg font-medium">(480) 997-9447</p>
+                      </div>
+                      <div>
+                        <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Hours</p>
+                        <p className="text-lg font-medium">Mon-Sat: 10am-5pm</p>
+                        <p className="text-lg font-medium">Sunday: 11am-4pm</p>
+                      </div>
                     </div>
-                    <div>
-                      <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Phone Number</p>
-                      <p className="text-lg font-medium">(480) 997-9447</p>
-                    </div>
-                    <div>
-                      <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Hours</p>
-                      <p className="text-lg font-medium">Mon-Sat: 10am-5pm</p>
-                      <p className="text-lg font-medium">Sunday: 11am-4pm</p>
+                    <div className="relative w-full md:w-1/2 overflow-hidden rounded-2xl shadow-xl border border-white/70 bg-white/70">
+                      <img
+                        src={showroomImages[activeImageIndex]}
+                        alt="Phoenix showroom"
+                        className="w-full h-64 md:h-full object-cover"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent"></div>
+                      <button
+                        type="button"
+                        aria-label="Previous showroom image"
+                        onClick={() =>
+                          setActiveImageIndex((prev) =>
+                            prev === 0 ? showroomImages.length - 1 : prev - 1
+                          )
+                        }
+                        className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 text-gray-700 w-9 h-9 flex items-center justify-center shadow-md hover:bg-white"
+                      >
+                        ‹
+                      </button>
+                      <button
+                        type="button"
+                        aria-label="Next showroom image"
+                        onClick={() =>
+                          setActiveImageIndex((prev) => (prev + 1) % showroomImages.length)
+                        }
+                        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 text-gray-700 w-9 h-9 flex items-center justify-center shadow-md hover:bg-white"
+                      >
+                        ›
+                      </button>
+                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
+                        {showroomImages.map((image, index) => (
+                          <button
+                            key={image}
+                            type="button"
+                            aria-label={`Showroom image ${index + 1}`}
+                            onClick={() => setActiveImageIndex(index)}
+                            className={`h-2.5 w-2.5 rounded-full transition ${
+                              index === activeImageIndex ? 'bg-white' : 'bg-white/50'
+                            }`}
+                          />
+                        ))}
+                      </div>
                     </div>
                   </div>
                 </div>
