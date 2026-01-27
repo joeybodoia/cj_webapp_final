@@ -30,24 +30,23 @@ const PhoenixContrastTherapySpasPage = () => {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceSchema) }}
       />
       <Header />
-      <div className="pt-24 py-16">
+      <div className="pt-32 py-16">
         <div className="container mx-auto px-4">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center">
-            new page
+          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white text-center">
+            Phoenix Showroom Contrast Therapy Spas
           </h1>
-          <p className="mt-4 text-center text-teal-100">
-            Visit our <a href="/phoenix" className="text-white underline hover:text-teal-200 transition-colors">Phoenix showroom</a> to see contrast therapy spas in person.
+          <p className="mt-4 text-center text-teal-100 text-lg md:text-xl lg:text-2xl">
+            Visit our <a href="/phoenix" className="text-white underline hover:text-teal-200 transition-colors">Phoenix showroom</a> to see contrast therapy spas in person
           </p>
           <section className="mt-10 text-center text-teal-100">
-            <h2 className="text-2xl md:text-3xl font-semibold text-white mb-3">
-              Visit Our Phoenix Contrast Therapy Spa Showroom
-            </h2>
             <p className="text-base md:text-lg leading-relaxed">
-              See contrast therapy spas in person at <strong>3106 W Blue Eagle Lane, Phoenix, AZ 85086</strong>. Call{' '}
+              See contrast therapy spas in person at <strong>3106 W Blue Eagle Lane, Phoenix, AZ 85086</strong>
+              <br />
+              Call{' '}
               <a href="tel:+14809979447" className="text-white underline hover:text-teal-200 transition-colors">
                 (480) 997-9447
               </a>{' '}
-              for availability and delivery timelines.
+              for availability and delivery timelines
             </p>
             <p className="mt-4 text-base md:text-lg">
               View our entire selection here{' '}
