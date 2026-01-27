@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 
@@ -7,6 +7,8 @@ const Header = () => {
   const [isMaintenanceOpen, setIsMaintenanceOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isLocationsOpen, setIsLocationsOpen] = useState(false);
+  const productsMenuRef = useRef<HTMLDivElement | null>(null);
+  const locationsMenuRef = useRef<HTMLDivElement | null>(null);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const navTextShadow = { textShadow: '0 0 2px rgba(42, 45, 50, 0.7)' };
@@ -45,6 +47,25 @@ const Header = () => {
     setIsProductsOpen(false);
     setIsLocationsOpen(false);
   }, [location.pathname]);
+
+  useEffect(() => {
+    if (!isProductsOpen && !isLocationsOpen) return;
+    const handlePointerDown = (event: MouseEvent | TouchEvent) => {
+      const target = event.target as Node;
+      if (isProductsOpen && productsMenuRef.current && !productsMenuRef.current.contains(target)) {
+        setIsProductsOpen(false);
+      }
+      if (isLocationsOpen && locationsMenuRef.current && !locationsMenuRef.current.contains(target)) {
+        setIsLocationsOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('touchstart', handlePointerDown);
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('touchstart', handlePointerDown);
+    };
+  }, [isProductsOpen, isLocationsOpen]);
 
   return (
     <header className="fixed top-0 left-0 right-0 z-50 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
@@ -88,7 +109,7 @@ const Header = () => {
             
             {/* Left Navigation - Desktop */}
             <nav className="hidden md:flex items-center space-x-6">
-              <div className="relative">
+              <div className="relative" ref={productsMenuRef}>
                 <button
                   onClick={() => setIsProductsOpen((prev) => !prev)}
                   className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
@@ -124,7 +145,7 @@ const Header = () => {
                   </div>
                 )}
               </div>
-              <div className="relative">
+              <div className="relative" ref={locationsMenuRef}>
                 <button
                   onClick={() => setIsLocationsOpen((prev) => !prev)}
                   className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
