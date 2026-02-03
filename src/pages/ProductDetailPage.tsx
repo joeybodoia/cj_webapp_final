@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLocation, useParams, Navigate, useNavigate } from 'react-router-dom';
+import { useLocation, useParams, Navigate, useNavigate } from 'react-router';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';

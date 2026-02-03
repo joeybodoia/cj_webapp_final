@@ -142,7 +142,7 @@ const ProductImageBanner: React.FC<ProductImageBannerProps> = ({
                   alt={`${productName} - Image ${selectedImageIndex + 1}`}
                   loading="eager"
                   decoding="async"
-                  fetchPriority="high"
+                  fetchpriority="high"
                   className={`w-full h-64 md:h-80 bg-black ${
                     product?.product_company === 'Aspen Spas' 
                       ? 'object-cover' 

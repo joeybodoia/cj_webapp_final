@@ -30,7 +30,7 @@ const Hero = () => {
                 alt="D's Outdoor Living Logo"
                 loading="eager"
                 decoding="async"
-                fetchPriority="high"
+                fetchpriority="high"
                 className="w-full h-full object-contain bg-white rounded-full"
               />
             </div>
@@ -92,7 +92,7 @@ const Hero = () => {
                 alt="D's Outdoor Living Logo"
                 loading="eager"
                 decoding="async"
-                fetchPriority="high"
+                fetchpriority="high"
                 className="w-full h-full object-contain bg-white rounded-full"
               />
             </div>

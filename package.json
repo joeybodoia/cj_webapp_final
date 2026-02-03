@@ -3,15 +3,23 @@
   "private": true,
   "version": "0.0.0",
   "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "dev:ssr": "node server.js",
+    "build:client": "vite build --outDir dist/client --ssrManifest",
+    "build:server": "VITE_SSR=1 vite build --outDir dist/server --ssr src/entry-server.tsx",
+    "build": "npm run build:client && npm run build:server",
+    "heroku-postbuild": "npm run build",
     "lint": "eslint .",
     "preview": "vite preview",
-    "start": "serve -s dist"
+    "start": "NODE_ENV=production node server.js"
   },
   "dependencies": {
     "@supabase/supabase-js": "^2.50.5",
+    "express": "^4.19.2",
     "lucide-react": "^0.344.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
