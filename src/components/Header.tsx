@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router';
 import { Menu, X } from 'lucide-react';
 
 const Header = () => {
@@ -101,7 +101,7 @@ const Header = () => {
                   alt="D's Outdoor Living Logo"
                   loading="eager"
                   decoding="async"
-                  fetchPriority="high"
+                  fetchpriority="high"
                   className="w-full h-full object-contain bg-white rounded-full p-0.5"
                 />
               </div>
