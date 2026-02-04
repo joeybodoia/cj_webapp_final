@@ -10,113 +10,129 @@ const SurprisePage = () => {
   ];
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const locationSchema = {
+  // Single JSON-LD script using @graph (Store + FAQPage) + parentOrganization
+  const surpriseStructuredData = {
     "@context": "https://schema.org",
-    "@type": "Store",
-    "@id": "https://dsoutdoorliving.com/surprise#location",
-    "name": "D's Outdoorliving - Surprise",
-    "url": "https://dsoutdoorliving.com/surprise",
-    "telephone": "+1-480-997-9447",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "11304 N Dysart Rd Suite 104",
-      "addressLocality": "Surprise",
-      "addressRegion": "AZ",
-      "postalCode": "85379",
-      "addressCountry": "US"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 33.5864133,
-      "longitude": -112.3425823
-    },
-    "openingHoursSpecification": [
+    "@graph": [
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
+        "@type": "Store",
+        "@id": "https://dsoutdoorliving.com/surprise#location",
+        "name": "D's Outdoorliving - Surprise",
+        "url": "https://dsoutdoorliving.com/surprise",
+        "telephone": "+1-480-997-9447",
+
+        "parentOrganization": {
+          "@id": "https://dsoutdoorliving.com/#organization"
+        },
+
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "11304 N Dysart Rd Suite 104",
+          "addressLocality": "Surprise",
+          "addressRegion": "AZ",
+          "postalCode": "85379",
+          "addressCountry": "US"
+        },
+
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 33.5864133,
+          "longitude": -112.3425823
+        },
+
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "10:00",
+            "closes": "18:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Sunday",
+            "opens": "11:00",
+            "closes": "16:00"
+          }
         ],
-        "opens": "10:00",
-        "closes": "18:00"
+
+        "sameAs": [
+          "https://www.google.com/maps?cid=0xa23ee5256ec83e84"
+        ],
+
+        "hasMap": "https://www.google.com/maps?cid=0xa23ee5256ec83e84",
+
+        "areaServed": "Surprise, AZ"
       },
+
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Sunday",
-        "opens": "11:00",
-        "closes": "16:00"
-      }
-    ],
-    "sameAs": [
-      "https://www.google.com/maps?cid=0xa23ee5256ec83e84"
-    ],
-    "hasMap": "https://www.google.com/maps?cid=0xa23ee5256ec83e84",
-    "areaServed": {
-      "@type": "AdministrativeArea",
-      "name": "Surprise, AZ"
-    }
-  };
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "about": {
-      "@id": "https://dsoutdoorliving.com/surprise#location"
-    },
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Do you have hot tubs in stock at your Surprise showroom?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Our Surprise showroom carries rotating in-stock hot tub inventory across all brands we sell, typically 10-15 models per brand."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I purchase a hot tub directly from the Surprise showroom?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Customers may purchase any in-stock model directly from our Surprise location, or special-order any spa shown on our website."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do you provide hot tub delivery and installation in Surprise, AZ?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. We offer professional hot tub delivery and installation throughout Surprise and nearby areas, including placement, setup, water fill, and startup."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How long does hot tub delivery take in Surprise?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "In-stock spas are usually delivered within days to a couple of weeks. Special orders depend on model and brand and typically take several weeks."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do you offer hot tub maintenance plans in Surprise?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Our Surprise maintenance plans include drain and refill service, chemical balancing, filter cleaning, and cover cleaning. One-time service visits are also available."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Are warranties and financing available?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "All hot tubs come with manufacturer warranties, which vary by model. Financing options are also available through our Surprise showroom."
-        }
+        "@type": "FAQPage",
+        "@id": "https://dsoutdoorliving.com/surprise#faq",
+
+        "about": {
+          "@id": "https://dsoutdoorliving.com/surprise#location"
+        },
+
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do you have hot tubs in stock at your Surprise showroom?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Our Surprise showroom carries rotating in-stock hot tub inventory across all brands we sell, typically 10-15 models per brand."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I purchase a hot tub directly from the Surprise showroom?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Customers may purchase any in-stock model directly from our Surprise location, or special-order any spa shown on our website."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you provide hot tub delivery and installation in Surprise, AZ?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We offer professional hot tub delivery and installation throughout Surprise and nearby areas, including placement, setup, water fill, and startup."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does hot tub delivery take in Surprise?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In-stock spas are usually delivered within days to a couple of weeks. Special orders depend on model and brand and typically take several weeks."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer hot tub maintenance plans in Surprise?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Our Surprise maintenance plans include drain and refill service, chemical balancing, filter cleaning, and cover cleaning. One-time service visits are also available."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Are warranties and financing available?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "All hot tubs come with manufacturer warranties, which vary by model. Financing options are also available through our Surprise showroom."
+            }
+          }
+        ]
       }
     ]
   };
+
   const faqItems = [
     {
       question: 'Do you have hot tubs in stock at the Surprise showroom?',
@@ -250,17 +266,14 @@ const SurprisePage = () => {
       )
     }
   ];
+
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   return (
     <div className="min-h-screen bg-custom-dark">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(locationSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(surpriseStructuredData) }}
       />
       <Header />
       <div className="pt-32 py-16">
@@ -271,9 +284,11 @@ const SurprisePage = () => {
           <h2 className="mt-4 text-xl md:text-2xl lg:text-3xl font-semibold text-teal-100 text-center">
             Your Local Hot Tub &amp; Swim Spa Destination Serving Surprise and the West Valley
           </h2>
+
           <h3 className="mt-24 text-xl md:text-2xl lg:text-3xl font-semibold text-white text-center">
             Products Available at Our Surprise Location
           </h3>
+
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex flex-col items-center gap-3">
               <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
@@ -300,6 +315,7 @@ const SurprisePage = () => {
                 Hot Tubs at our Surprise showroom
               </a>
             </div>
+
             <div className="flex flex-col items-center gap-3">
               <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
                 <div className="relative h-56">
@@ -325,6 +341,7 @@ const SurprisePage = () => {
                 Swim Spas at our Surprise showroom
               </a>
             </div>
+
             <div className="flex flex-col items-center gap-3">
               <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
                 <div className="relative h-56">
@@ -351,15 +368,18 @@ const SurprisePage = () => {
               </a>
             </div>
           </div>
+
           <div className="mt-32">
             <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white text-center">
               Location Details
             </h2>
+
             <div className="mt-8 flex flex-col items-center gap-10">
               <div className="w-full max-w-4xl flex flex-col items-center">
                 <h3 className="text-xl md:text-2xl font-semibold text-teal-100 mb-4 text-center">
                   Store Details
                 </h3>
+
                 <div className="bg-white/95 rounded-2xl shadow-2xl px-6 py-6 md:px-8 md:py-8 w-full">
                   <div className="flex flex-col md:flex-row items-center md:items-stretch gap-8">
                     <div className="space-y-6 text-gray-700 text-center md:text-left md:w-1/2">
@@ -368,16 +388,19 @@ const SurprisePage = () => {
                         <p className="text-lg font-medium">11304 North Dysart Road</p>
                         <p className="text-lg font-medium">Surprise AZ 85379 Suite 104</p>
                       </div>
+
                       <div>
                         <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Phone Number</p>
                         <p className="text-lg font-medium">(480) 997-9447</p>
                       </div>
+
                       <div>
                         <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Hours</p>
                         <p className="text-lg font-medium">Mon-Sat: 10am-6pm</p>
                         <p className="text-lg font-medium">Sunday: 11am-4pm</p>
                       </div>
                     </div>
+
                     <div className="relative w-full md:w-1/2 overflow-hidden rounded-2xl shadow-xl border border-white/70 bg-white/70">
                       <img
                         src={showroomImages[activeImageIndex]}
@@ -387,6 +410,7 @@ const SurprisePage = () => {
                         decoding="async"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent"></div>
+
                       <button
                         type="button"
                         aria-label="Previous showroom image"
@@ -399,6 +423,7 @@ const SurprisePage = () => {
                       >
                         ‹
                       </button>
+
                       <button
                         type="button"
                         aria-label="Next showroom image"
@@ -409,6 +434,7 @@ const SurprisePage = () => {
                       >
                         ›
                       </button>
+
                       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
                         {showroomImages.map((image, index) => (
                           <button
@@ -426,6 +452,7 @@ const SurprisePage = () => {
                   </div>
                 </div>
               </div>
+
               <div className="w-full max-w-4xl">
                 <h3 className="text-xl md:text-2xl font-semibold text-teal-100 mb-4 text-center">
                   Directions
@@ -444,10 +471,12 @@ const SurprisePage = () => {
               </div>
             </div>
           </div>
+
           <div className="mt-20">
             <h2 className="text-2xl md:text-3xl font-bold text-white text-center">
               Surprise Showroom - Frequently Asked Questions
             </h2>
+
             <div className="mt-8 max-w-4xl mx-auto space-y-4 text-teal-100">
               {faqItems.map((item, index) => {
                 const isOpen = openFaqIndex === index;
@@ -475,6 +504,7 @@ const SurprisePage = () => {
               })}
             </div>
           </div>
+
         </div>
       </div>
       <Footer />

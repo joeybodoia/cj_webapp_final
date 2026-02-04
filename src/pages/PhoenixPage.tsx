@@ -10,113 +10,119 @@ const PhoenixPage = () => {
   ];
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  const locationSchema = {
+  // Single JSON-LD script using @graph (Store + FAQPage) + parentOrganization
+  const phoenixStructuredData = {
     "@context": "https://schema.org",
-    "@type": "Store",
-    "@id": "https://dsoutdoorliving.com/phoenix#location",
-    "name": "D's Outdoorliving - Phoenix",
-    "url": "https://dsoutdoorliving.com/phoenix",
-    "telephone": "+1-480-997-9447",
-    "address": {
-      "@type": "PostalAddress",
-      "streetAddress": "3106 W Blue Eagle Lane",
-      "addressLocality": "Phoenix",
-      "addressRegion": "AZ",
-      "postalCode": "85086",
-      "addressCountry": "US"
-    },
-    "geo": {
-      "@type": "GeoCoordinates",
-      "latitude": 33.8297721,
-      "longitude": -112.1265575
-    },
-    "openingHoursSpecification": [
+    "@graph": [
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": [
-          "Monday",
-          "Tuesday",
-          "Wednesday",
-          "Thursday",
-          "Friday",
-          "Saturday"
+        "@type": "Store",
+        "@id": "https://dsoutdoorliving.com/phoenix#location",
+        "name": "D's Outdoorliving - Phoenix",
+        "url": "https://dsoutdoorliving.com/phoenix",
+        "telephone": "+1-480-997-9447",
+        "parentOrganization": {
+          "@id": "https://dsoutdoorliving.com/#organization"
+        },
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "3106 W Blue Eagle Lane",
+          "addressLocality": "Phoenix",
+          "addressRegion": "AZ",
+          "postalCode": "85086",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 33.8297721,
+          "longitude": -112.1265575
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "10:00",
+            "closes": "17:00"
+          },
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Sunday",
+            "opens": "11:00",
+            "closes": "16:00"
+          }
         ],
-        "opens": "10:00",
-        "closes": "17:00"
+        "sameAs": [
+          "https://www.google.com/maps?cid=0x4ca9f1b83643a675"
+        ],
+        "hasMap": "https://www.google.com/maps?cid=0x4ca9f1b83643a675",
+        "areaServed": "Phoenix, AZ"
       },
       {
-        "@type": "OpeningHoursSpecification",
-        "dayOfWeek": "Sunday",
-        "opens": "11:00",
-        "closes": "16:00"
-      }
-    ],
-    "sameAs": [
-      "https://www.google.com/maps?cid=0x4ca9f1b83643a675"
-    ],
-    "hasMap": "https://www.google.com/maps?cid=0x4ca9f1b83643a675",
-    "areaServed": {
-      "@type": "AdministrativeArea",
-      "name": "Phoenix, AZ"
-    }
-  };
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "about": {
-      "@id": "https://dsoutdoorliving.com/phoenix#location"
-    },
-    "mainEntity": [
-      {
-        "@type": "Question",
-        "name": "Do you have hot tubs in stock at your Phoenix showroom?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Our Phoenix showroom maintains a rotating inventory of in-stock hot tubs, typically 10-15 models per brand. Availability changes frequently, so we recommend contacting us to confirm current inventory."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Can I buy a hot tub directly from the Phoenix showroom?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Customers may purchase any in-stock model directly from our Phoenix showroom. If your preferred model is not available, we can special-order it."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do you provide hot tub delivery and installation in Phoenix?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. We offer full hot tub delivery and installation throughout Phoenix and surrounding areas, including placement, setup, water fill, and startup guidance."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "How long does hot tub delivery take in Phoenix?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "In-stock hot tubs are typically delivered within days to a couple of weeks. Special-order models vary by brand and usually take several weeks."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do you offer hot tub maintenance plans in Phoenix?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "Yes. Our Phoenix maintenance plans include drain and refill service, chemical balancing, filter cleaning, and cover cleaning. One-time service visits are also available."
-        }
-      },
-      {
-        "@type": "Question",
-        "name": "Do your hot tubs include warranties and financing options?",
-        "acceptedAnswer": {
-          "@type": "Answer",
-          "text": "All hot tubs include manufacturer warranties, which vary by model and brand. Financing options are also available through our Phoenix showroom."
-        }
+        "@type": "FAQPage",
+        "@id": "https://dsoutdoorliving.com/phoenix#faq",
+        "about": {
+          "@id": "https://dsoutdoorliving.com/phoenix#location"
+        },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do you have hot tubs in stock at your Phoenix showroom?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Our Phoenix showroom maintains a rotating inventory of in-stock hot tubs, typically 10-15 models per brand. Availability changes frequently, so we recommend contacting us to confirm current inventory."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I buy a hot tub directly from the Phoenix showroom?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Customers may purchase any in-stock model directly from our Phoenix showroom. If your preferred model is not available, we can special-order it."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you provide hot tub delivery and installation in Phoenix?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We offer full hot tub delivery and installation throughout Phoenix and surrounding areas, including placement, setup, water fill, and startup guidance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "How long does hot tub delivery take in Phoenix?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "In-stock hot tubs are typically delivered within days to a couple of weeks. Special-order models vary by brand and usually take several weeks."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer hot tub maintenance plans in Phoenix?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Our Phoenix maintenance plans include drain and refill service, chemical balancing, filter cleaning, and cover cleaning. One-time service visits are also available."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do your hot tubs include warranties and financing options?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "All hot tubs include manufacturer warranties, which vary by model and brand. Financing options are also available through our Phoenix showroom."
+            }
+          }
+        ]
       }
     ]
   };
+
   const faqItems = [
     {
       question: 'Do you have hot tubs in stock at the Phoenix showroom?',
@@ -253,17 +259,14 @@ const PhoenixPage = () => {
       )
     }
   ];
+
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
   return (
     <div className="min-h-screen bg-custom-dark">
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(locationSchema) }}
-      />
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(phoenixStructuredData) }}
       />
       <Header />
       <div className="pt-32 py-16">
@@ -274,9 +277,11 @@ const PhoenixPage = () => {
           <h2 className="mt-4 text-xl md:text-2xl lg:text-3xl font-semibold text-teal-200 text-center">
             Your Local Hot Tub &amp; Swim Spa Destination Serving Phoenix and the North Valley
           </h2>
+
           <h3 className="mt-24 text-xl md:text-2xl lg:text-3xl font-semibold text-white text-center">
             Products Available at Our Phoenix Location
           </h3>
+
           <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
             <div className="flex flex-col items-center gap-3">
               <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
@@ -303,6 +308,7 @@ const PhoenixPage = () => {
                 Hot Tubs at our Phoenix showroom
               </a>
             </div>
+
             <div className="flex flex-col items-center gap-3">
               <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
                 <div className="relative h-56">
@@ -328,6 +334,7 @@ const PhoenixPage = () => {
                 Swim Spas at our Phoenix showroom
               </a>
             </div>
+
             <div className="flex flex-col items-center gap-3">
               <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
                 <div className="relative h-56">
@@ -354,15 +361,18 @@ const PhoenixPage = () => {
               </a>
             </div>
           </div>
+
           <div className="mt-32">
             <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white text-center">
               Location Details
             </h2>
+
             <div className="mt-8 flex flex-col items-center gap-10">
               <div className="w-full max-w-4xl flex flex-col items-center">
                 <h3 className="text-xl md:text-2xl font-semibold text-teal-200 mb-4 text-center">
                   Store Details
                 </h3>
+
                 <div className="bg-white/95 rounded-2xl shadow-2xl px-6 py-6 md:px-8 md:py-8 w-full">
                   <div className="flex flex-col md:flex-row items-center md:items-stretch gap-8">
                     <div className="space-y-6 text-gray-700 text-center md:text-left md:w-1/2">
@@ -374,16 +384,19 @@ const PhoenixPage = () => {
                           **by appointment only, call to arrange**
                         </p>
                       </div>
+
                       <div>
                         <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Phone Number</p>
                         <p className="text-lg font-medium">(480) 997-9447</p>
                       </div>
+
                       <div>
                         <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Hours</p>
                         <p className="text-lg font-medium">Mon-Sat: 10am-5pm</p>
                         <p className="text-lg font-medium">Sunday: 11am-4pm</p>
                       </div>
                     </div>
+
                     <div className="relative w-full md:w-1/2 overflow-hidden rounded-2xl shadow-xl border border-white/70 bg-white/70">
                       <img
                         src={showroomImages[activeImageIndex]}
@@ -393,6 +406,7 @@ const PhoenixPage = () => {
                         decoding="async"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent"></div>
+
                       <button
                         type="button"
                         aria-label="Previous showroom image"
@@ -405,6 +419,7 @@ const PhoenixPage = () => {
                       >
                         ‹
                       </button>
+
                       <button
                         type="button"
                         aria-label="Next showroom image"
@@ -415,6 +430,7 @@ const PhoenixPage = () => {
                       >
                         ›
                       </button>
+
                       <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
                         {showroomImages.map((image, index) => (
                           <button
@@ -432,6 +448,7 @@ const PhoenixPage = () => {
                   </div>
                 </div>
               </div>
+
               <div className="w-full max-w-4xl">
                 <h3 className="text-xl md:text-2xl font-semibold text-teal-200 mb-4 text-center">
                   Directions
@@ -450,10 +467,12 @@ const PhoenixPage = () => {
               </div>
             </div>
           </div>
+
           <div className="mt-20">
             <h2 className="text-2xl md:text-3xl font-bold text-white text-center">
               Phoenix Showroom – Frequently Asked Questions
             </h2>
+
             <div className="mt-8 max-w-4xl mx-auto space-y-4 text-teal-200">
               {faqItems.map((item, index) => {
                 const isOpen = openFaqIndex === index;
@@ -481,8 +500,10 @@ const PhoenixPage = () => {
               })}
             </div>
           </div>
+
         </div>
       </div>
+
       <Footer />
     </div>
   );

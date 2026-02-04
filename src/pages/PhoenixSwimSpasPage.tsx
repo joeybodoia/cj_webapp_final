@@ -9,15 +9,13 @@ const PhoenixSwimSpasPage = () => {
     "@id": "https://dsoutdoorliving.com/phoenix/swim-spas#service",
     "name": "Swim Spas in Phoenix, AZ",
     "serviceType": "Swim Spa Sales",
-    "areaServed": {
-      "@type": "City",
-      "name": "Phoenix",
-      "addressRegion": "AZ"
-    },
+    "areaServed": "Phoenix, AZ",
     "provider": {
+      "@type": "Store",
       "@id": "https://dsoutdoorliving.com/phoenix#location"
     },
     "availableAtOrFrom": {
+      "@type": "Place",
       "@id": "https://dsoutdoorliving.com/phoenix#location"
     },
     "url": "https://dsoutdoorliving.com/phoenix/swim-spas"

@@ -9,15 +9,13 @@ const SurpriseHotTubsPage = () => {
     "@id": "https://dsoutdoorliving.com/surprise/hot-tubs#service",
     "name": "Hot Tubs in Surprise, AZ",
     "serviceType": "Hot Tub Sales",
-    "areaServed": {
-      "@type": "City",
-      "name": "Surprise",
-      "addressRegion": "AZ"
-    },
+    "areaServed": "Surprise, AZ",
     "provider": {
+      "@type": "Store",
       "@id": "https://dsoutdoorliving.com/surprise#location"
     },
     "availableAtOrFrom": {
+      "@type": "Place",
       "@id": "https://dsoutdoorliving.com/surprise#location"
     },
     "url": "https://dsoutdoorliving.com/surprise/hot-tubs"

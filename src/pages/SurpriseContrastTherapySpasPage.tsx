@@ -9,15 +9,13 @@ const SurpriseContrastTherapySpasPage = () => {
     "@id": "https://dsoutdoorliving.com/surprise/contrast-therapy-spas#service",
     "name": "Contrast Therapy Spas in Surprise, AZ",
     "serviceType": "Contrast Therapy Spa Sales",
-    "areaServed": {
-      "@type": "City",
-      "name": "Surprise",
-      "addressRegion": "AZ"
-    },
+    "areaServed": "Surprise, AZ",
     "provider": {
+      "@type": "Store",
       "@id": "https://dsoutdoorliving.com/surprise#location"
     },
     "availableAtOrFrom": {
+      "@type": "Place",
       "@id": "https://dsoutdoorliving.com/surprise#location"
     },
     "url": "https://dsoutdoorliving.com/surprise/contrast-therapy-spas"
