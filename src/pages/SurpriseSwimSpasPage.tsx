@@ -9,20 +9,17 @@ const SurpriseSwimSpasPage = () => {
     "@id": "https://dsoutdoorliving.com/surprise/swim-spas#service",
     "name": "Swim Spas in Surprise, AZ",
     "serviceType": "Swim Spa Sales",
-    "areaServed": {
-      "@type": "City",
-      "name": "Surprise",
-      "addressRegion": "AZ"
-    },
+    "areaServed": "Surprise, AZ",
     "provider": {
-      "@id": "https://dsoutdoorliving.com/surprise#location"
+        "@type": "Store",
+        "@id": "https://dsoutdoorliving.com/surprise#location"
     },
     "availableAtOrFrom": {
-      "@id": "https://dsoutdoorliving.com/surprise#location"
-    },
-    "url": "https://dsoutdoorliving.com/surprise/swim-spas"
+        "@type": "Place",
+        "@id": "https://dsoutdoorliving.com/surprise#location"
+  },
+  "url": "https://dsoutdoorliving.com/surprise/swim-spas"
   };
-
   return (
     <div className="min-h-screen bg-custom-dark">
       <script
