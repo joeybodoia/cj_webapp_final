@@ -10,12 +10,9 @@ const PhoenixContrastTherapySpasPage = () => {
     "name": "Contrast Therapy Spas in Phoenix, AZ",
     "serviceType": "Contrast Therapy Spa Sales",
     "areaServed": "Phoenix, AZ",
+    "serviceArea": "Phoenix, AZ",
     "provider": {
       "@type": "Store",
-      "@id": "https://dsoutdoorliving.com/phoenix#location"
-    },
-    "availableAtOrFrom": {
-      "@type": "Place",
       "@id": "https://dsoutdoorliving.com/phoenix#location"
     },
     "url": "https://dsoutdoorliving.com/phoenix/contrast-therapy-spas"

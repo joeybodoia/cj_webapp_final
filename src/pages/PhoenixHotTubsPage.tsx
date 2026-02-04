@@ -10,12 +10,9 @@ const PhoenixHotTubsPage = () => {
     "name": "Hot Tubs in Phoenix, AZ",
     "serviceType": "Hot Tub Sales",
     "areaServed": "Phoenix, AZ",
+    "serviceArea": "Phoenix, AZ",
     "provider": {
       "@type": "Store",
-      "@id": "https://dsoutdoorliving.com/phoenix#location"
-    },
-    "availableAtOrFrom": {
-      "@type": "Place",
       "@id": "https://dsoutdoorliving.com/phoenix#location"
     },
     "url": "https://dsoutdoorliving.com/phoenix/hot-tubs"
