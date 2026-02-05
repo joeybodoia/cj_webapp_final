@@ -17,9 +17,11 @@ const SurprisePage = () => {
       {
         "@type": "Store",
         "@id": "https://dsoutdoorliving.com/surprise#location",
-        "name": "D's Outdoorliving - Surprise",
+        "name": "D's Outdoor Living",
         "url": "https://dsoutdoorliving.com/surprise",
         "telephone": "+1-480-997-9447",
+        "priceRange": "$$",
+        "image": "https://i.imgur.com/s4AjJS1.png",
 
         "parentOrganization": {
           "@id": "https://dsoutdoorliving.com/#organization"
@@ -27,7 +29,7 @@ const SurprisePage = () => {
 
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "11304 N Dysart Rd Suite 104",
+          "streetAddress": "11304 N Dysart Rd Suite #104",
           "addressLocality": "Surprise",
           "addressRegion": "AZ",
           "postalCode": "85379",
@@ -63,17 +65,24 @@ const SurprisePage = () => {
         ],
 
         "sameAs": [
+          "https://share.google/8grytKvdosxplP7Tk",
           "https://www.google.com/maps?cid=0xa23ee5256ec83e84"
         ],
 
         "hasMap": "https://www.google.com/maps?cid=0xa23ee5256ec83e84",
 
-        "areaServed": "Surprise, AZ"
+        "areaServed": {
+          "@type": "City",
+          "name": "Surprise",
+          "addressRegion": "AZ",
+          "addressCountry": "US"
+        }
       },
 
       {
         "@type": "FAQPage",
         "@id": "https://dsoutdoorliving.com/surprise#faq",
+        "name": "D's Outdoor Living Surprise FAQ",
 
         "about": {
           "@id": "https://dsoutdoorliving.com/surprise#location"
@@ -132,6 +141,7 @@ const SurprisePage = () => {
       }
     ]
   };
+
 
   const faqItems = [
     {

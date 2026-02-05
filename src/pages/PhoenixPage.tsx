@@ -11,117 +11,127 @@ const PhoenixPage = () => {
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
   // Single JSON-LD script using @graph (Store + FAQPage) + parentOrganization
-  const phoenixStructuredData = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Store",
-        "@id": "https://dsoutdoorliving.com/phoenix#location",
-        "name": "D's Outdoorliving - Phoenix",
-        "url": "https://dsoutdoorliving.com/phoenix",
-        "telephone": "+1-480-997-9447",
-        "parentOrganization": {
-          "@id": "https://dsoutdoorliving.com/#organization"
-        },
-        "address": {
-          "@type": "PostalAddress",
-          "streetAddress": "3106 W Blue Eagle Lane",
-          "addressLocality": "Phoenix",
-          "addressRegion": "AZ",
-          "postalCode": "85086",
-          "addressCountry": "US"
-        },
-        "geo": {
-          "@type": "GeoCoordinates",
-          "latitude": 33.8297721,
-          "longitude": -112.1265575
-        },
-        "openingHoursSpecification": [
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": [
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday",
-              "Friday",
-              "Saturday"
-            ],
-            "opens": "10:00",
-            "closes": "17:00"
+    const phoenixStructuredData = {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Store",
+          "@id": "https://dsoutdoorliving.com/phoenix#location",
+          "name": "D's Outdoor Living",
+          "url": "https://dsoutdoorliving.com/phoenix",
+          "telephone": "+1-480-997-9447",
+          "priceRange": "$$",
+          "image": "https://i.imgur.com/MPo7FDY.png",
+          "parentOrganization": {
+            "@id": "https://dsoutdoorliving.com/#organization"
           },
-          {
-            "@type": "OpeningHoursSpecification",
-            "dayOfWeek": "Sunday",
-            "opens": "11:00",
-            "closes": "16:00"
+          "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "3106 W Blue Eagle Ln",
+            "addressLocality": "Phoenix",
+            "addressRegion": "AZ",
+            "postalCode": "85086",
+            "addressCountry": "US"
+          },
+          "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 33.8297721,
+            "longitude": -112.1265575
+          },
+          "openingHoursSpecification": [
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": [
+                "Monday",
+                "Tuesday",
+                "Wednesday",
+                "Thursday",
+                "Friday",
+                "Saturday"
+              ],
+              "opens": "10:00",
+              "closes": "17:00"
+            },
+            {
+              "@type": "OpeningHoursSpecification",
+              "dayOfWeek": "Sunday",
+              "opens": "11:00",
+              "closes": "16:00"
+            }
+          ],
+          "sameAs": [
+            "https://share.google/TQk5eNca3M5ZrCuMZ",
+            "https://www.google.com/maps?cid=0x4ca9f1b83643a675"
+          ],
+          "hasMap": "https://www.google.com/maps?cid=0x4ca9f1b83643a675",
+          "areaServed": {
+            "@type": "City",
+            "name": "Phoenix",
+            "addressRegion": "AZ",
+            "addressCountry": "US"
           }
-        ],
-        "sameAs": [
-          "https://www.google.com/maps?cid=0x4ca9f1b83643a675"
-        ],
-        "hasMap": "https://www.google.com/maps?cid=0x4ca9f1b83643a675",
-        "areaServed": "Phoenix, AZ"
-      },
-      {
-        "@type": "FAQPage",
-        "@id": "https://dsoutdoorliving.com/phoenix#faq",
-        "about": {
-          "@id": "https://dsoutdoorliving.com/phoenix#location"
         },
-        "mainEntity": [
-          {
-            "@type": "Question",
-            "name": "Do you have hot tubs in stock at your Phoenix showroom?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. Our Phoenix showroom maintains a rotating inventory of in-stock hot tubs, typically 10-15 models per brand. Availability changes frequently, so we recommend contacting us to confirm current inventory."
-            }
+        {
+          "@type": "FAQPage",
+          "@id": "https://dsoutdoorliving.com/phoenix#faq",
+          "name": "D's Outdoor Living Phoenix FAQ",
+          "about": {
+            "@id": "https://dsoutdoorliving.com/phoenix#location"
           },
-          {
-            "@type": "Question",
-            "name": "Can I buy a hot tub directly from the Phoenix showroom?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. Customers may purchase any in-stock model directly from our Phoenix showroom. If your preferred model is not available, we can special-order it."
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Do you have hot tubs in stock at your Phoenix showroom?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Our Phoenix showroom maintains a rotating inventory of in-stock hot tubs, typically 10-15 models per brand. Availability changes frequently, so we recommend contacting us to confirm current inventory."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Can I buy a hot tub directly from the Phoenix showroom?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Customers may purchase any in-stock model directly from our Phoenix showroom. If your preferred model is not available, we can special-order it."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you provide hot tub delivery and installation in Phoenix?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. We offer full hot tub delivery and installation throughout Phoenix and surrounding areas, including placement, setup, water fill, and startup guidance."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "How long does hot tub delivery take in Phoenix?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "In-stock hot tubs are typically delivered within days to a couple of weeks. Special-order models vary by brand and usually take several weeks."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do you offer hot tub maintenance plans in Phoenix?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Yes. Our Phoenix maintenance plans include drain and refill service, chemical balancing, filter cleaning, and cover cleaning. One-time service visits are also available."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Do your hot tubs include warranties and financing options?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "All hot tubs include manufacturer warranties, which vary by model and brand. Financing options are also available through our Phoenix showroom."
+              }
             }
-          },
-          {
-            "@type": "Question",
-            "name": "Do you provide hot tub delivery and installation in Phoenix?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. We offer full hot tub delivery and installation throughout Phoenix and surrounding areas, including placement, setup, water fill, and startup guidance."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "How long does hot tub delivery take in Phoenix?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "In-stock hot tubs are typically delivered within days to a couple of weeks. Special-order models vary by brand and usually take several weeks."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Do you offer hot tub maintenance plans in Phoenix?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "Yes. Our Phoenix maintenance plans include drain and refill service, chemical balancing, filter cleaning, and cover cleaning. One-time service visits are also available."
-            }
-          },
-          {
-            "@type": "Question",
-            "name": "Do your hot tubs include warranties and financing options?",
-            "acceptedAnswer": {
-              "@type": "Answer",
-              "text": "All hot tubs include manufacturer warranties, which vary by model and brand. Financing options are also available through our Phoenix showroom."
-            }
-          }
-        ]
-      }
-    ]
-  };
+          ]
+        }
+      ]
+    };
+
 
   const faqItems = [
     {
