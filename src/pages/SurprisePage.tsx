@@ -94,7 +94,7 @@ const SurprisePage = () => {
             "name": "Do you have hot tubs in stock at your Surprise showroom?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. Our Surprise showroom carries rotating in-stock hot tub inventory across all brands we sell, typically 10-15 models per brand."
+              "text": "Yes — our Surprise showroom maintains rotating in-stock inventory across all brands we carry."
             }
           },
           {
@@ -102,46 +102,69 @@ const SurprisePage = () => {
             "name": "Can I purchase a hot tub directly from the Surprise showroom?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. Customers may purchase any in-stock model directly from our Surprise location, or special-order any spa shown on our website."
+              "text": "Yes. Customers may purchase any in-stock model directly at our Surprise location."
             }
           },
           {
             "@type": "Question",
-            "name": "Do you provide hot tub delivery and installation in Surprise, AZ?",
+            "name": "What if the hot tub I want is not in stock?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. We offer professional hot tub delivery and installation throughout Surprise and nearby areas, including placement, setup, water fill, and startup."
+              "text": "If your preferred model isn’t in stock, we can special-order it and coordinate delivery once it arrives."
             }
           },
           {
             "@type": "Question",
-            "name": "How long does hot tub delivery take in Surprise?",
+            "name": "Do you offer delivery and installation in Surprise?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "In-stock spas are usually delivered within days to a couple of weeks. Special orders depend on model and brand and typically take several weeks."
+              "text": "Yes. We provide delivery, electrical coordination, placement, setup, water fill, and a walkthrough at startup."
             }
           },
           {
             "@type": "Question",
-            "name": "Do you offer hot tub maintenance plans in Surprise?",
+            "name": "Do you offer maintenance or service plans?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "Yes. Our Surprise maintenance plans include drain and refill service, chemical balancing, filter cleaning, and cover cleaning. One-time service visits are also available."
+              "text": "Yes — Surprise customers can enroll in maintenance plans or schedule one-time service visits."
             }
           },
           {
             "@type": "Question",
-            "name": "Are warranties and financing available?",
+            "name": "Can I visit the Surprise showroom to see models in person?",
             "acceptedAnswer": {
               "@type": "Answer",
-              "text": "All hot tubs come with manufacturer warranties, which vary by model. Financing options are also available through our Surprise showroom."
+              "text": "Absolutely. Visiting our Surprise showroom lets you compare seating layouts, jet configurations, and features in person."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you help customers choose the right hot tub?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Our team will help match you with the right spa based on space, budget, seating, and therapeutic goals."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer financing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Financing options are available — ask our Surprise showroom staff about current programs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do your hot tubs come with warranties?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "All hot tubs include manufacturer warranties. Coverage varies by model and brand."
             }
           }
         ]
       }
     ]
   };
-
 
   const faqItems = [
     {
@@ -199,7 +222,7 @@ const SurprisePage = () => {
           <ul className="mt-3 space-y-2 text-base md:text-lg list-disc list-inside">
             <li>Transportation to your home</li>
             <li>Spa placement</li>
-            <li>Electrical coordination (if required)</li>
+            <li>Electrical coordination (handled by our team)</li>
             <li>Water fill and startup</li>
             <li>Walkthrough of features and operation</li>
           </ul>
@@ -285,15 +308,43 @@ const SurprisePage = () => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(surpriseStructuredData) }}
       />
+
       <Header />
+
       <div className="pt-32 py-16">
         <div className="container mx-auto px-4">
+          {/* Updated H1/H2 for GBP + NAP consistency */}
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center">
-            D's Outdoorliving - Surprise, AZ
+            D&apos;s Outdoor Living — Surprise, AZ Showroom
           </h1>
           <h2 className="mt-4 text-xl md:text-2xl lg:text-3xl font-semibold text-teal-100 text-center">
-            Your Local Hot Tub &amp; Swim Spa Destination Serving Surprise and the West Valley
+            Hot Tubs, Swim Spas &amp; Contrast Therapy Spas Serving Surprise and the West Valley
           </h2>
+
+          {/* Surprise showroom overview (top text block) */}
+          <section className="mt-10 max-w-4xl mx-auto text-teal-100 space-y-4 text-base md:text-lg leading-relaxed">
+            <p>
+              Welcome to <strong>D&apos;s Outdoor Living in Surprise</strong> — your West Valley destination for premium hot
+              tubs, swim spas, and contrast therapy spas. Our Surprise showroom features rotating in-stock inventory for
+              faster delivery and a complete catalog of special-order models for customers who want specific sizes,
+              seating layouts, or feature packages.
+            </p>
+
+            <p>
+              If you&apos;re comparing options, you can browse our location-specific pages for
+              <a href="/surprise/hot-tubs" className="text-white underline mx-1">Surprise hot tubs</a>,
+              <a href="/surprise/swim-spas" className="text-white underline mx-1">Surprise swim spas</a>, and
+              <a href="/surprise/contrast-therapy-spas" className="text-white underline mx-1">Surprise contrast therapy spas</a>.
+              We also offer statewide delivery, and our team coordinates installation and electrical requirements as part
+              of the end-to-end process.
+            </p>
+
+            <p>
+              Visiting the showroom is the best way to compare real seating depth, jet placement, and overall build
+              quality in person. Our specialists will help narrow down models based on space, budget, wellness goals, and
+              long-term ownership needs.
+            </p>
+          </section>
 
           <h3 className="mt-24 text-xl md:text-2xl lg:text-3xl font-semibold text-white text-center">
             Products Available at Our Surprise Location
@@ -305,7 +356,7 @@ const SurprisePage = () => {
                 <div className="relative h-56">
                   <img
                     src="https://i.imgur.com/DhGg8Q9.png"
-                    alt="Surprise Hot Tubs"
+                    alt="Hot tubs available at D's Outdoor Living Surprise showroom"
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover brightness-110"
@@ -331,7 +382,7 @@ const SurprisePage = () => {
                 <div className="relative h-56">
                   <img
                     src="https://i.imgur.com/G4nM8Hz.png"
-                    alt="Surprise Swim Spas"
+                    alt="Swim spas available at D's Outdoor Living Surprise showroom"
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover brightness-110"
@@ -357,7 +408,7 @@ const SurprisePage = () => {
                 <div className="relative h-56">
                   <img
                     src="https://i.imgur.com/J4mylLL.jpeg"
-                    alt="Surprise Contrast Therapy Spas"
+                    alt="Contrast therapy spas available at D's Outdoor Living Surprise showroom"
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover brightness-110"
@@ -379,6 +430,86 @@ const SurprisePage = () => {
             </div>
           </div>
 
+          {/* Areas served section */}
+          <section className="mt-24 max-w-4xl mx-auto text-teal-100">
+            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+              Areas We Serve from Our Surprise Showroom
+            </h2>
+
+            <p className="text-base md:text-lg leading-relaxed mb-4 text-center">
+              Our Surprise location serves homeowners throughout the West Valley, and we also deliver statewide across
+              Arizona. Many customers visit us from nearby areas including:
+            </p>
+
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-center text-base md:text-lg">
+              <li>Surprise</li>
+              <li>Peoria</li>
+              <li>Glendale</li>
+              <li>Sun City</li>
+              <li>Goodyear</li>
+              <li>Avondale</li>
+              <li>Waddell</li>
+              <li>Litchfield Park</li>
+            </ul>
+
+            <p className="mt-4 text-base md:text-lg leading-relaxed text-center">
+              Not in the West Valley? No problem — contact us and we&apos;ll coordinate delivery anywhere in Arizona.
+            </p>
+          </section>
+
+          {/* What to expect section */}
+          <section className="mt-24 max-w-4xl mx-auto text-teal-100">
+            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+              What to Expect When Buying a Spa in Surprise
+            </h2>
+
+            <div className="space-y-5 text-base md:text-lg leading-relaxed">
+              <p>
+                Buying a spa from D&apos;s Outdoor Living includes end-to-end support — from selecting the right model to
+                professional delivery and installation. If you choose an in-stock spa, delivery is typically within days
+                to a couple of weeks. Special-order timelines vary by model and brand.
+              </p>
+
+              <p>
+                On installation day, we coordinate placement, setup, water fill, and startup. Our team also coordinates
+                electrical requirements as needed, so your installation is smooth and predictable. After setup, we walk
+                you through operation, care, and best practices for long-term ownership.
+              </p>
+
+              <p>
+                We also offer maintenance plans and one-time service visits for Surprise customers — helping with drain
+                and refill service, chemical balancing, filter cleaning, and cover cleaning. If you&apos;re exploring options,
+                start with our local pages for
+                <a href="/surprise/hot-tubs" className="text-white underline mx-1">hot tubs</a>,
+                <a href="/surprise/swim-spas" className="text-white underline mx-1">swim spas</a>, and
+                <a href="/surprise/contrast-therapy-spas" className="text-white underline mx-1">contrast therapy spas</a>.
+              </p>
+            </div>
+          </section>
+
+          {/* Why choose us in Surprise */}
+          <section className="mt-24 max-w-4xl mx-auto text-teal-100">
+            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+              Why West Valley Homeowners Choose D&apos;s Outdoor Living
+            </h2>
+
+            <ul className="space-y-3 text-base md:text-lg leading-relaxed list-disc list-inside">
+              <li>Local Arizona team with a consultative, no-pressure showroom experience</li>
+              <li>Rotating in-stock inventory plus full special-order options</li>
+              <li>Statewide delivery with coordinated installation support</li>
+              <li>Premium brands and model selection for different budgets and goals</li>
+              <li>Professional walkthrough and startup guidance at installation</li>
+              <li>Ongoing maintenance plans and service support available</li>
+              <li>Financing and manufacturer warranties available</li>
+            </ul>
+
+            <p className="mt-4 text-base md:text-lg leading-relaxed text-center">
+              Our goal is to help Surprise and West Valley customers find the right spa, install it correctly, and keep it
+              running perfectly for years.
+            </p>
+          </section>
+
+          {/* Location details */}
           <div className="mt-32">
             <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white text-center">
               Location Details
@@ -395,8 +526,8 @@ const SurprisePage = () => {
                     <div className="space-y-6 text-gray-700 text-center md:text-left md:w-1/2">
                       <div>
                         <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Address</p>
-                        <p className="text-lg font-medium">11304 North Dysart Road</p>
-                        <p className="text-lg font-medium">Surprise AZ 85379 Suite 104</p>
+                        <p className="text-lg font-medium">11304 N Dysart Rd Suite #104</p>
+                        <p className="text-lg font-medium">Surprise AZ 85379</p>
                       </div>
 
                       <div>
@@ -414,7 +545,7 @@ const SurprisePage = () => {
                     <div className="relative w-full md:w-1/2 overflow-hidden rounded-2xl shadow-xl border border-white/70 bg-white/70">
                       <img
                         src={showroomImages[activeImageIndex]}
-                        alt="Surprise showroom"
+                        alt="Inside D's Outdoor Living Surprise showroom"
                         className="w-full h-64 md:h-full object-cover"
                         loading="lazy"
                         decoding="async"
@@ -476,15 +607,35 @@ const SurprisePage = () => {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="w-full rounded-2xl shadow-2xl"
-                  title="Surprise showroom location map"
+                  title="Directions to D's Outdoor Living Surprise showroom"
                 />
               </div>
             </div>
           </div>
 
-          <div className="mt-20">
+          {/* Mini FAQ above accordion */}
+          <section className="mt-20 max-w-4xl mx-auto text-teal-100">
+            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+              Common Questions About Our Surprise Showroom
+            </h2>
+
+            <div className="space-y-3 text-base md:text-lg leading-relaxed">
+              <p>
+                <strong>Do you stock hot tubs in Surprise?</strong> Yes — we maintain rotating in-stock inventory across our brands.
+              </p>
+              <p>
+                <strong>How soon can delivery happen?</strong> In-stock models are typically delivered within days to a couple of weeks.
+              </p>
+              <p>
+                <strong>Do you offer maintenance plans?</strong> Yes — we provide ongoing service options to keep your spa running perfectly.
+              </p>
+            </div>
+          </section>
+
+          {/* Accordion FAQ */}
+          <div className="mt-12">
             <h2 className="text-2xl md:text-3xl font-bold text-white text-center">
-              Surprise Showroom - Frequently Asked Questions
+              Surprise Showroom – Frequently Asked Questions
             </h2>
 
             <div className="mt-8 max-w-4xl mx-auto space-y-4 text-teal-100">
@@ -517,6 +668,7 @@ const SurprisePage = () => {
 
         </div>
       </div>
+
       <Footer />
     </div>
   );

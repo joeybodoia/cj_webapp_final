@@ -10,128 +10,138 @@ const PhoenixPage = () => {
   ];
   const [activeImageIndex, setActiveImageIndex] = useState(0);
 
-  // Single JSON-LD script using @graph (Store + FAQPage) + parentOrganization
-    const phoenixStructuredData = {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Store",
-          "@id": "https://dsoutdoorliving.com/phoenix#location",
-          "name": "D's Outdoor Living",
-          "url": "https://dsoutdoorliving.com/phoenix",
-          "telephone": "+1-480-997-9447",
-          "priceRange": "$$",
-          "image": "https://i.imgur.com/MPo7FDY.png",
-          "parentOrganization": {
-            "@id": "https://dsoutdoorliving.com/#organization"
-          },
-          "address": {
-            "@type": "PostalAddress",
-            "streetAddress": "3106 W Blue Eagle Ln",
-            "addressLocality": "Phoenix",
-            "addressRegion": "AZ",
-            "postalCode": "85086",
-            "addressCountry": "US"
-          },
-          "geo": {
-            "@type": "GeoCoordinates",
-            "latitude": 33.8297721,
-            "longitude": -112.1265575
-          },
-          "openingHoursSpecification": [
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": [
-                "Monday",
-                "Tuesday",
-                "Wednesday",
-                "Thursday",
-                "Friday",
-                "Saturday"
-              ],
-              "opens": "10:00",
-              "closes": "17:00"
-            },
-            {
-              "@type": "OpeningHoursSpecification",
-              "dayOfWeek": "Sunday",
-              "opens": "11:00",
-              "closes": "16:00"
-            }
-          ],
-          "sameAs": [
-            "https://share.google/TQk5eNca3M5ZrCuMZ",
-            "https://www.google.com/maps?cid=0x4ca9f1b83643a675"
-          ],
-          "hasMap": "https://www.google.com/maps?cid=0x4ca9f1b83643a675",
-          "areaServed": {
-            "@type": "City",
-            "name": "Phoenix",
-            "addressRegion": "AZ",
-            "addressCountry": "US"
-          }
+  const phoenixStructuredData = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Store",
+        "@id": "https://dsoutdoorliving.com/phoenix#location",
+        "name": "D's Outdoor Living",
+        "url": "https://dsoutdoorliving.com/phoenix",
+        "telephone": "+1-480-997-9447",
+        "priceRange": "$$",
+        "image": "https://i.imgur.com/MPo7FDY.png",
+        "parentOrganization": {
+          "@id": "https://dsoutdoorliving.com/#organization"
         },
-        {
-          "@type": "FAQPage",
-          "@id": "https://dsoutdoorliving.com/phoenix#faq",
-          "name": "D's Outdoor Living Phoenix FAQ",
-          "about": {
-            "@id": "https://dsoutdoorliving.com/phoenix#location"
+        "address": {
+          "@type": "PostalAddress",
+          "streetAddress": "3106 W Blue Eagle Ln",
+          "addressLocality": "Phoenix",
+          "addressRegion": "AZ",
+          "postalCode": "85086",
+          "addressCountry": "US"
+        },
+        "geo": {
+          "@type": "GeoCoordinates",
+          "latitude": 33.8297721,
+          "longitude": -112.1265575
+        },
+        "openingHoursSpecification": [
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"],
+            "opens": "10:00",
+            "closes": "17:00"
           },
-          "mainEntity": [
-            {
-              "@type": "Question",
-              "name": "Do you have hot tubs in stock at your Phoenix showroom?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. Our Phoenix showroom maintains a rotating inventory of in-stock hot tubs, typically 10-15 models per brand. Availability changes frequently, so we recommend contacting us to confirm current inventory."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Can I buy a hot tub directly from the Phoenix showroom?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. Customers may purchase any in-stock model directly from our Phoenix showroom. If your preferred model is not available, we can special-order it."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Do you provide hot tub delivery and installation in Phoenix?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. We offer full hot tub delivery and installation throughout Phoenix and surrounding areas, including placement, setup, water fill, and startup guidance."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "How long does hot tub delivery take in Phoenix?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "In-stock hot tubs are typically delivered within days to a couple of weeks. Special-order models vary by brand and usually take several weeks."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Do you offer hot tub maintenance plans in Phoenix?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "Yes. Our Phoenix maintenance plans include drain and refill service, chemical balancing, filter cleaning, and cover cleaning. One-time service visits are also available."
-              }
-            },
-            {
-              "@type": "Question",
-              "name": "Do your hot tubs include warranties and financing options?",
-              "acceptedAnswer": {
-                "@type": "Answer",
-                "text": "All hot tubs include manufacturer warranties, which vary by model and brand. Financing options are also available through our Phoenix showroom."
-              }
+          {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": "Sunday",
+            "opens": "11:00",
+            "closes": "16:00"
+          }
+        ],
+        "sameAs": [
+          "https://share.google/TQk5eNca3M5ZrCuMZ",
+          "https://www.google.com/maps?cid=0x4ca9f1b83643a675"
+        ],
+        "hasMap": "https://www.google.com/maps?cid=0x4ca9f1b83643a675",
+        "areaServed": "Phoenix, AZ"
+      },
+      {
+        "@type": "FAQPage",
+        "@id": "https://dsoutdoorliving.com/phoenix#faq",
+        "name": "D's Outdoor Living Phoenix FAQ",
+        "about": {
+          "@id": "https://dsoutdoorliving.com/phoenix#location"
+        },
+        "mainEntity": [
+          {
+            "@type": "Question",
+            "name": "Do you have hot tubs in stock at your Phoenix showroom?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes — our Phoenix showroom maintains rotating in-stock inventory across all brands."
             }
-          ]
-        }
-      ]
-    };
-
+          },
+          {
+            "@type": "Question",
+            "name": "Can I buy a hot tub directly from the showroom?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Customers may purchase any in-stock model directly at our Phoenix location."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "What if the model I want is not available in Phoenix?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "If your preferred model is not in stock, we can special-order it and coordinate delivery once it arrives."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer delivery and installation?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. We provide full delivery, electrical coordination, placement, setup, water fill, and startup guidance."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer maintenance or service plans?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes — Phoenix customers can enroll in ongoing maintenance plans or request one-time service visits."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Can I see the hot tubs in person before buying?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes — we encourage visiting our Phoenix showroom by appointment to compare models in person."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you help with choosing the right hot tub?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Our team provides personalized guidance based on space, budget, seating, and therapeutic needs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you offer financing?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "Yes. Financing options are available — ask our Phoenix staff for current programs."
+            }
+          },
+          {
+            "@type": "Question",
+            "name": "Do you provide warranties?",
+            "acceptedAnswer": {
+              "@type": "Answer",
+              "text": "All spas include manufacturer warranties, which vary by model and brand."
+            }
+          }
+        ]
+      }
+    ]
+  };
 
   const faqItems = [
     {
@@ -189,7 +199,7 @@ const PhoenixPage = () => {
           <ul className="mt-3 space-y-2 text-base md:text-lg list-disc list-inside">
             <li>Transportation to your home</li>
             <li>Placement in your desired location</li>
-            <li>Electrical coordination (if needed)</li>
+            <li>Electrical coordination (handled by our team)</li>
             <li>Setup and water fill</li>
             <li>Initial startup guidance</li>
           </ul>
@@ -225,8 +235,9 @@ const PhoenixPage = () => {
       question: 'Can I see the hot tubs in person before buying?',
       answer: (
         <p className="text-base md:text-lg leading-relaxed">
-          Definitely — we encourage visiting the Phoenix showroom to see models firsthand, compare features, and speak
-          with our specialists. Seeing the spas in person helps with sizing, seating layout, and feature selection.
+          Definitely — we encourage visiting the Phoenix showroom by appointment to see models firsthand, compare
+          features, and speak with our specialists. Seeing the spas in person helps with sizing, seating layout, and
+          feature selection.
         </p>
       )
     },
@@ -278,15 +289,44 @@ const PhoenixPage = () => {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(phoenixStructuredData) }}
       />
+
       <Header />
+
       <div className="pt-32 py-16">
         <div className="container mx-auto px-4">
+          {/* Updated H1/H2 for GBP + NAP consistency */}
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center">
-            D's Outdoorliving - Phoenix, AZ
+            D&apos;s Outdoor Living — Phoenix, AZ Showroom
           </h1>
           <h2 className="mt-4 text-xl md:text-2xl lg:text-3xl font-semibold text-teal-200 text-center">
-            Your Local Hot Tub &amp; Swim Spa Destination Serving Phoenix and the North Valley
+            Hot Tubs, Swim Spas &amp; Contrast Therapy Spas Serving Phoenix and the North Valley
           </h2>
+
+          {/* Phoenix showroom overview (top text block) */}
+          <section className="mt-10 max-w-4xl mx-auto text-teal-100 space-y-4 text-base md:text-lg leading-relaxed">
+            <p>
+              Welcome to <strong>D&apos;s Outdoor Living in Phoenix</strong> — your local destination for premium hot tubs,
+              swim spas, and contrast therapy spas. Our Phoenix showroom serves customers throughout the North Valley
+              and across Arizona, offering both in-stock models for faster delivery and special-order options for
+              complete customization.
+            </p>
+
+            <p>
+              Whether you&apos;re searching for a backyard relaxation spa, a fitness-focused swim spa, or a contrast therapy
+              setup, our team takes a consultative approach to help you choose the right solution for your space,
+              lifestyle, and budget. You can explore our current selection of
+              <a href="/phoenix/hot-tubs" className="text-white underline mx-1">Phoenix hot tubs</a>,
+              <a href="/phoenix/swim-spas" className="text-white underline mx-1">Phoenix swim spas</a>, and
+              <a href="/phoenix/contrast-therapy-spas" className="text-white underline mx-1">Phoenix contrast therapy spas</a>
+              directly from this location.
+            </p>
+
+            <p>
+              Our Phoenix showroom operates <strong>by appointment</strong> to ensure every customer receives
+              personalized guidance. From model selection to delivery, electrical coordination, installation, and ongoing
+              maintenance, we handle the entire process in-house — making spa ownership simple and stress-free.
+            </p>
+          </section>
 
           <h3 className="mt-24 text-xl md:text-2xl lg:text-3xl font-semibold text-white text-center">
             Products Available at Our Phoenix Location
@@ -298,7 +338,7 @@ const PhoenixPage = () => {
                 <div className="relative h-56">
                   <img
                     src="https://i.imgur.com/DhGg8Q9.png"
-                    alt="Phoenix Hot Tubs"
+                    alt="Phoenix hot tub showroom at D's Outdoor Living"
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover brightness-110"
@@ -324,7 +364,7 @@ const PhoenixPage = () => {
                 <div className="relative h-56">
                   <img
                     src="https://i.imgur.com/G4nM8Hz.png"
-                    alt="Phoenix Swim Spas"
+                    alt="Phoenix swim spa inventory at D's Outdoor Living"
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover brightness-110"
@@ -350,7 +390,7 @@ const PhoenixPage = () => {
                 <div className="relative h-56">
                   <img
                     src="https://i.imgur.com/J4mylLL.jpeg"
-                    alt="Phoenix Contrast Therapy Spas"
+                    alt="Phoenix contrast therapy spa display at D's Outdoor Living"
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover brightness-110"
@@ -372,6 +412,85 @@ const PhoenixPage = () => {
             </div>
           </div>
 
+          {/* Areas served section */}
+          <section className="mt-24 max-w-4xl mx-auto text-teal-100">
+            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+              Areas We Serve from Our Phoenix Showroom
+            </h2>
+
+            <p className="text-base md:text-lg leading-relaxed mb-4 text-center">
+              While our showroom is located in Phoenix, we provide delivery, installation, and service statewide. Many of
+              our customers come from nearby communities including:
+            </p>
+
+            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-center text-base md:text-lg">
+              <li>Desert Hills / North Phoenix</li>
+              <li>Anthem</li>
+              <li>Cave Creek</li>
+              <li>Deer Valley</li>
+              <li>Peoria</li>
+              <li>Scottsdale</li>
+              <li>Glendale</li>
+            </ul>
+
+            <p className="mt-4 text-base md:text-lg leading-relaxed text-center">
+              If you&apos;re located elsewhere in Arizona, contact us — we regularly coordinate deliveries statewide.
+            </p>
+          </section>
+
+          {/* What to expect section */}
+          <section className="mt-24 max-w-4xl mx-auto text-teal-100">
+            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+              What to Expect When Buying a Spa in Phoenix
+            </h2>
+
+            <div className="space-y-5 text-base md:text-lg leading-relaxed">
+              <p>
+                Purchasing a spa from D&apos;s Outdoor Living includes full white-glove support from start to finish. Once
+                you select your model, we coordinate delivery, placement, and professional installation directly —
+                including <strong>electrical coordination handled by our team</strong>.
+              </p>
+
+              <p>
+                In-stock spas are typically delivered within days to a couple of weeks, while special-order models vary by
+                brand and configuration. On installation day, we handle positioning, water fill, startup, and walk you
+                through proper operation so you&apos;re comfortable using your spa immediately.
+              </p>
+
+              <p>
+                After installation, we continue supporting Phoenix customers with optional maintenance plans covering
+                drain and refill service, chemical balancing, filter cleaning, and cover care — helping protect your
+                investment long-term. If you&apos;re exploring specific categories, you can start with
+                <a href="/phoenix/hot-tubs" className="text-white underline mx-1">hot tubs</a>,
+                <a href="/phoenix/swim-spas" className="text-white underline mx-1">swim spas</a>, or
+                <a href="/phoenix/contrast-therapy-spas" className="text-white underline mx-1">contrast therapy spas</a>.
+              </p>
+            </div>
+          </section>
+
+          {/* Why choose us in Phoenix */}
+          <section className="mt-24 max-w-4xl mx-auto text-teal-100">
+            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+              Why Phoenix Homeowners Choose D&apos;s Outdoor Living
+            </h2>
+
+            <ul className="space-y-3 text-base md:text-lg leading-relaxed list-disc list-inside">
+              <li>Family-owned Arizona business with personalized service</li>
+              <li>Authorized dealer for Aspen Spas, Nordic Hot Tubs, and Coast Spas</li>
+              <li>In-stock inventory plus full special-order options</li>
+              <li>Statewide delivery with in-house electrical coordination</li>
+              <li>Professional installation and startup guidance</li>
+              <li>Ongoing maintenance and service plans available</li>
+              <li>Manufacturer warranties and financing options</li>
+            </ul>
+
+            <p className="mt-4 text-base md:text-lg leading-relaxed text-center">
+              Our goal is simple: provide Phoenix customers with high-quality spas, transparent pricing, and long-term
+              support — all backed by local expertise.
+            </p>
+          </section>
+
+          {/* Location details */}
           <div className="mt-32">
             <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white text-center">
               Location Details
@@ -388,10 +507,10 @@ const PhoenixPage = () => {
                     <div className="space-y-6 text-gray-700 text-center md:text-left md:w-1/2">
                       <div>
                         <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Address</p>
-                        <p className="text-lg font-medium">3106 W Blue Eagle Lane</p>
+                        <p className="text-lg font-medium">3106 W Blue Eagle Ln</p>
                         <p className="text-lg font-medium">Phoenix AZ 85086</p>
                         <p className="text-sm text-gray-600 font-medium mt-2">
-                          **by appointment only, call to arrange**
+                          <strong>By appointment only</strong> — call to arrange
                         </p>
                       </div>
 
@@ -410,7 +529,7 @@ const PhoenixPage = () => {
                     <div className="relative w-full md:w-1/2 overflow-hidden rounded-2xl shadow-xl border border-white/70 bg-white/70">
                       <img
                         src={showroomImages[activeImageIndex]}
-                        alt="Phoenix showroom"
+                        alt="Inside D's Outdoor Living Phoenix showroom"
                         className="w-full h-64 md:h-full object-cover"
                         loading="lazy"
                         decoding="async"
@@ -472,13 +591,33 @@ const PhoenixPage = () => {
                   loading="lazy"
                   referrerPolicy="no-referrer-when-downgrade"
                   className="w-full rounded-2xl shadow-2xl"
-                  title="Phoenix showroom location map"
+                  title="Directions to D's Outdoor Living Phoenix showroom"
                 />
               </div>
             </div>
           </div>
 
-          <div className="mt-20">
+          {/* Mini FAQ above accordion */}
+          <section className="mt-20 max-w-4xl mx-auto text-teal-100">
+            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
+              Common Questions About Our Phoenix Showroom
+            </h2>
+
+            <div className="space-y-3 text-base md:text-lg leading-relaxed">
+              <p>
+                <strong>Do you stock hot tubs in Phoenix?</strong> Yes — we maintain rotating in-stock inventory across our brands.
+              </p>
+              <p>
+                <strong>How soon can delivery happen?</strong> In-stock models are typically delivered within days to a couple of weeks.
+              </p>
+              <p>
+                <strong>Do you offer maintenance plans?</strong> Yes — we provide ongoing service options to keep your spa running perfectly.
+              </p>
+            </div>
+          </section>
+
+          {/* Accordion FAQ */}
+          <div className="mt-12">
             <h2 className="text-2xl md:text-3xl font-bold text-white text-center">
               Phoenix Showroom – Frequently Asked Questions
             </h2>
@@ -520,3 +659,4 @@ const PhoenixPage = () => {
 };
 
 export default PhoenixPage;
+
