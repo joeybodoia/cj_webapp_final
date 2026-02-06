@@ -10,6 +10,31 @@ const port = process.env.PORT ? Number(process.env.PORT) : 5173;
 const app = express();
 app.set('trust proxy', true);
 
+/**
+ * IndexNow key file route (must be defined BEFORE the catch-all '*')
+ * URL must be: https://dsoutdoorliving.com/a1a9280cc8504acf912bed7df8c61e4c.txt
+ * Body must be exactly the key: a1a9280cc8504acf912bed7df8c61e4c
+ */
+const INDEXNOW_KEY = process.env.INDEXNOW_KEY || process.env.INDEXNOW || '';
+const INDEXNOW_KEY_FILENAME = 'a1a9280cc8504acf912bed7df8c61e4c.txt';
+const INDEXNOW_KEY_VALUE = 'a1a9280cc8504acf912bed7df8c61e4c';
+
+app.get(`/${INDEXNOW_KEY_FILENAME}`, (req, res) => {
+  res.type('text/plain');
+
+  // Prefer env var; fall back to the literal key so the route still works if env is misnamed.
+  // (IndexNow validation expects the body to match the key in the filename.)
+  const keyToServe = (INDEXNOW_KEY || INDEXNOW_KEY_VALUE).trim();
+
+  // Optional hard guard: if someone misconfigured the env var to a different value, still serve the correct key.
+  // This prevents accidental validation failures.
+  if (keyToServe !== INDEXNOW_KEY_VALUE) {
+    return res.send(INDEXNOW_KEY_VALUE);
+  }
+
+  return res.send(keyToServe);
+});
+
 if (!isProd) {
   const { createServer: createViteServer } = await import('vite');
   const vite = await createViteServer({
