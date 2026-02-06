@@ -7,7 +7,12 @@ const repoRoot = path.resolve(__dirname, '..');
 const routesFile = path.join(repoRoot, 'src', 'routes.tsx');
 const sitemapOut = path.join(repoRoot, 'public', 'sitemap.xml');
 
-const siteUrl = (process.env.SITE_URL || 'https://dsoutdoorliving.com').replace(/\/+$/, '');
+const canonicalHost = process.env.CANONICAL_HOST || '';
+const canonicalProtocol = process.env.CANONICAL_PROTOCOL || 'https';
+const siteUrl = (
+  process.env.SITE_URL ||
+  (canonicalHost ? `${canonicalProtocol}://${canonicalHost}` : 'https://dsoutdoorliving.com')
+).replace(/\/+$/, '');
 const lastmod = new Date().toISOString().slice(0, 10);
 
 const routesSource = fs.readFileSync(routesFile, 'utf8');

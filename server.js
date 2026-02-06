@@ -6,9 +6,60 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProd = process.env.NODE_ENV === 'production';
 const port = process.env.PORT ? Number(process.env.PORT) : 5173;
+const canonicalHost = process.env.CANONICAL_HOST || 'dsoutdoorliving.com';
+const canonicalProtocol = process.env.CANONICAL_PROTOCOL || 'https';
 
 const app = express();
 app.set('trust proxy', true);
+
+const getCanonicalBase = req => {
+  if (!isProd) {
+    const devHost = req.get('host');
+    const devProtocol = req.protocol;
+    return `${devProtocol}://${devHost}`;
+  }
+  return `${canonicalProtocol}://${canonicalHost}`;
+};
+
+const normalizePath = pathname => {
+  if (pathname.length > 1 && pathname.endsWith('/')) {
+    return pathname.replace(/\/+$/, '');
+  }
+  return pathname;
+};
+
+const getCanonicalUrl = req => {
+  const base = getCanonicalBase(req);
+  const path = normalizePath(req.path || '/');
+  return `${base}${path}`;
+};
+
+if (isProd) {
+  app.use((req, res, next) => {
+    if (req.method !== 'GET' && req.method !== 'HEAD') {
+      next();
+      return;
+    }
+
+    const host = req.get('host') || '';
+    const isHttps = req.protocol === 'https';
+    const hasWww = host.startsWith('www.');
+    const normalizedPath = normalizePath(req.path || '/');
+    const hasTrailingSlash = normalizedPath !== (req.path || '/');
+    const needsHostRedirect = host !== canonicalHost;
+    const needsProtocolRedirect = !isHttps && canonicalProtocol === 'https';
+
+    if (hasWww || hasTrailingSlash || needsHostRedirect || needsProtocolRedirect) {
+      const base = `${canonicalProtocol}://${canonicalHost}`;
+      const query = req.url.includes('?') ? `?${req.url.split('?')[1]}` : '';
+      const redirectUrl = `${base}${normalizedPath}${query}`;
+      res.redirect(301, redirectUrl);
+      return;
+    }
+
+    next();
+  });
+}
 
 /**
  * IndexNow key file route (must be defined BEFORE the catch-all '*')
@@ -149,6 +200,8 @@ if (!isProd) {
       const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
       let template = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
       template = await vite.transformIndexHtml(req.originalUrl, template);
+      const canonicalUrl = getCanonicalUrl(req);
+      template = template.replace('<!--canonical-->', `<link rel="canonical" href="${canonicalUrl}" />`);
 
       const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
       const result = await render(url);
@@ -181,10 +234,12 @@ if (!isProd) {
   app.use('*', async (req, res) => {
     try {
       const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
-      const template = fs.readFileSync(
+      let template = fs.readFileSync(
         path.resolve(__dirname, 'dist/client/index.html'),
         'utf-8'
       );
+      const canonicalUrl = getCanonicalUrl(req);
+      template = template.replace('<!--canonical-->', `<link rel="canonical" href="${canonicalUrl}" />`);
       const { render } = await import('./dist/server/entry-server.js');
       const result = await render(url);
 
