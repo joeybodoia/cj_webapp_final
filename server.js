@@ -26,13 +26,88 @@ app.get(`/${INDEXNOW_KEY_FILENAME}`, (req, res) => {
   // (IndexNow validation expects the body to match the key in the filename.)
   const keyToServe = (INDEXNOW_KEY || INDEXNOW_KEY_VALUE).trim();
 
-  // Optional hard guard: if someone misconfigured the env var to a different value, still serve the correct key.
+  // Hard guard: if someone misconfigured the env var to a different value, still serve the correct key.
   // This prevents accidental validation failures.
   if (keyToServe !== INDEXNOW_KEY_VALUE) {
     return res.send(INDEXNOW_KEY_VALUE);
   }
 
   return res.send(keyToServe);
+});
+
+/**
+ * IndexNow submit endpoint (protected)
+ * Call this from your deploy pipeline (or manually) to push updated URLs to IndexNow.
+ *
+ * Request:
+ *   POST /internal/indexnow/submit
+ *   Headers:
+ *     x-internal-secret: <INDEXNOW_INTERNAL_SECRET>
+ *     Content-Type: application/json
+ *   Body:
+ *     { "urlList": ["https://dsoutdoorliving.com/...", "..."] }
+ */
+app.use(express.json({ limit: '200kb' }));
+
+app.post('/internal/indexnow/submit', async (req, res) => {
+  try {
+    const secret = req.get('x-internal-secret');
+    if (
+      !process.env.INDEXNOW_INTERNAL_SECRET ||
+      secret !== process.env.INDEXNOW_INTERNAL_SECRET
+    ) {
+      return res.status(401).json({ error: 'unauthorized' });
+    }
+
+    const urlList = req.body?.urlList;
+    if (!Array.isArray(urlList) || urlList.length === 0) {
+      return res.status(400).json({ error: 'urlList must be a non-empty array' });
+    }
+
+    if (urlList.length > 10000) {
+      return res.status(400).json({ error: 'IndexNow max 10,000 URLs per request' });
+    }
+
+    // Basic sanity filter: ensure strings + trim empties
+    const cleanedUrlList = urlList
+      .filter((u) => typeof u === 'string')
+      .map((u) => u.trim())
+      .filter(Boolean);
+
+    if (cleanedUrlList.length === 0) {
+      return res.status(400).json({ error: 'urlList must contain valid URL strings' });
+    }
+
+    const host = req.get('host'); // or hardcode "dsoutdoorliving.com" if you prefer
+    const key = (process.env.INDEXNOW_KEY || '').trim();
+    if (!key) {
+      return res.status(500).json({ error: 'INDEXNOW_KEY not set' });
+    }
+
+    const keyLocation = `https://${host}/${key}.txt`;
+
+    const payload = {
+      host,
+      key,
+      keyLocation,
+      urlList: cleanedUrlList
+    };
+
+    const r = await fetch('https://api.indexnow.org/indexnow', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json; charset=utf-8' },
+      body: JSON.stringify(payload)
+    });
+
+    const bodyText = await r.text().catch(() => '');
+    return res.status(200).json({
+      ok: r.ok,
+      indexnowStatus: r.status,
+      indexnowBody: bodyText
+    });
+  } catch (err) {
+    return res.status(500).json({ error: String(err) });
+  }
 });
 
 if (!isProd) {
