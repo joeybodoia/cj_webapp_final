@@ -6,13 +6,35 @@ import { fileURLToPath } from 'node:url';
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProd = process.env.NODE_ENV === 'production';
 const port = process.env.PORT ? Number(process.env.PORT) : 5173;
+
 const canonicalHost = process.env.CANONICAL_HOST || 'dsoutdoorliving.com';
 const canonicalProtocol = process.env.CANONICAL_PROTOCOL || 'https';
+const canonicalHostLower = String(canonicalHost).toLowerCase();
 
 const app = express();
 app.set('trust proxy', true);
 
-const getCanonicalBase = req => {
+const escapeAttr = (s) =>
+  String(s)
+    .replace(/&/g, '&amp;')
+    .replace(/"/g, '&quot;')
+    .replace(/</g, '&lt;');
+
+const normalizePath = (pathname) => {
+  let p = String(pathname || '/');
+
+  // Collapse multiple slashes anywhere in path: //phoenix/// -> /phoenix/
+  p = p.replace(/\/{2,}/g, '/');
+
+  // Remove trailing slash except for root
+  if (p.length > 1 && p.endsWith('/')) {
+    p = p.replace(/\/+$/, '');
+  }
+
+  return p;
+};
+
+const getCanonicalBase = (req) => {
   if (!isProd) {
     const devHost = req.get('host');
     const devProtocol = req.protocol;
@@ -21,43 +43,40 @@ const getCanonicalBase = req => {
   return `${canonicalProtocol}://${canonicalHost}`;
 };
 
-const normalizePath = pathname => {
-  if (pathname.length > 1 && pathname.endsWith('/')) {
-    return pathname.replace(/\/+$/, '');
-  }
-  return pathname;
-};
-
-const getCanonicalUrl = req => {
+const getCanonicalUrl = (req) => {
   const base = getCanonicalBase(req);
-  const path = normalizePath(req.path || '/');
-  return `${base}${path}`;
+  const p = normalizePath(req.path || '/');
+  return `${base}${p}`;
 };
 
 if (isProd) {
   app.use((req, res, next) => {
     if (req.method !== 'GET' && req.method !== 'HEAD') {
-      next();
-      return;
+      return next();
     }
 
-    const host = req.get('host') || '';
+    const host = String(req.get('host') || '').toLowerCase();
+
     const isHttps = req.protocol === 'https';
     const hasWww = host.startsWith('www.');
-    const normalizedPath = normalizePath(req.path || '/');
-    const hasTrailingSlash = normalizedPath !== (req.path || '/');
-    const needsHostRedirect = host !== canonicalHost;
+    const needsHostRedirect = host !== canonicalHostLower;
     const needsProtocolRedirect = !isHttps && canonicalProtocol === 'https';
 
-    if (hasWww || hasTrailingSlash || needsHostRedirect || needsProtocolRedirect) {
+    const normalizedPath = normalizePath(req.path || '/');
+    const needsPathRedirect = normalizedPath !== String(req.path || '/');
+
+    if (hasWww || needsHostRedirect || needsProtocolRedirect || needsPathRedirect) {
       const base = `${canonicalProtocol}://${canonicalHost}`;
-      const query = req.url.includes('?') ? `?${req.url.split('?')[1]}` : '';
+
+      // Preserve querystring safely (if present)
+      const queryIndex = String(req.originalUrl || '').indexOf('?');
+      const query = queryIndex >= 0 ? String(req.originalUrl).slice(queryIndex) : '';
+
       const redirectUrl = `${base}${normalizedPath}${query}`;
-      res.redirect(301, redirectUrl);
-      return;
+      return res.redirect(301, redirectUrl);
     }
 
-    next();
+    return next();
   });
 }
 
@@ -200,8 +219,12 @@ if (!isProd) {
       const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
       let template = fs.readFileSync(path.resolve(__dirname, 'index.html'), 'utf-8');
       template = await vite.transformIndexHtml(req.originalUrl, template);
+
       const canonicalUrl = getCanonicalUrl(req);
-      template = template.replace('<!--canonical-->', `<link rel="canonical" href="${canonicalUrl}" />`);
+      template = template.replace(
+        '<!--canonical-->',
+        `<link rel="canonical" href="${escapeAttr(canonicalUrl)}" />`
+      );
 
       const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
       const result = await render(url);
@@ -234,12 +257,14 @@ if (!isProd) {
   app.use('*', async (req, res) => {
     try {
       const url = `${req.protocol}://${req.get('host')}${req.originalUrl}`;
-      let template = fs.readFileSync(
-        path.resolve(__dirname, 'dist/client/index.html'),
-        'utf-8'
-      );
+      let template = fs.readFileSync(path.resolve(__dirname, 'dist/client/index.html'), 'utf-8');
+
       const canonicalUrl = getCanonicalUrl(req);
-      template = template.replace('<!--canonical-->', `<link rel="canonical" href="${canonicalUrl}" />`);
+      template = template.replace(
+        '<!--canonical-->',
+        `<link rel="canonical" href="${escapeAttr(canonicalUrl)}" />`
+      );
+
       const { render } = await import('./dist/server/entry-server.js');
       const result = await render(url);
 
