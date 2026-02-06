@@ -36,6 +36,23 @@ app.get(`/${INDEXNOW_KEY_FILENAME}`, (req, res) => {
 });
 
 /**
+ * Debug endpoint to confirm dyno env + header receipt (temporary)
+ * NOTE: This does not reveal secrets, only booleans/lengths.
+ */
+app.get('/internal/_debug/headers', (req, res) => {
+  const header = req.get('x-internal-secret');
+  res.json({
+    host: req.get('host') || null,
+    hasEnvSecret: Boolean(process.env.INDEXNOW_INTERNAL_SECRET),
+    envSecretLength: process.env.INDEXNOW_INTERNAL_SECRET
+      ? String(process.env.INDEXNOW_INTERNAL_SECRET).length
+      : 0,
+    receivedHeader: typeof header === 'string',
+    receivedHeaderLength: typeof header === 'string' ? header.length : 0
+  });
+});
+
+/**
  * IndexNow submit endpoint (protected)
  * Call this from your deploy pipeline (or manually) to push updated URLs to IndexNow.
  *
