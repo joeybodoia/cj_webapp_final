@@ -36,21 +36,23 @@ app.get(`/${INDEXNOW_KEY_FILENAME}`, (req, res) => {
 });
 
 /**
- * Debug endpoint to confirm dyno env + header receipt (temporary)
- * NOTE: This does not reveal secrets, only booleans/lengths.
+ * Remove/disable this after debugging.
+ * To keep it for future troubleshooting, gate behind ENABLE_INTERNAL_DEBUG=true.
  */
-app.get('/internal/_debug/headers', (req, res) => {
-  const header = req.get('x-internal-secret');
-  res.json({
-    host: req.get('host') || null,
-    hasEnvSecret: Boolean(process.env.INDEXNOW_INTERNAL_SECRET),
-    envSecretLength: process.env.INDEXNOW_INTERNAL_SECRET
-      ? String(process.env.INDEXNOW_INTERNAL_SECRET).length
-      : 0,
-    receivedHeader: typeof header === 'string',
-    receivedHeaderLength: typeof header === 'string' ? header.length : 0
+if (process.env.ENABLE_INTERNAL_DEBUG === 'true') {
+  app.get('/internal/_debug/headers', (req, res) => {
+    const header = req.get('x-internal-secret');
+    res.json({
+      host: req.get('host') || null,
+      hasEnvSecret: Boolean(process.env.INDEXNOW_INTERNAL_SECRET),
+      envSecretLength: process.env.INDEXNOW_INTERNAL_SECRET
+        ? String(process.env.INDEXNOW_INTERNAL_SECRET).length
+        : 0,
+      receivedHeader: typeof header === 'string',
+      receivedHeaderLength: typeof header === 'string' ? header.length : 0
+    });
   });
-});
+}
 
 /**
  * IndexNow submit endpoint (protected)
@@ -68,11 +70,11 @@ app.use(express.json({ limit: '200kb' }));
 
 app.post('/internal/indexnow/submit', async (req, res) => {
   try {
-    const secret = req.get('x-internal-secret');
-    if (
-      !process.env.INDEXNOW_INTERNAL_SECRET ||
-      secret !== process.env.INDEXNOW_INTERNAL_SECRET
-    ) {
+    // Whitespace-safe comparison (prevents invisible mismatch issues)
+    const expected = String(process.env.INDEXNOW_INTERNAL_SECRET || '').trim();
+    const provided = String(req.get('x-internal-secret') || '').trim();
+
+    if (!expected || provided !== expected) {
       return res.status(401).json({ error: 'unauthorized' });
     }
 
@@ -95,8 +97,12 @@ app.post('/internal/indexnow/submit', async (req, res) => {
       return res.status(400).json({ error: 'urlList must contain valid URL strings' });
     }
 
-    const host = req.get('host'); // or hardcode "dsoutdoorliving.com" if you prefer
-    const key = (process.env.INDEXNOW_KEY || '').trim();
+    // Prefer a stable, canonical host if provided (prevents accidental host mismatches)
+    const host =
+      (process.env.INDEXNOW_HOST && process.env.INDEXNOW_HOST.trim()) ||
+      req.get('host');
+
+    const key = String(process.env.INDEXNOW_KEY || '').trim();
     if (!key) {
       return res.status(500).json({ error: 'INDEXNOW_KEY not set' });
     }
@@ -117,6 +123,8 @@ app.post('/internal/indexnow/submit', async (req, res) => {
     });
 
     const bodyText = await r.text().catch(() => '');
+
+    // Surface IndexNow errors clearly (still 200 from our endpoint so your deploy step can parse JSON)
     return res.status(200).json({
       ok: r.ok,
       indexnowStatus: r.status,
