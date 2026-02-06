@@ -1,0 +1,66 @@
+name: Deploy to Heroku + IndexNow
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: {}
+
+concurrency:
+  group: deploy-heroku
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      # Optional: uncomment if you have tests/lint
+      # - name: Run tests
+      #   run: npm test
+
+      # Deploy to Heroku via git push
+      - name: Deploy to Heroku
+        env:
+          HEROKU_API_KEY: ${{ secrets.HEROKU_API_KEY }}
+          HEROKU_APP_NAME: ${{ secrets.HEROKU_APP_NAME }}
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # Add Heroku remote using API key auth
+          git remote add heroku "https://heroku:${HEROKU_API_KEY}@git.heroku.com/${HEROKU_APP_NAME}.git"
+
+          # Push current commit to Heroku's main branch
+          git push heroku HEAD:main --force
+
+      # Submit IndexNow URLs after deploy
+      - name: Submit IndexNow URLs
+        env:
+          INDEXNOW_INTERNAL_SECRET: ${{ secrets.INDEXNOW_INTERNAL_SECRET }}
+          INDEXNOW_SUBMIT_URL: ${{ secrets.INDEXNOW_SUBMIT_URL }}
+        run: |
+          if [ ! -f "indexnow-urls.json" ]; then
+            echo "indexnow-urls.json not found at repo root"
+            exit 1
+          fi
+
+          curl -sS -X POST "${INDEXNOW_SUBMIT_URL}" \
+            -H "Content-Type: application/json" \
+            -H "x-internal-secret: ${INDEXNOW_INTERNAL_SECRET}" \
+            --data-binary @indexnow-urls.json | tee indexnow-response.json
+
+      - name: Print IndexNow response
+        run: cat indexnow-response.json
+
