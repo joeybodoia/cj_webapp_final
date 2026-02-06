@@ -7,6 +7,7 @@ import SwimSpasPage from './pages/SwimSpasPage';
 import ProductDetailPage from './pages/ProductDetailPage';
 import PhoenixPage from './pages/PhoenixPage';
 import SurprisePage from './pages/SurprisePage';
+import ContrastTherapySpasPage from './pages/ContrastTherapySpasPage';
 import PhoenixHotTubsPage from './pages/PhoenixHotTubsPage';
 import PhoenixSwimSpasPage from './pages/PhoenixSwimSpasPage';
 import PhoenixContrastTherapySpasPage from './pages/PhoenixContrastTherapySpasPage';
@@ -21,6 +22,7 @@ const routes: RouteObject[] = [
       { path: '/', element: <HomePage /> },
       { path: '/hot-tubs', element: <SpasPage /> },
       { path: '/swim-spas', element: <SwimSpasPage /> },
+      { path: '/contrast-therapy-spas', element: <ContrastTherapySpasPage /> },
       { path: '/phoenix', element: <PhoenixPage /> },
       { path: '/phoenix/hot-tubs', element: <PhoenixHotTubsPage /> },
       { path: '/phoenix/swim-spas', element: <PhoenixSwimSpasPage /> },
