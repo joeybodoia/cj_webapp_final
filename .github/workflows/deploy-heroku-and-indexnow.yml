@@ -40,16 +40,21 @@ jobs:
           git remote add heroku "https://heroku:${HEROKU_API_KEY}@git.heroku.com/${HEROKU_APP_NAME}.git"
           git push heroku HEAD:main --force
 
+      - name: Generate IndexNow URLs from sitemap
+        run: |
+          node scripts/generate-indexnow-from-sitemap.mjs
+          if [ ! -f "indexnow-urls.json" ]; then
+            echo "indexnow-urls.json was not generated"
+            exit 1
+          fi
+          echo "Generated indexnow-urls.json:"
+          wc -l indexnow-urls.json || true
+
       - name: Submit IndexNow URLs
         env:
           INDEXNOW_INTERNAL_SECRET: ${{ secrets.INDEXNOW_INTERNAL_SECRET }}
           INDEXNOW_SUBMIT_URL: ${{ secrets.INDEXNOW_SUBMIT_URL }}
         run: |
-          if [ ! -f "indexnow-urls.json" ]; then
-            echo "indexnow-urls.json not found at repo root"
-            exit 1
-          fi
-
           curl -sS -X POST "${INDEXNOW_SUBMIT_URL}" \
             -H "Content-Type: application/json" \
             -H "x-internal-secret: ${INDEXNOW_INTERNAL_SECRET}" \
@@ -57,4 +62,3 @@ jobs:
 
       - name: Print IndexNow response
         run: cat indexnow-response.json
-
