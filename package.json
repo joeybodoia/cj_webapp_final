@@ -10,9 +10,10 @@
   "scripts": {
     "dev": "vite",
     "dev:ssr": "node server.js",
+    "generate:sitemap": "node scripts/generate-sitemap.mjs",
     "build:client": "vite build --outDir dist/client --ssrManifest",
     "build:server": "VITE_SSR=1 vite build --outDir dist/server --ssr src/entry-server.tsx",
-    "build": "npm run build:client && npm run build:server",
+    "build": "npm run generate:sitemap && npm run build:client && npm run build:server",
     "heroku-postbuild": "npm run build",
     "lint": "eslint .",
     "preview": "vite preview",
