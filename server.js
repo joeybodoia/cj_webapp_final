@@ -2,6 +2,7 @@ import fs from 'node:fs';
 import path from 'node:path';
 import express from 'express';
 import { fileURLToPath } from 'node:url';
+import { getServerSupabase } from './server/supabase-server.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProd = process.env.NODE_ENV === 'production';
@@ -47,6 +48,55 @@ const getCanonicalUrl = (req) => {
   const base = getCanonicalBase(req);
   const p = normalizePath(req.path || '/');
   return `${base}${p}`;
+};
+
+const prefetchProductTypes = new Map([
+  ['/hot-tubs', 'Spa'],
+  ['/swim-spas', 'Swim Spa'],
+  ['/contrast-therapy-spas', 'Contrast Therapy Spa']
+]);
+
+const getInitialData = async (req) => {
+  const pathname = normalizePath(req.path || '/');
+  const productType = prefetchProductTypes.get(pathname);
+
+  if (!productType) {
+    return null;
+  }
+
+  const supabase = getServerSupabase();
+  if (!supabase) {
+    return null;
+  }
+
+  const { data, error } = await supabase
+    .from('inventory')
+    .select('*')
+    .eq('product_type', productType);
+
+  if (error) {
+    console.error('Failed to prefetch products for SSR:', error.message);
+    return null;
+  }
+
+  return {
+    productsByType: {
+      [productType]: data || []
+    }
+  };
+};
+
+const serializeInitialData = (data) => {
+  const json = JSON.stringify(data ?? {});
+  return json.replace(/</g, '\\u003c');
+};
+
+const injectInitialData = (template, initialData) => {
+  const script = `<script>window.__INITIAL_DATA__=${serializeInitialData(initialData)};</script>`;
+  if (template.includes('<!--initial-data-->')) {
+    return template.replace('<!--initial-data-->', script);
+  }
+  return template.replace('</head>', `${script}</head>`);
 };
 
 if (isProd) {
@@ -226,15 +276,17 @@ if (!isProd) {
         `<link rel="canonical" href="${escapeAttr(canonicalUrl)}" />`
       );
 
+      const initialData = await getInitialData(req);
       const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
-      const result = await render(url);
+      const result = await render(url, initialData);
 
       if (result.redirect) {
         res.redirect(result.redirect.status, result.redirect.location);
         return;
       }
 
-      const html = template.replace('<!--app-html-->', result.appHtml ?? '');
+      let html = template.replace('<!--app-html-->', result.appHtml ?? '');
+      html = injectInitialData(html, initialData);
       if (result.headers) {
         Object.entries(result.headers).forEach(([key, value]) => {
           res.setHeader(key, value);
@@ -265,15 +317,17 @@ if (!isProd) {
         `<link rel="canonical" href="${escapeAttr(canonicalUrl)}" />`
       );
 
+      const initialData = await getInitialData(req);
       const { render } = await import('./dist/server/entry-server.js');
-      const result = await render(url);
+      const result = await render(url, initialData);
 
       if (result.redirect) {
         res.redirect(result.redirect.status, result.redirect.location);
         return;
       }
 
-      const html = template.replace('<!--app-html-->', result.appHtml ?? '');
+      let html = template.replace('<!--app-html-->', result.appHtml ?? '');
+      html = injectInitialData(html, initialData);
       if (result.headers) {
         Object.entries(result.headers).forEach(([key, value]) => {
           res.setHeader(key, value);

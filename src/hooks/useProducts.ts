@@ -1,15 +1,41 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { supabase, InventoryItem } from '../lib/supabase';
+import { useInitialData } from '../lib/initial-data';
 
-export const useProducts = (productType?: string) => {
+type UseProductsOptions = {
+  backgroundRefresh?: boolean;
+};
+
+export const useProducts = (productType?: string, options?: UseProductsOptions) => {
   const [products, setProducts] = useState<InventoryItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const initialData = useInitialData();
+  const initialUsedRef = useRef<Record<string, boolean>>({});
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        setLoading(true);
+        const key = productType || '__all__';
+        const hasInitial =
+          Boolean(productType) &&
+          Boolean(initialData?.productsByType) &&
+          Object.prototype.hasOwnProperty.call(initialData!.productsByType!, productType!);
+
+        if (hasInitial && !initialUsedRef.current[key]) {
+          const initialProducts = initialData?.productsByType?.[productType!] || [];
+          setProducts(initialProducts);
+          setLoading(false);
+          initialUsedRef.current[key] = true;
+
+          if (options?.backgroundRefresh === false) {
+            return;
+          }
+        } else if (!hasInitial) {
+          setLoading(true);
+        }
+
+        setError(null);
         let query = supabase.from('inventory').select('*');
         
         if (productType) {
@@ -31,7 +57,7 @@ export const useProducts = (productType?: string) => {
     };
 
     fetchProducts();
-  }, [productType]);
+  }, [productType, initialData, options?.backgroundRefresh]);
 
   return { products, loading, error };
 };

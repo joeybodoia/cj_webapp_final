@@ -6,6 +6,8 @@ import {
   StaticRouterProvider
 } from 'react-router';
 import routes from './routes';
+import { InitialDataProvider } from './lib/initial-data';
+import type { InitialData } from './types/initial-data';
 
 type RenderResult = {
   appHtml?: string;
@@ -17,7 +19,7 @@ type RenderResult = {
   };
 };
 
-export async function render(url: string): Promise<RenderResult> {
+export async function render(url: string, initialData?: InitialData): Promise<RenderResult> {
   const handler = createStaticHandler(routes);
   const request = new Request(url, { method: 'GET' });
   const context = await handler.query(request);
@@ -33,7 +35,9 @@ export async function render(url: string): Promise<RenderResult> {
 
   const router = createStaticRouter(routes, context);
   const appHtml = renderToString(
-    <StaticRouterProvider router={router} context={context} />
+    <InitialDataProvider initialData={initialData}>
+      <StaticRouterProvider router={router} context={context} />
+    </InitialDataProvider>
   );
 
   const headers = context.headers
