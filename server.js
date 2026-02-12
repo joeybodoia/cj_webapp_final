@@ -66,6 +66,9 @@ const getInitialData = async (req) => {
 
   const supabase = getServerSupabase();
   if (!supabase) {
+    if (process.env.SSR_PREFETCH_DEBUG === 'true') {
+      console.log('[SSR Prefetch] supabase not configured');
+    }
     return null;
   }
 
@@ -77,6 +80,12 @@ const getInitialData = async (req) => {
   if (error) {
     console.error('Failed to prefetch products for SSR:', error.message);
     return null;
+  }
+
+  if (process.env.SSR_PREFETCH_DEBUG === 'true') {
+    console.log(
+      `[SSR Prefetch] ${pathname} product_type=${productType} count=${Array.isArray(data) ? data.length : 0}`
+    );
   }
 
   return {
@@ -97,6 +106,19 @@ const injectInitialData = (template, initialData) => {
     return template.replace('<!--initial-data-->', script);
   }
   return template.replace('</head>', `${script}</head>`);
+};
+
+const getPrefetchHeaderValue = (pathname, initialData) => {
+  const productType = prefetchProductTypes.get(pathname);
+  if (!productType) {
+    return 'skip';
+  }
+  const count =
+    initialData?.productsByType?.[productType] &&
+    Array.isArray(initialData.productsByType[productType])
+      ? initialData.productsByType[productType].length
+      : 0;
+  return `product_type=${productType};count=${count}`;
 };
 
 if (isProd) {
@@ -277,6 +299,10 @@ if (!isProd) {
       );
 
       const initialData = await getInitialData(req);
+      if (process.env.SSR_PREFETCH_DEBUG === 'true') {
+        const pathname = normalizePath(req.path || '/');
+        res.setHeader('x-ssr-prefetch', getPrefetchHeaderValue(pathname, initialData));
+      }
       const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
       const result = await render(url, initialData);
 
@@ -318,6 +344,10 @@ if (!isProd) {
       );
 
       const initialData = await getInitialData(req);
+      if (process.env.SSR_PREFETCH_DEBUG === 'true') {
+        const pathname = normalizePath(req.path || '/');
+        res.setHeader('x-ssr-prefetch', getPrefetchHeaderValue(pathname, initialData));
+      }
       const { render } = await import('./dist/server/entry-server.js');
       const result = await render(url, initialData);
 
