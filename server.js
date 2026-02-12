@@ -56,8 +56,18 @@ const prefetchProductTypes = new Map([
   ['/contrast-therapy-spas', 'Contrast Therapy Spa']
 ]);
 
+const getRequestPathname = (req) => {
+  try {
+    const base = getCanonicalBase(req);
+    const url = new URL(req.originalUrl || '/', base);
+    return normalizePath(url.pathname);
+  } catch {
+    return normalizePath(req.path || '/');
+  }
+};
+
 const getInitialData = async (req) => {
-  const pathname = normalizePath(req.path || '/');
+  const pathname = getRequestPathname(req);
   const productType = prefetchProductTypes.get(pathname);
 
   if (!productType) {
@@ -300,8 +310,9 @@ if (!isProd) {
 
       const initialData = await getInitialData(req);
       if (process.env.SSR_PREFETCH_DEBUG === 'true') {
-        const pathname = normalizePath(req.path || '/');
+        const pathname = getRequestPathname(req);
         res.setHeader('x-ssr-prefetch', getPrefetchHeaderValue(pathname, initialData));
+        res.setHeader('x-ssr-prefetch-path', pathname);
       }
       const { render } = await vite.ssrLoadModule('/src/entry-server.tsx');
       const result = await render(url, initialData);
@@ -345,8 +356,9 @@ if (!isProd) {
 
       const initialData = await getInitialData(req);
       if (process.env.SSR_PREFETCH_DEBUG === 'true') {
-        const pathname = normalizePath(req.path || '/');
+        const pathname = getRequestPathname(req);
         res.setHeader('x-ssr-prefetch', getPrefetchHeaderValue(pathname, initialData));
+        res.setHeader('x-ssr-prefetch-path', pathname);
       }
       const { render } = await import('./dist/server/entry-server.js');
       const result = await render(url, initialData);
