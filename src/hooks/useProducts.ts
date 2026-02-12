@@ -7,10 +7,15 @@ type UseProductsOptions = {
 };
 
 export const useProducts = (productType?: string, options?: UseProductsOptions) => {
-  const [products, setProducts] = useState<InventoryItem[]>([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
   const initialData = useInitialData();
+  const initialProducts =
+    productType && initialData?.productsByType
+      ? initialData.productsByType[productType] || null
+      : null;
+
+  const [products, setProducts] = useState<InventoryItem[]>(() => initialProducts ?? []);
+  const [loading, setLoading] = useState(() => !initialProducts);
+  const [error, setError] = useState<string | null>(null);
   const initialUsedRef = useRef<Record<string, boolean>>({});
 
   useEffect(() => {
