@@ -98,7 +98,11 @@ const ProductGrid: React.FC<ProductGridProps> = ({
   }
 
   return (
-    <div className="min-h-screen bg-custom-dark pt-20">
+    <div
+      className="min-h-screen bg-custom-dark pt-20"
+      data-ssr-products={products.length}
+      data-ssr-filtered={filteredProducts.length}
+    >
       <div className="container mx-auto px-4 py-12 md:py-20">
         {/* SEO: ItemList schema */}
         {itemListJsonLd && (
