@@ -350,7 +350,7 @@ if (!isProd) {
         });
       }
 
-      res.status(result.statusCode ?? 200).end(html);
+      res.status(result.statusCode ?? 200).type('html').send(html);
     } catch (error) {
       vite.ssrFixStacktrace(error);
       res.status(500).end(String(error));
@@ -397,7 +397,7 @@ if (!isProd) {
         });
       }
 
-      res.status(result.statusCode ?? 200).end(html);
+      res.status(result.statusCode ?? 200).type('html').send(html);
     } catch (error) {
       res.status(500).end(String(error));
     }
