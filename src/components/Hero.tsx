@@ -64,13 +64,13 @@ const Hero = () => {
         {/* Desktop Layout */}
         <div className="hidden lg:flex flex-1 max-w-2xl text-left">
           <div className="flex-1">
-            <h1
+            <h2
               className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold mb-4 md:mb-6 leading-tight text-white"
               style={{ textShadow: '0 0 2px rgba(42, 45, 50, 0.7)' }}
             >
               Welcome to D's
               <span className="block">Outdoor Living</span>
-            </h1>
+            </h2>
             <p className="text-lg md:text-xl lg:text-2xl mb-6 md:mb-8 text-teal-200 leading-relaxed font-medium">
               Drive a little, save a lot
             </p>
