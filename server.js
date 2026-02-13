@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import path from 'node:path';
 import express from 'express';
+import compression from 'compression';
 import { fileURLToPath } from 'node:url';
 import { getServerSupabase } from './server/supabase-server.js';
 
@@ -14,6 +15,11 @@ const canonicalHostLower = String(canonicalHost).toLowerCase();
 
 const app = express();
 app.set('trust proxy', true);
+app.use(compression());
+app.use((req, res, next) => {
+  res.setHeader('x-compression', 'on');
+  next();
+});
 
 const escapeAttr = (s) =>
   String(s)
