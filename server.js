@@ -50,18 +50,6 @@ const getCanonicalBase = (req) => {
   return `${canonicalProtocol}://${canonicalHost}`;
 };
 
-const getCanonicalUrl = (req) => {
-  const base = getCanonicalBase(req);
-  const p = normalizePath(req.path || '/');
-  return `${base}${p}`;
-};
-
-const prefetchProductTypes = new Map([
-  ['/hot-tubs', 'Spa'],
-  ['/swim-spas', 'Swim Spa'],
-  ['/contrast-therapy-spas', 'Contrast Therapy Spa']
-]);
-
 const getRequestPathname = (req) => {
   try {
     const base = getCanonicalBase(req);
@@ -71,6 +59,18 @@ const getRequestPathname = (req) => {
     return normalizePath(req.path || '/');
   }
 };
+
+const getCanonicalUrl = (req) => {
+  const base = getCanonicalBase(req);
+  const pathname = getRequestPathname(req);
+  return `${base}${pathname}`;
+};
+
+const prefetchProductTypes = new Map([
+  ['/hot-tubs', 'Spa'],
+  ['/swim-spas', 'Swim Spa'],
+  ['/contrast-therapy-spas', 'Contrast Therapy Spa']
+]);
 
 const getInitialData = async (req) => {
   const pathname = getRequestPathname(req);
