@@ -124,6 +124,19 @@ const injectInitialData = (template, initialData) => {
   return template.replace('</head>', `${script}</head>`);
 };
 
+const injectSocialUrls = (template, canonicalUrl) => {
+  const escaped = escapeAttr(canonicalUrl);
+  let next = template.replace(
+    /<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/i,
+    `<meta property="og:url" content="${escaped}" />`
+  );
+  next = next.replace(
+    /<meta\s+name="twitter:url"\s+content="[^"]*"\s*\/?>/i,
+    `<meta name="twitter:url" content="${escaped}" />`
+  );
+  return next;
+};
+
 const getPrefetchHeaderValue = (pathname, initialData) => {
   const productType = prefetchProductTypes.get(pathname);
   if (!productType) {
@@ -313,6 +326,7 @@ if (!isProd) {
         '<!--canonical-->',
         `<link rel="canonical" href="${escapeAttr(canonicalUrl)}" />`
       );
+      template = injectSocialUrls(template, canonicalUrl);
 
       const initialData = await getInitialData(req);
       if (process.env.SSR_PREFETCH_DEBUG === 'true') {
@@ -359,6 +373,7 @@ if (!isProd) {
         '<!--canonical-->',
         `<link rel="canonical" href="${escapeAttr(canonicalUrl)}" />`
       );
+      template = injectSocialUrls(template, canonicalUrl);
 
       const initialData = await getInitialData(req);
       if (process.env.SSR_PREFETCH_DEBUG === 'true') {
