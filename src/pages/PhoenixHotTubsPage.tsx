@@ -20,8 +20,14 @@ const PhoenixHotTubsPage = () => {
         "areaServed": {
           "@type": "City",
           "name": "Phoenix",
-          "addressRegion": "AZ",
-          "addressCountry": "US"
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Arizona",
+            "containedInPlace": {
+              "@type": "Country",
+              "name": "US"
+            }
+          }
         }
       },
       {
@@ -564,4 +570,3 @@ const PhoenixHotTubsPage = () => {
 };
 
 export default PhoenixHotTubsPage;
-

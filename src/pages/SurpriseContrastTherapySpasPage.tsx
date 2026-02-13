@@ -20,8 +20,14 @@ const SurpriseContrastTherapySpasPage = () => {
         "areaServed": {
           "@type": "City",
           "name": "Surprise",
-          "addressRegion": "AZ",
-          "addressCountry": "US"
+          "containedInPlace": {
+            "@type": "State",
+            "name": "Arizona",
+            "containedInPlace": {
+              "@type": "Country",
+              "name": "US"
+            }
+          }
         }
       },
       {
