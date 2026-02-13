@@ -137,6 +137,114 @@ const injectSocialUrls = (template, canonicalUrl) => {
   return next;
 };
 
+const getSeoMeta = (pathname) => {
+  const defaults = {
+    title: "D's Outdoor Living - Premium Spas, Swim Spas & Gazebos",
+    description:
+      "D's Outdoor Living offers premium spas, swim spas, and gazebos with the best prices and service. Drive a little, save a lot on quality outdoor living products."
+  };
+
+  const map = {
+    '/': {
+      title: "D's Outdoor Living | Premium Spas, Swim Spas & Gazebos in Arizona",
+      description:
+        "Premium spas, swim spas, and gazebos in Arizona. Visit our Phoenix and Surprise showrooms for in-stock hot tubs and expert guidance."
+    },
+    '/hot-tubs': {
+      title: 'Hot Tubs in Arizona | D’s Outdoor Living',
+      description:
+        'Shop premium hot tubs with delivery and installation coordination across Arizona. Compare sizes, seating, and features.'
+    },
+    '/swim-spas': {
+      title: 'Swim Spas in Arizona | D’s Outdoor Living',
+      description:
+        'Explore swim spas for fitness and relaxation. Serving Arizona with delivery, installation coordination, and in-stock options.'
+    },
+    '/contrast-therapy-spas': {
+      title: 'Contrast Therapy Spas in Arizona | D’s Outdoor Living',
+      description:
+        'Discover contrast therapy spas for recovery and wellness. Serving Arizona with expert guidance and delivery coordination.'
+    },
+    '/phoenix': {
+      title: 'Phoenix Showroom | D’s Outdoor Living',
+      description:
+        'Visit our Phoenix showroom (appointment-only) for premium spas, swim spas, and outdoor living products.'
+    },
+    '/phoenix/hot-tubs': {
+      title: 'Hot Tubs in Phoenix, AZ | D’s Outdoor Living',
+      description:
+        'Shop hot tubs in Phoenix with delivery and installation coordination. Visit our Phoenix showroom by appointment.'
+    },
+    '/phoenix/swim-spas': {
+      title: 'Swim Spas in Phoenix, AZ | D’s Outdoor Living',
+      description:
+        'Explore swim spas in Phoenix for fitness and relaxation. Delivery and installation coordination available.'
+    },
+    '/phoenix/contrast-therapy-spas': {
+      title: 'Contrast Therapy Spas in Phoenix, AZ | D’s Outdoor Living',
+      description:
+        'Contrast therapy spas in Phoenix for recovery and wellness. Visit our Phoenix showroom by appointment.'
+    },
+    '/surprise': {
+      title: 'Surprise Showroom | D’s Outdoor Living',
+      description:
+        'Visit our Surprise showroom for premium spas, swim spas, and outdoor living products. In-stock inventory available.'
+    },
+    '/surprise/hot-tubs': {
+      title: 'Hot Tubs in Surprise, AZ | D’s Outdoor Living',
+      description:
+        'Shop hot tubs in Surprise with delivery and installation coordination. Visit our Surprise showroom.'
+    },
+    '/surprise/swim-spas': {
+      title: 'Swim Spas in Surprise, AZ | D’s Outdoor Living',
+      description:
+        'Explore swim spas in Surprise for fitness and relaxation. Delivery and installation coordination available.'
+    },
+    '/surprise/contrast-therapy-spas': {
+      title: 'Contrast Therapy Spas in Surprise, AZ | D’s Outdoor Living',
+      description:
+        'Contrast therapy spas in Surprise for recovery and wellness. Visit our Surprise showroom.'
+    }
+  };
+
+  return map[pathname] || defaults;
+};
+
+const injectSeoMeta = (template, pathname) => {
+  const { title, description } = getSeoMeta(pathname);
+  const escapedTitle = escapeAttr(title);
+  const escapedDescription = escapeAttr(description);
+
+  let next = template.replace(/<title>[^<]*<\/title>/i, `<title>${escapedTitle}</title>`);
+
+  next = next.replace(
+    /<meta\s+name="description"\s+content="[^"]*"\s*\/?>/i,
+    `<meta name="description" content="${escapedDescription}" />`
+  );
+
+  next = next.replace(
+    /<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/i,
+    `<meta property="og:title" content="${escapedTitle}" />`
+  );
+
+  next = next.replace(
+    /<meta\s+property="og:description"\s+content="[^"]*"\s*\/?>/i,
+    `<meta property="og:description" content="${escapedDescription}" />`
+  );
+
+  next = next.replace(
+    /<meta\s+property="twitter:title"\s+content="[^"]*"\s*\/?>/i,
+    `<meta property="twitter:title" content="${escapedTitle}" />`
+  );
+
+  next = next.replace(
+    /<meta\s+property="twitter:description"\s+content="[^"]*"\s*\/?>/i,
+    `<meta property="twitter:description" content="${escapedDescription}" />`
+  );
+
+  return next;
+};
+
 const getPrefetchHeaderValue = (pathname, initialData) => {
   const productType = prefetchProductTypes.get(pathname);
   if (!productType) {
@@ -327,6 +435,7 @@ if (!isProd) {
         `<link rel="canonical" href="${escapeAttr(canonicalUrl)}" />`
       );
       template = injectSocialUrls(template, canonicalUrl);
+      template = injectSeoMeta(template, getRequestPathname(req));
 
       const initialData = await getInitialData(req);
       if (process.env.SSR_PREFETCH_DEBUG === 'true') {
@@ -374,6 +483,7 @@ if (!isProd) {
         `<link rel="canonical" href="${escapeAttr(canonicalUrl)}" />`
       );
       template = injectSocialUrls(template, canonicalUrl);
+      template = injectSeoMeta(template, getRequestPathname(req));
 
       const initialData = await getInitialData(req);
       if (process.env.SSR_PREFETCH_DEBUG === 'true') {
