@@ -15,7 +15,7 @@ const canonicalHostLower = String(canonicalHost).toLowerCase();
 
 const app = express();
 app.set('trust proxy', true);
-app.use(compression());
+app.use(compression({ threshold: 0 }));
 app.use((req, res, next) => {
   res.setHeader('x-compression', 'on');
   next();
