@@ -190,6 +190,26 @@ const getSeoMeta = (pathname) => {
       description:
         'Visit our Surprise showroom for premium spas, swim spas, and outdoor living products. In-stock inventory available.'
     },
+    '/mesa': {
+      title: 'Mesa Showroom | D’s Outdoor Living',
+      description:
+        'Visit our Mesa showroom for premium spas, swim spas, and outdoor living products. In-stock inventory available.'
+    },
+    '/mesa/hot-tubs': {
+      title: 'Hot Tubs in Mesa, AZ | D’s Outdoor Living',
+      description:
+        'Shop hot tubs in Mesa with delivery and installation coordination. Visit our Mesa showroom.'
+    },
+    '/mesa/swim-spas': {
+      title: 'Swim Spas in Mesa, AZ | D’s Outdoor Living',
+      description:
+        'Explore swim spas in Mesa for fitness and relaxation. Delivery and installation coordination available.'
+    },
+    '/mesa/contrast-therapy-spas': {
+      title: 'Contrast Therapy Spas in Mesa, AZ | D’s Outdoor Living',
+      description:
+        'Contrast therapy spas in Mesa for recovery and wellness. Visit our Mesa showroom.'
+    },
     '/surprise/hot-tubs': {
       title: 'Hot Tubs in Surprise, AZ | D’s Outdoor Living',
       description:

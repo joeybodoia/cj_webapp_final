@@ -170,6 +170,13 @@ const Header = () => {
                       >
                         Surprise
                       </Link>
+                      <Link
+                        to="/mesa"
+                        onClick={() => setIsLocationsOpen(false)}
+                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-700/70 transition-colors"
+                      >
+                        Mesa
+                      </Link>
                     </div>
                   </div>
                 )}
@@ -284,6 +291,16 @@ const Header = () => {
                     className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
                   >
                     Surprise
+                  </Link>
+                  <Link
+                    to="/mesa"
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsLocationsOpen(false);
+                    }}
+                    className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
+                  >
+                    Mesa
                   </Link>
                 </div>
               )}

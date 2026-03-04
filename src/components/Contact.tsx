@@ -71,13 +71,18 @@ const Contact = () => {
             </div>
 
             {/* Location 3 */}
-            <div className="bg-white/90 p-4 md:p-6 rounded-2xl border border-white/40 shadow-[0_15px_40px_rgba(0,0,0,0.2)] opacity-75">
+            <div className="bg-white/95 p-4 md:p-6 rounded-2xl border border-white/40 shadow-[0_15px_40px_rgba(0,0,0,0.2)]">
               <div className="flex items-center space-x-3 mb-4">
-                <MapPin size={20} className="text-gray-400" />
-                <h4 className="text-lg md:text-xl font-bold text-gray-600">Tucson</h4>
+                <MapPin size={20} className="text-teal-600" />
+                <h4 className="text-lg md:text-xl font-bold text-gray-900">Mesa</h4>
               </div>
               <div className="space-y-2">
-                <p className="text-sm md:text-base text-gray-500 italic">Coming Soon</p>
+                <p className="text-sm md:text-base text-gray-700">10550 E Baseline Rd</p>
+                <p className="text-sm md:text-base text-gray-700">Mesa AZ 85209 Booth #C1-19</p>
+                <div className="flex items-center space-x-2 mt-3">
+                  <Phone size={16} className="text-teal-600" />
+                  <p className="text-sm md:text-base text-gray-700">(480) 997-9781</p>
+                </div>
               </div>
             </div>
           </div>

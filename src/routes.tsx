@@ -14,6 +14,10 @@ import PhoenixContrastTherapySpasPage from './pages/PhoenixContrastTherapySpasPa
 import SurpriseHotTubsPage from './pages/SurpriseHotTubsPage';
 import SurpriseSwimSpasPage from './pages/SurpriseSwimSpasPage';
 import SurpriseContrastTherapySpasPage from './pages/SurpriseContrastTherapySpasPage';
+import MesaPage from './pages/MesaPage';
+import MesaHotTubsPage from './pages/MesaHotTubsPage';
+import MesaSwimSpasPage from './pages/MesaSwimSpasPage';
+import MesaContrastTherapySpasPage from './pages/MesaContrastTherapySpasPage';
 
 const routes: RouteObject[] = [
   {
@@ -31,6 +35,10 @@ const routes: RouteObject[] = [
       { path: '/surprise/hot-tubs', element: <SurpriseHotTubsPage /> },
       { path: '/surprise/swim-spas', element: <SurpriseSwimSpasPage /> },
       { path: '/surprise/contrast-therapy-spas', element: <SurpriseContrastTherapySpasPage /> },
+      { path: '/mesa', element: <MesaPage /> },
+      { path: '/mesa/hot-tubs', element: <MesaHotTubsPage /> },
+      { path: '/mesa/swim-spas', element: <MesaSwimSpasPage /> },
+      { path: '/mesa/contrast-therapy-spas', element: <MesaContrastTherapySpasPage /> },
       { path: '/product/:slug', element: <ProductDetailPage /> }
     ]
   }
