@@ -437,6 +437,49 @@
   width: auto;
 }
 
+.location-theme {
+  background: #0a3d35;
+}
+
+.location-theme [class*='bg-white/5'] {
+  background: rgba(23, 111, 100, 0.72) !important;
+  border-color: rgba(94, 234, 212, 0.28) !important;
+}
+
+.location-theme [class*='bg-black/20'] {
+  background: rgba(10, 70, 63, 0.65) !important;
+  border-color: rgba(94, 234, 212, 0.24) !important;
+}
+
+.location-theme [class*='bg-white/95'],
+.location-theme [class*='bg-white/70'] {
+  background: rgba(18, 95, 86, 0.94) !important;
+  border-color: rgba(94, 234, 212, 0.35) !important;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.28) !important;
+}
+
+.location-theme [class*='text-gray-'] {
+  color: rgba(236, 254, 255, 0.86) !important;
+}
+
+.location-theme [class*='text-teal-100'] {
+  color: rgba(236, 254, 255, 0.84) !important;
+}
+
+.location-theme [class*='text-teal-200'] {
+  color: rgba(167, 243, 228, 0.96) !important;
+}
+
+.location-theme .rounded-2xl[class*='border-white/10'] {
+  border-color: rgba(94, 234, 212, 0.28) !important;
+}
+
+.location-theme h1,
+.location-theme h2,
+.location-theme h3 {
+  text-wrap: balance;
+}
+
 @media (max-width: 1100px) {
   .quote-page .hero-inner {
     grid-template-columns: 1fr;

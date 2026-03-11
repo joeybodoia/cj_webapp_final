@@ -159,7 +159,7 @@ const MesaSwimSpasPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-custom-dark">
+    <div className="location-theme min-h-screen bg-[#0a3d35]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(pageStructuredData) }}

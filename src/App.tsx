@@ -1,7 +1,9 @@
 import { useEffect } from 'react';
-import { Outlet } from 'react-router';
+import { Outlet, useLocation } from 'react-router';
 
 function App() {
+  const location = useLocation();
+
   useEffect(() => {
     // Check if we need to redirect to the new domain
     const currentHost = window.location.host;
@@ -16,6 +18,10 @@ function App() {
       window.location.replace(`${currentProtocol}//www.dsoutdoorliving.com${currentPath}`);
     }
   }, []);
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+  }, [location.pathname, location.search]);
 
   return <Outlet />;
 }
