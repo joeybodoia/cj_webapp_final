@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Manrope:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Lato:wght@300;400;700;900&family=Manrope:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700;800;900&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,6 +6,294 @@
 
 :root {
   color-scheme: light;
+}
+
+.quote-page {
+  --white: #fff;
+  --teal-bright: #22b8a4;
+  --dark: #143230;
+  --navy: #1a4b47;
+  background: #0a3d35;
+}
+
+.quote-main {
+  padding-top: 96px;
+}
+
+.quote-page .hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: stretch;
+  overflow: hidden;
+}
+
+.quote-page .hero-bg {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(105deg, rgba(10, 61, 53, 0.95) 0%, rgba(10, 61, 53, 0.75) 55%, rgba(10, 61, 53, 0.5) 100%),
+    url('https://i.imgur.com/DhGg8Q9.png') center / cover no-repeat;
+  z-index: 0;
+}
+
+.quote-page .hero-inner {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 80px 40px 60px;
+  display: grid;
+  grid-template-columns: 1fr 420px;
+  gap: 60px;
+  align-items: center;
+}
+
+.quote-page .hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  color: var(--white);
+  padding: 6px 14px;
+  border-radius: 2px;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+}
+
+.quote-page .hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(38px, 5vw, 62px);
+  font-weight: 900;
+  line-height: 1.08;
+  color: var(--white);
+  margin-bottom: 20px;
+}
+
+.quote-page .hero h1 span {
+  color: var(--teal-bright);
+}
+
+.quote-page .hero-sub {
+  font-size: 18px;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 300;
+  line-height: 1.6;
+  margin-bottom: 32px;
+  max-width: 520px;
+}
+
+.quote-page .trust-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  margin-bottom: 36px;
+}
+
+.quote-page .trust-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.quote-page .trust-item .check {
+  width: 22px;
+  height: 22px;
+  background: var(--teal-bright);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  color: var(--white);
+  flex-shrink: 0;
+}
+
+.quote-page .hero-stats {
+  display: flex;
+  gap: 36px;
+  padding-top: 28px;
+  border-top: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.quote-page .stat-num {
+  font-family: 'Playfair Display', serif;
+  font-size: 32px;
+  font-weight: 900;
+  color: var(--teal-bright);
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.quote-page .stat-label {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.5px;
+  margin-top: 4px;
+}
+
+.quote-page .form-card {
+  background: var(--white);
+  border-radius: 6px;
+  padding: 36px 32px;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(34, 184, 164, 0.3);
+}
+
+.quote-page .form-card h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 22px;
+  color: var(--dark);
+  margin-bottom: 6px;
+}
+
+.quote-page .form-card p {
+  font-size: 13px;
+  color: #666;
+  margin-bottom: 22px;
+  line-height: 1.5;
+}
+
+.quote-page .form-group {
+  margin-bottom: 14px;
+}
+
+.quote-page .form-group label {
+  display: block;
+  font-size: 12px;
+  font-weight: 700;
+  color: var(--navy);
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  margin-bottom: 5px;
+}
+
+.quote-page .form-group input,
+.quote-page .form-group select,
+.quote-page .form-group textarea {
+  width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #ddd;
+  border-radius: 3px;
+  font-family: 'Lato', sans-serif;
+  font-size: 14px;
+  color: var(--navy);
+  background: #fafafa;
+  transition: border-color 0.2s;
+  outline: none;
+}
+
+.quote-page .form-group input:focus,
+.quote-page .form-group select:focus,
+.quote-page .form-group textarea:focus {
+  border-color: var(--teal-bright);
+  background: #fff;
+}
+
+.quote-page .form-group textarea {
+  height: 80px;
+  resize: none;
+}
+
+.quote-page .form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.quote-page .btn-submit {
+  width: 100%;
+  background: #1a8a7a;
+  color: var(--white);
+  border: none;
+  padding: 15px 20px;
+  font-family: 'Lato', sans-serif;
+  font-size: 16px;
+  font-weight: 900;
+  letter-spacing: 0.5px;
+  border-radius: 3px;
+  cursor: pointer;
+  margin-top: 4px;
+  transition: background 0.2s, transform 0.1s;
+}
+
+.quote-page .btn-submit:hover {
+  background: var(--teal-bright);
+  transform: translateY(-1px);
+}
+
+.quote-page .btn-submit:active {
+  transform: translateY(0);
+}
+
+.quote-page .form-reassure {
+  text-align: center;
+  font-size: 11.5px;
+  color: #888;
+  margin-top: 10px;
+}
+
+.quote-page .form-reassure strong {
+  color: #555;
+}
+
+@media (max-width: 1100px) {
+  .quote-page .hero-inner {
+    grid-template-columns: 1fr;
+    gap: 36px;
+    padding: 64px 28px 54px;
+  }
+
+  .quote-page .hero {
+    min-height: auto;
+  }
+
+  .quote-page .form-card {
+    max-width: 620px;
+  }
+}
+
+@media (max-width: 768px) {
+  .quote-main {
+    padding-top: 90px;
+  }
+
+  .quote-page .hero-inner {
+    padding: 44px 18px 44px;
+    gap: 28px;
+  }
+
+  .quote-page .hero-sub {
+    font-size: 16px;
+    line-height: 1.55;
+  }
+
+  .quote-page .trust-row {
+    gap: 12px;
+    margin-bottom: 24px;
+  }
+
+  .quote-page .hero-stats {
+    gap: 22px;
+    flex-wrap: wrap;
+  }
+
+  .quote-page .form-card {
+    padding: 24px 20px;
+  }
+
+  .quote-page .form-row {
+    grid-template-columns: 1fr;
+  }
 }
 
 @layer base {

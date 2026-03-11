@@ -200,13 +200,19 @@ const Header = () => {
             >
               Our Story
             </button>
-            <button 
+            <button
               onClick={() => scrollToSection('contact')}
               className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
               style={navTextShadow}
             >
               Contact Us
             </button>
+            <Link
+              to="/get-a-quote"
+              className="bg-teal-500 hover:bg-teal-400 text-white font-medium tracking-wide px-4 py-2 rounded-lg transition-colors"
+            >
+              Get a Quote
+            </Link>
           </nav>
 
           {/* Mobile Menu Button */}
@@ -321,14 +327,22 @@ const Header = () => {
               >
                 Our Story
               </button>
-              <button 
+              <button
                 onClick={() => scrollToSection('contact')}
                 className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Contact Us
               </button>
-              <Link 
+              <Link
+                to="/get-a-quote"
+                onClick={() => setIsMenuOpen(false)}
+                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
+                style={navTextShadow}
+              >
+                Get a Quote
+              </Link>
+              <Link
                 to="/locations"
                 onClick={() => setIsMenuOpen(false)}
                 className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
