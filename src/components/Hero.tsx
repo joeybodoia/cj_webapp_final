@@ -15,7 +15,9 @@ const Hero = () => {
             </span>
 
             <h1>
-              Welcome to <span>D&apos;s Outdoor Living</span>
+              Welcome to
+              <br />
+              <span>D&apos;s Outdoor Living</span>
             </h1>
 
             <p className="home-tagline">Drive a Little, Save a Lot</p>
