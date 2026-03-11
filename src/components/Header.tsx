@@ -14,7 +14,6 @@ const Header = () => {
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const navTextShadow = { textShadow: '0 0 2px rgba(42, 45, 50, 0.7)' };
-  const modalGreenShadow = { textShadow: '0 0 2px rgba(15, 118, 110, 0.7)' };
   const openOurStory = () => {
     setIsMenuOpen(false);
     setIsOurStoryOpen(true);
@@ -370,73 +369,60 @@ const Header = () => {
           onClick={() => setIsMaintenanceOpen(false)}
         >
           <div
-            className="w-full max-w-3xl rounded-2xl border border-teal-600/40 bg-custom-dark text-white shadow-2xl"
+            className="w-full max-w-4xl rounded-2xl border border-teal-500/35 bg-gradient-to-b from-[#176f64] to-[#0f5b53] text-white shadow-[0_30px_90px_rgba(0,0,0,0.45)]"
             onClick={(event) => event.stopPropagation()}
           >
-            <div className="flex items-start justify-between border-b border-teal-600/40 px-6 py-5">
-              <div className="space-y-2">
-                <h2 className="text-2xl md:text-3xl font-bold" style={modalGreenShadow}>
-                  What's included in a Maintenance Plan?
+            <div className="flex items-start justify-between border-b border-white/15 px-6 py-5 md:px-8 md:py-6">
+              <div>
+                <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-300">Service &amp; Care</p>
+                <h2 className="mt-2 text-4xl font-bold leading-tight text-white md:text-5xl">
+                  What&apos;s Included in a Maintenance Plan?
                 </h2>
-                <p className="text-base md:text-lg font-semibold text-teal-700">
-                  Call or text today to get a quote! 480-997-9781
+                <p className="mt-3 text-base font-medium text-teal-100/85 md:text-lg">
+                  Call or text today to get a quote: <span className="font-semibold text-white">(480) 997-9781</span>
                 </p>
               </div>
               <button
                 onClick={() => setIsMaintenanceOpen(false)}
-                className="text-white/70 hover:text-white transition-colors"
+                className="text-white/70 transition-colors hover:text-white"
                 aria-label="Close maintenance plan modal"
               >
                 <X size={22} />
               </button>
             </div>
-            <div className="max-h-[80vh] overflow-y-auto px-6 py-6 space-y-6">
-              <div className="space-y-3 text-gray-200 leading-relaxed">
-                <h3 className="text-lg md:text-xl font-semibold text-teal-700">
-                  Chemical Service &amp; Water Chemistry Balance:
-                </h3>
-                <p>
-                  Our certified technician will balance the water and add any chemicals needed to ensure
-                  your water is safe and crystal clear. Additional chemicals may be required depending
-                  on the bathing load and how often the unit is used. Customers can be sold chemicals if
-                  they run out, as all chemicals will be stocked by the technician if the customer needs.
+
+            <div className="max-h-[78vh] space-y-5 overflow-y-auto px-6 py-6 md:px-8 md:py-8">
+              <div className="rounded-xl border border-white/10 bg-[#0a4b43]/65 p-5">
+                <h3 className="text-2xl font-semibold text-white md:text-3xl">Chemical Service &amp; Water Chemistry Balance</h3>
+                <p className="mt-3 text-lg leading-relaxed text-teal-50/90 md:text-xl">
+                  Our certified technician balances your water and adds the chemicals needed to keep it safe and
+                  crystal clear. Depending on bathing load and usage, additional chemicals may be required. If needed,
+                  our tech can also provide on-site chemical restocks.
                 </p>
               </div>
 
-              <div className="space-y-3 text-gray-200 leading-relaxed">
-                <h3 className="text-lg md:text-xl font-semibold text-teal-700">
-                  While we are there, we will also..
-                </h3>
-                <p>
-                  Do a comprehensive check to ensure all equipment is in good working condition. We will
-                  hose off your spa cover, clean the exterior cabinet, as well as clean the filters. Our
-                  job is not only to make sure the water chemistry is perfect, but also that your hot tub
-                  is looking good as new.
+              <div className="rounded-xl border border-white/10 bg-[#0a4b43]/65 p-5">
+                <h3 className="text-2xl font-semibold text-white md:text-3xl">While We Are There, We Also...</h3>
+                <p className="mt-3 text-lg leading-relaxed text-teal-50/90 md:text-xl">
+                  Perform a full equipment check to ensure everything is operating correctly. We hose off your spa
+                  cover, clean the cabinet exterior, and clean filters. Our goal is to keep both water chemistry and
+                  overall spa condition at peak performance.
                 </p>
               </div>
 
-              <div className="space-y-3 text-gray-200 leading-relaxed">
-                <h3 className="text-lg md:text-xl font-semibold text-teal-700">
-                  Drain &amp; Refill Include:
-                </h3>
-                <p>
-                  Completely drain the water to prepare for thorough cleaning. We will provide a solution
-                  that will run though the entire unit, removing all build-up, gunk, and bacteria that does
-                  not get removed with standard cleaning. This will ensure every part of your hot tub is
-                  clean and functioning correctly for its next use! While empty, our tech will clean the
-                  entire hot tub getting rid of any metal build-up or debris in the unit. Once your hot tub
-                  or swim spa is clean, our technician will begin the refill for you. There is an extra
-                  labor charge if you would like him to stay until it's full. The cost depends on the size
-                  of your hot tub or swim spa and how long it will take to fill.
+              <div className="rounded-xl border border-white/10 bg-[#0a4b43]/65 p-5">
+                <h3 className="text-2xl font-semibold text-white md:text-3xl">Drain &amp; Refill Includes</h3>
+                <p className="mt-3 text-lg leading-relaxed text-teal-50/90 md:text-xl">
+                  We fully drain the spa for deep cleaning and run a specialized solution through the entire system to
+                  remove buildup, debris, and bacteria that regular cleaning can miss. We then clean the shell and
+                  components, refill your spa, and prepare it for safe use. If you&apos;d like the technician to remain
+                  on-site through full refill, additional labor may apply based on spa size and fill time.
                 </p>
               </div>
 
-              <div
-                className="rounded-xl border border-teal-600/30 bg-teal-700/20 px-5 py-4 text-sm md:text-base text-gray-100"
-                style={modalGreenShadow}
-              >
-                <p className="font-semibold text-white">D's Outdoor Living</p>
-                <p>Office: (480)997-9447</p>
+              <div className="rounded-xl border border-teal-300/30 bg-[#0a4b43]/75 px-5 py-4 text-base text-teal-50/90">
+                <p className="text-lg font-semibold text-white">D&apos;s Outdoor Living</p>
+                <p>Office: (480) 997-9447</p>
                 <p>Website: dsoutdoorliving.com</p>
                 <p>Email: service@dsoutdoorliving.com</p>
               </div>
