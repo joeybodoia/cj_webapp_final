@@ -78,7 +78,7 @@ const WhyDsDifference = () => {
           ))}
         </div>
 
-        <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-5 md:mt-12 md:gap-7">
+        <div className="mx-auto mt-10 flex flex-wrap items-center justify-center gap-7 md:mt-12 md:gap-10">
           {brands.map((brand) => (
             <button
               key={brand.name}
@@ -87,7 +87,7 @@ const WhyDsDifference = () => {
               className="group cursor-pointer rounded-full transition-transform duration-300 hover:scale-105"
               aria-label={`View ${brand.name} hot tubs`}
             >
-              <div className="h-16 w-16 overflow-hidden rounded-full bg-white p-1 shadow-lg transition-shadow duration-300 group-hover:shadow-xl sm:h-20 sm:w-20 md:h-24 md:w-24">
+              <div className="h-[88px] w-[88px] overflow-hidden rounded-full bg-white p-1 shadow-lg transition-shadow duration-300 group-hover:shadow-xl sm:h-[106px] sm:w-[106px] md:h-[124px] md:w-[124px]">
                 <img
                   src={brand.logo}
                   alt={brand.name}
