@@ -358,13 +358,6 @@
   flex-shrink: 0;
 }
 
-.home-hero-page .hero-stats {
-  display: flex;
-  gap: 36px;
-  padding-top: 28px;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
 .home-hero-page .stat-num {
   font-family: 'Playfair Display', serif;
   font-size: 32px;
@@ -381,6 +374,33 @@
   color: rgba(255, 255, 255, 0.55);
   letter-spacing: 0.5px;
   margin-top: 4px;
+}
+
+.home-hero-page .home-stats-bar {
+  position: relative;
+  z-index: 2;
+  width: 100%;
+  background: #176f64;
+  border-top: 1px solid rgba(255, 255, 255, 0.12);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.home-hero-page .home-stats-inner {
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 22px 28px 20px;
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.home-hero-page .home-stat-item {
+  text-align: center;
+}
+
+.home-hero-page .home-stat-item .stat-num {
+  justify-content: center;
 }
 
 .home-hero-page .home-logo-card {
@@ -501,9 +521,10 @@
     margin-bottom: 24px;
   }
 
-  .home-hero-page .hero-stats {
-    gap: 22px;
-    flex-wrap: wrap;
+  .home-hero-page .home-stats-inner {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    padding: 18px 14px 16px;
+    gap: 16px 8px;
   }
 
   .home-hero-page .home-logo-card {

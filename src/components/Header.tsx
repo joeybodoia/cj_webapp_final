@@ -1,10 +1,12 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation } from 'react-router';
 import { Menu, X } from 'lucide-react';
+import OurStory from './OurStory';
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isMaintenanceOpen, setIsMaintenanceOpen] = useState(false);
+  const [isOurStoryOpen, setIsOurStoryOpen] = useState(false);
   const [isProductsOpen, setIsProductsOpen] = useState(false);
   const [isLocationsOpen, setIsLocationsOpen] = useState(false);
   const productsMenuRef = useRef<HTMLDivElement | null>(null);
@@ -13,7 +15,10 @@ const Header = () => {
   const isHomePage = location.pathname === '/';
   const navTextShadow = { textShadow: '0 0 2px rgba(42, 45, 50, 0.7)' };
   const modalGreenShadow = { textShadow: '0 0 2px rgba(15, 118, 110, 0.7)' };
-  const modalWhiteShadow = { textShadow: '0 0 2px rgba(255, 255, 255, 0.7)' };
+  const openOurStory = () => {
+    setIsMenuOpen(false);
+    setIsOurStoryOpen(true);
+  };
 
   const scrollToSection = (sectionId: string) => {
     if (isHomePage) {
@@ -29,10 +34,11 @@ const Header = () => {
   };
 
   useEffect(() => {
-    if (!isMaintenanceOpen) return;
+    if (!isMaintenanceOpen && !isOurStoryOpen) return;
     const handleKeyDown = (event: KeyboardEvent) => {
       if (event.key === 'Escape') {
         setIsMaintenanceOpen(false);
+        setIsOurStoryOpen(false);
       }
     };
     document.addEventListener('keydown', handleKeyDown);
@@ -41,7 +47,7 @@ const Header = () => {
       document.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = '';
     };
-  }, [isMaintenanceOpen]);
+  }, [isMaintenanceOpen, isOurStoryOpen]);
 
   useEffect(() => {
     setIsProductsOpen(false);
@@ -194,7 +200,7 @@ const Header = () => {
           {/* Right Navigation - Desktop */}
           <nav className="hidden md:flex items-center space-x-6">
             <button 
-              onClick={() => scrollToSection('our-story')}
+              onClick={openOurStory}
               className="text-white hover:text-gray-300 transition-colors font-medium tracking-wide"
               style={navTextShadow}
             >
@@ -321,7 +327,7 @@ const Header = () => {
                 Maintenance Plans
               </button>
               <button 
-                onClick={() => scrollToSection('our-story')}
+                onClick={openOurStory}
                 className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
@@ -436,6 +442,8 @@ const Header = () => {
           </div>
         </div>
       )}
+
+      <OurStory isOpen={isOurStoryOpen} onClose={() => setIsOurStoryOpen(false)} />
     </header>
   );
 };

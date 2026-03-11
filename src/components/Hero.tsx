@@ -36,23 +36,6 @@ const Hero = () => {
               ))}
             </div>
 
-            <div className="hero-stats">
-              <div>
-                <p className="stat-num">35+</p>
-                <p className="stat-label">Years in Business</p>
-              </div>
-              <div>
-                <p className="stat-num">1,000+</p>
-                <p className="stat-label">Hot Tubs Sold</p>
-              </div>
-              <div>
-                <p className="stat-num">
-                  <Star size={30} className="fill-amber-300 text-amber-300" />
-                  5.0
-                </p>
-                <p className="stat-label">Star Rating</p>
-              </div>
-            </div>
           </div>
 
           <div className="home-logo-card">
@@ -79,6 +62,30 @@ const Hero = () => {
                 className="home-bbb"
               />
             </a>
+          </div>
+        </div>
+      </div>
+
+      <div className="home-stats-bar">
+        <div className="home-stats-inner">
+          <div className="home-stat-item">
+            <p className="stat-num">35+</p>
+            <p className="stat-label">Years of Expertise</p>
+          </div>
+          <div className="home-stat-item">
+            <p className="stat-num">3</p>
+            <p className="stat-label">Arizona Locations</p>
+          </div>
+          <div className="home-stat-item">
+            <p className="stat-num">1,000+</p>
+            <p className="stat-label">Hot Tubs Sold</p>
+          </div>
+          <div className="home-stat-item">
+            <p className="stat-num">
+              <Star size={30} className="fill-amber-300 text-amber-300" />
+              5.0
+            </p>
+            <p className="stat-label">Star Rating</p>
           </div>
         </div>
       </div>

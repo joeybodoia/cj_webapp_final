@@ -26,8 +26,16 @@ const ProductNavigation = () => {
   ];
 
   return (
-    <section className="py-16 bg-custom-dark">
+    <section className="bg-[#0a3d35] py-20 md:py-24">
       <div className="container mx-auto px-4">
+        <div className="mx-auto mb-12 max-w-4xl text-center md:mb-16">
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-400">What We Offer</p>
+          <h2 className="mt-4 text-5xl font-bold leading-tight text-white md:text-6xl">Find Your Perfect Spa</h2>
+          <p className="mt-5 text-lg font-medium text-teal-100/65 md:text-2xl">
+            Built to handle Arizona&apos;s heat. Designed for your lifestyle.
+          </p>
+        </div>
+
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           {products.map((product) => (
             <div
