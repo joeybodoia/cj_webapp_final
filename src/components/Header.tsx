@@ -50,6 +50,16 @@ const Header = () => {
   }, [isMaintenanceOpen, isOurStoryOpen]);
 
   useEffect(() => {
+    const handleOpenOurStory = () => {
+      setIsOurStoryOpen(true);
+      setIsMenuOpen(false);
+    };
+
+    window.addEventListener('open-our-story', handleOpenOurStory);
+    return () => window.removeEventListener('open-our-story', handleOpenOurStory);
+  }, []);
+
+  useEffect(() => {
     setIsProductsOpen(false);
     setIsLocationsOpen(false);
   }, [location.pathname]);
@@ -76,17 +86,17 @@ const Header = () => {
   return (
     <header className="fixed top-0 left-0 right-0 z-50 shadow-[0_10px_30px_rgba(0,0,0,0.35)]">
       {/* Green Contact Bar */}
-      <div className="bg-custom-dark/90 backdrop-blur-md text-white/90 py-2 px-4 border-b border-white/5">
+      <div className="border-b border-white/10 bg-[#176f64] text-white/90 px-4 py-2">
         <div className="container mx-auto flex flex-wrap items-center justify-between text-sm gap-y-1">
           <div className="flex flex-wrap items-center gap-x-2">
             <span className="hidden md:inline">Call to schedule a private appointment to view our showroom</span>
             <span className="md:hidden">Call to schedule an appointment</span>
-            <a href="tel:(480) 997-9447" className="font-semibold hover:text-gray-300 transition-colors">
+            <a href="tel:(480) 997-9447" className="font-semibold text-white hover:text-teal-100 transition-colors">
               (480) 997-9447
             </a>
           </div>
           <div className="hidden md:block">
-            <a href="mailto:CJ@ds-outdoorliving.com" className="hover:text-gray-300 transition-colors">
+            <a href="mailto:CJ@ds-outdoorliving.com" className="hover:text-teal-100 transition-colors">
               CJ@ds-outdoorliving.com
             </a>
           </div>
@@ -94,7 +104,7 @@ const Header = () => {
       </div>
       
       {/* Main Navigation */}
-      <div className="bg-teal-800/90 backdrop-blur-md border-b border-teal-600/40">
+      <div className="border-b border-white/10 bg-[#0a3d35]/95 backdrop-blur-md">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           {/* Logo and Left Navigation */}
@@ -124,26 +134,26 @@ const Header = () => {
                   Products
                 </button>
                 {isProductsOpen && (
-                  <div className="absolute left-0 mt-3 w-56 rounded-xl border border-teal-600/40 bg-custom-dark/95 shadow-2xl backdrop-blur-md">
+                  <div className="absolute left-0 mt-3 w-56 rounded-xl border border-teal-300/30 bg-[#0f5b53]/95 shadow-2xl backdrop-blur-md">
                     <div className="py-2">
                       <Link
                         to="/hot-tubs"
                         onClick={() => setIsProductsOpen(false)}
-                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-700/70 transition-colors"
+                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-500/25 transition-colors"
                       >
                         Hot Tubs
                       </Link>
                       <Link
                         to="/swim-spas"
                         onClick={() => setIsProductsOpen(false)}
-                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-700/70 transition-colors"
+                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-500/25 transition-colors"
                       >
                         Swim Spas
                       </Link>
                       <Link
                         to="/contrast-therapy-spas"
                         onClick={() => setIsProductsOpen(false)}
-                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-700/70 transition-colors"
+                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-500/25 transition-colors"
                       >
                         Contrast Therapy Spas
                       </Link>
@@ -160,26 +170,26 @@ const Header = () => {
                   Locations
                 </button>
                 {isLocationsOpen && (
-                  <div className="absolute left-0 mt-3 w-48 rounded-xl border border-teal-600/40 bg-custom-dark/95 shadow-2xl backdrop-blur-md">
+                  <div className="absolute left-0 mt-3 w-48 rounded-xl border border-teal-300/30 bg-[#0f5b53]/95 shadow-2xl backdrop-blur-md">
                     <div className="py-2">
                       <Link
                         to="/phoenix"
                         onClick={() => setIsLocationsOpen(false)}
-                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-700/70 transition-colors"
+                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-500/25 transition-colors"
                       >
                         Phoenix
                       </Link>
                       <Link
                         to="/surprise"
                         onClick={() => setIsLocationsOpen(false)}
-                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-700/70 transition-colors"
+                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-500/25 transition-colors"
                       >
                         Surprise
                       </Link>
                       <Link
                         to="/mesa"
                         onClick={() => setIsLocationsOpen(false)}
-                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-700/70 transition-colors"
+                        className="block px-4 py-2 text-sm font-medium text-white/90 hover:text-white hover:bg-teal-500/25 transition-colors"
                       >
                         Mesa
                       </Link>
@@ -215,7 +225,7 @@ const Header = () => {
             </button>
             <Link
               to="/get-a-quote"
-              className="bg-teal-500 hover:bg-teal-400 text-white font-medium tracking-wide px-4 py-2 rounded-lg transition-colors"
+              className="rounded-md bg-teal-400 px-4 py-2 font-medium tracking-wide text-white transition hover:bg-teal-300"
             >
               Get a Quote
             </Link>
@@ -232,24 +242,24 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden py-4 border-t border-teal-600">
+          <nav className="md:hidden border-t border-white/15 bg-[#0f5b53]/95 py-4">
             <div className="flex flex-col space-y-4">
               <button
                 onClick={() => setIsProductsOpen((prev) => !prev)}
-                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
+                className="text-white hover:text-teal-100 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Products
               </button>
               {isProductsOpen && (
-                <div className="flex flex-col space-y-3 border-l border-teal-600/60 pl-4">
+                <div className="flex flex-col space-y-3 border-l border-teal-300/40 pl-4">
                   <Link
                     to="/hot-tubs"
                     onClick={() => {
                       setIsMenuOpen(false);
                       setIsProductsOpen(false);
                     }}
-                    className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
+                    className="text-white/90 hover:text-teal-100 transition-colors text-left font-medium tracking-wide"
                   >
                     Hot Tubs
                   </Link>
@@ -259,7 +269,7 @@ const Header = () => {
                       setIsMenuOpen(false);
                       setIsProductsOpen(false);
                     }}
-                    className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
+                    className="text-white/90 hover:text-teal-100 transition-colors text-left font-medium tracking-wide"
                   >
                     Swim Spas
                   </Link>
@@ -269,7 +279,7 @@ const Header = () => {
                       setIsMenuOpen(false);
                       setIsProductsOpen(false);
                     }}
-                    className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
+                    className="text-white/90 hover:text-teal-100 transition-colors text-left font-medium tracking-wide"
                   >
                     Contrast Therapy Spas
                   </Link>
@@ -277,20 +287,20 @@ const Header = () => {
               )}
               <button
                 onClick={() => setIsLocationsOpen((prev) => !prev)}
-                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
+                className="text-white hover:text-teal-100 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Locations
               </button>
               {isLocationsOpen && (
-                <div className="flex flex-col space-y-3 border-l border-teal-600/60 pl-4">
+                <div className="flex flex-col space-y-3 border-l border-teal-300/40 pl-4">
                   <Link
                     to="/phoenix"
                     onClick={() => {
                       setIsMenuOpen(false);
                       setIsLocationsOpen(false);
                     }}
-                    className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
+                    className="text-white/90 hover:text-teal-100 transition-colors text-left font-medium tracking-wide"
                   >
                     Phoenix
                   </Link>
@@ -300,7 +310,7 @@ const Header = () => {
                       setIsMenuOpen(false);
                       setIsLocationsOpen(false);
                     }}
-                    className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
+                    className="text-white/90 hover:text-teal-100 transition-colors text-left font-medium tracking-wide"
                   >
                     Surprise
                   </Link>
@@ -310,7 +320,7 @@ const Header = () => {
                       setIsMenuOpen(false);
                       setIsLocationsOpen(false);
                     }}
-                    className="text-white/90 hover:text-white transition-colors text-left font-medium tracking-wide"
+                    className="text-white/90 hover:text-teal-100 transition-colors text-left font-medium tracking-wide"
                   >
                     Mesa
                   </Link>
@@ -328,14 +338,14 @@ const Header = () => {
               </button>
               <button 
                 onClick={openOurStory}
-                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
+                className="text-white hover:text-teal-100 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Our Story
               </button>
               <button
                 onClick={() => scrollToSection('contact')}
-                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
+                className="text-white hover:text-teal-100 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Contact Us
@@ -343,18 +353,10 @@ const Header = () => {
               <Link
                 to="/get-a-quote"
                 onClick={() => setIsMenuOpen(false)}
-                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
+                className="text-white hover:text-teal-100 transition-colors text-left font-medium tracking-wide"
                 style={navTextShadow}
               >
                 Get a Quote
-              </Link>
-              <Link
-                to="/locations"
-                onClick={() => setIsMenuOpen(false)}
-                className="text-white hover:text-gray-300 transition-colors text-left font-medium tracking-wide"
-                style={navTextShadow}
-              >
-                Locations
               </Link>
             </div>
           </nav>
