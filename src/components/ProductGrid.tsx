@@ -73,11 +73,11 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gray-50 pt-20">
+      <div className="min-h-screen bg-[#0a3d35] pt-20">
         <div className="container mx-auto px-4 py-20">
-          <div className="flex items-center justify-center">
-            <Loader2 className="animate-spin h-8 w-8 text-blue-600" />
-            <span className="ml-2 text-gray-600">Loading products...</span>
+          <div className="flex items-center justify-center rounded-lg border border-teal-300/20 bg-[#176f64] px-6 py-5">
+            <Loader2 className="h-8 w-8 animate-spin text-teal-300" />
+            <span className="ml-2 text-lg text-teal-50/90">Loading products...</span>
           </div>
         </div>
       </div>
@@ -86,11 +86,11 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 
   if (error) {
     return (
-      <div className="min-h-screen bg-gray-50 pt-20">
+      <div className="min-h-screen bg-[#0a3d35] pt-20">
         <div className="container mx-auto px-4 py-20">
-          <div className="flex items-center justify-center text-red-600">
+          <div className="flex items-center justify-center rounded-lg border border-rose-300/35 bg-[#176f64] px-6 py-5 text-rose-100">
             <AlertCircle className="h-8 w-8" />
-            <span className="ml-2">Error loading products: {error}</span>
+            <span className="ml-2 text-lg">Error loading products: {error}</span>
           </div>
         </div>
       </div>
@@ -99,7 +99,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
 
   return (
     <div
-      className="min-h-screen bg-custom-dark pt-20"
+      className="min-h-screen bg-[#0a3d35] pt-20"
       data-ssr="true"
     >
       <div className="container mx-auto px-4 py-12 md:py-20">
@@ -111,12 +111,13 @@ const ProductGrid: React.FC<ProductGridProps> = ({
           />
         )}
 
-        <div className="text-center mb-16">
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white mb-4 md:mb-6">
+        <div className="mb-14 text-center md:mb-16">
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-400">What We Offer</p>
+          <h1 className="mt-4 text-5xl font-bold leading-tight text-white md:text-6xl">
             {title}
           </h1>
 
-          <p className="text-lg md:text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed px-4">
+          <p className="mx-auto mt-5 max-w-4xl px-4 text-lg font-medium leading-relaxed text-teal-100/65 md:text-2xl">
             {description}
           </p>
         </div>
@@ -137,14 +138,14 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         {/* Results */}
         {products.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-400 text-lg">No products found in this category.</p>
+            <p className="text-lg text-teal-100/80">No products found in this category.</p>
           </div>
         ) : filteredProducts.length === 0 ? (
           <div className="text-center py-12">
-            <p className="text-gray-400 text-lg">No products match your current filters.</p>
+            <p className="text-lg text-teal-100/80">No products match your current filters.</p>
             <button
               onClick={clearFilters}
-              className="mt-4 bg-teal-700 hover:bg-teal-800 text-white px-6 py-2 rounded-lg font-semibold transition-colors"
+              className="mt-4 rounded-md bg-teal-400 px-6 py-2 font-semibold text-white transition hover:bg-teal-300"
             >
               Clear Filters
             </button>
@@ -168,7 +169,7 @@ const ProductGrid: React.FC<ProductGridProps> = ({
         {/* Results Count */}
         {products.length > 0 && (
           <div className="text-center mt-8">
-            <p className="text-gray-400">
+            <p className="text-teal-100/65">
               Showing {filteredProducts.length} of {products.length} products
             </p>
           </div>

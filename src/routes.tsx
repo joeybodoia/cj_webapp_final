@@ -18,6 +18,7 @@ import MesaPage from './pages/MesaPage';
 import MesaHotTubsPage from './pages/MesaHotTubsPage';
 import MesaSwimSpasPage from './pages/MesaSwimSpasPage';
 import MesaContrastTherapySpasPage from './pages/MesaContrastTherapySpasPage';
+import GetAQuotePage from './pages/GetAQuotePage';
 
 const routes: RouteObject[] = [
   {
@@ -39,7 +40,8 @@ const routes: RouteObject[] = [
       { path: '/mesa/hot-tubs', element: <MesaHotTubsPage /> },
       { path: '/mesa/swim-spas', element: <MesaSwimSpasPage /> },
       { path: '/mesa/contrast-therapy-spas', element: <MesaContrastTherapySpasPage /> },
-      { path: '/product/:slug', element: <ProductDetailPage /> }
+      { path: '/product/:slug', element: <ProductDetailPage /> },
+      { path: '/get-a-quote', element: <GetAQuotePage /> }
     ]
   }
 ];

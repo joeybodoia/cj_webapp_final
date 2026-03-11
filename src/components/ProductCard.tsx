@@ -10,6 +10,24 @@ interface ProductCardProps {
 const FALLBACK_IMAGE =
   'https://images.pexels.com/photos/261327/pexels-photo-261327.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop';
 
+const getGeneralSpecifications = (specifications: InventoryItem['product_specifications']) => {
+  if (!Array.isArray(specifications)) return null;
+
+  for (const spec of specifications) {
+    if (!spec || typeof spec !== 'object') continue;
+    const candidate = spec['General Specifications'];
+    if (candidate && typeof candidate === 'object') return candidate as Record<string, unknown>;
+  }
+
+  return null;
+};
+
+const readSpecString = (specs: Record<string, unknown> | null, key: string) => {
+  if (!specs) return null;
+  const value = specs[key];
+  return typeof value === 'string' && value.trim() ? value.trim() : null;
+};
+
 const toSlug = (name: string) =>
   String(name || '')
     .trim()
@@ -58,34 +76,18 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 
   const primaryImage = getPrimaryImageFromImageUrls(product.image_urls);
 
-  const getCapacity = () => {
-    if (product.product_specifications && Array.isArray(product.product_specifications)) {
-      const generalSpecs = product.product_specifications.find((spec: any) => spec?.['General Specifications']);
-      const cap = generalSpecs?.['General Specifications']?.['Capacity'];
-      if (cap) return `${cap} People`;
-    }
-    return null;
-  };
-
-  const getMeasurements = () => {
-    if (product.product_specifications && Array.isArray(product.product_specifications)) {
-      const generalSpecs = product.product_specifications.find((spec: any) => spec?.['General Specifications']);
-      const m = generalSpecs?.['General Specifications']?.['Measurements (inch)'];
-      if (m) return m;
-    }
-    return null;
-  };
-
-  const capacity = getCapacity();
-  const measurements = getMeasurements();
+  const generalSpecifications = getGeneralSpecifications(product.product_specifications);
+  const capacityValue = readSpecString(generalSpecifications, 'Capacity');
+  const measurements = readSpecString(generalSpecifications, 'Measurements (inch)');
+  const capacity = capacityValue ? `${capacityValue} People` : null;
 
   return (
     <div
       onClick={handleProductClick}
-      className="bg-teal-700 rounded-xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:-translate-y-2 cursor-pointer mx-auto max-w-sm w-full h-full"
+      className="mx-auto h-full w-full max-w-sm cursor-pointer overflow-hidden rounded-xl border border-teal-300/25 bg-[#176f64] shadow-[0_12px_35px_rgba(0,0,0,0.25)] transition-all duration-300 hover:-translate-y-1 hover:shadow-[0_22px_50px_rgba(0,0,0,0.35)]"
     >
       <div className="relative overflow-hidden flex flex-col h-full">
-        <div className="h-48 md:h-64 bg-teal-700 pt-4 md:pt-6 px-3 md:px-4 pb-4 md:pb-6">
+        <div className="h-48 bg-[#0f5b53] px-3 pb-4 pt-4 md:h-64 md:px-4 md:pb-6 md:pt-6">
           <div className="h-full flex items-center justify-center">
             <div className="relative inline-block">
               <img
@@ -93,7 +95,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
                 alt={product.product_name}
                 loading="lazy"
                 decoding="async"
-                className={`max-w-60 max-h-44 md:max-w-72 md:max-h-60 border-2 md:border-4 border-black rounded-lg transition-transform duration-300 hover:scale-105 ${
+                className={`max-h-44 max-w-60 rounded-lg border-2 border-white/15 transition-transform duration-300 hover:scale-105 md:max-h-60 md:max-w-72 md:border-4 ${
                   product.product_company === 'Aspen Spas' ? 'object-cover' : 'object-contain'
                 }`}
                 onError={(e) => {
@@ -105,20 +107,20 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
           </div>
         </div>
 
-        <div className="p-4 md:p-6 flex flex-col flex-1">
-          <h3 className="text-xl font-bold text-white mb-2">{product.product_name}</h3>
+        <div className="flex flex-1 flex-col p-4 md:p-6">
+          <h3 className="mb-2 text-4xl font-bold leading-tight text-white">{product.product_name}</h3>
           {product.product_company && (
-            <p className="text-sm text-teal-200 font-medium mb-2">by {product.product_company}</p>
+            <p className="mb-2 text-sm font-medium text-teal-200">by {product.product_company}</p>
           )}
 
-          <div className="space-y-3 mb-6">
+          <div className="mb-6 space-y-3">
             {capacity && (
-              <div className="text-teal-100 text-sm md:text-base">
+              <div className="text-sm text-teal-100 md:text-base">
                 <span className="font-semibold text-white">Capacity:</span> {capacity}
               </div>
             )}
             {measurements && (
-              <div className="text-teal-100 text-sm md:text-base">
+              <div className="text-sm text-teal-100 md:text-base">
                 <span className="font-semibold text-white">Measurements:</span> {measurements}
               </div>
             )}
@@ -129,7 +131,7 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
               e.stopPropagation();
               handleProductClick();
             }}
-            className="mt-auto w-full bg-white hover:bg-gray-100 text-teal-700 py-2 md:py-3 rounded-lg font-semibold text-sm md:text-base transition-colors duration-300 flex items-center justify-center space-x-2"
+            className="mt-auto flex w-full items-center justify-center space-x-2 rounded-md bg-teal-400 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-teal-300 md:py-3 md:text-base"
           >
             <span>View Product</span>
             <ArrowRight size={16} />
@@ -141,4 +143,3 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
 };
 
 export default ProductCard;
-

@@ -1,13 +1,11 @@
 import React from 'react';
 import Header from '../components/Header';
 import Hero from '../components/Hero';
-import BrandLogos from '../components/BrandLogos';
 import ProductNavigation from '../components/ProductNavigation';
-import OurStory from '../components/OurStory';
-import ProductSection from '../components/ProductSection';
+import WhyDsDifference from '../components/WhyDsDifference';
+import ReviewsAndCtaSection from '../components/ReviewsAndCtaSection';
 import Contact from '../components/Contact';
 import Footer from '../components/Footer';
-import { spas, swimSpas, gazebos } from '../data/products';
 
 const HomePage = () => {
   return (
@@ -15,8 +13,8 @@ const HomePage = () => {
       <Header />
       <Hero />
       <ProductNavigation />
-      <BrandLogos />
-      <OurStory />
+      <WhyDsDifference />
+      <ReviewsAndCtaSection />
       
       <Contact />
       <Footer />

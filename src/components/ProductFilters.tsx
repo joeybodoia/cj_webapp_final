@@ -53,12 +53,12 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
       {/* Filter Toggle Button */}
       <button
         onClick={onToggle}
-        className="flex items-center space-x-2 bg-teal-700 hover:bg-teal-800 text-white px-4 py-2 rounded-lg font-semibold transition-colors duration-300 mb-4"
+        className="mb-4 flex items-center space-x-2 rounded-md border border-teal-300/40 bg-[#176f64] px-4 py-2 font-semibold text-white transition-colors duration-300 hover:bg-[#1c7a6d]"
       >
         <Filter size={20} />
         <span>Filters</span>
         {hasActiveFilters && (
-          <span className="bg-white text-teal-700 px-2 py-1 rounded-full text-xs font-bold">
+          <span className="rounded-full bg-teal-300 px-2 py-1 text-xs font-bold text-[#0a3d35]">
             {Object.values(filters).reduce((total, filterArray) => total + filterArray.length, 0)}
           </span>
         )}
@@ -66,13 +66,13 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 
       {/* Filter Panel */}
       {isOpen && (
-        <div className="bg-white rounded-xl shadow-lg p-6 border border-gray-200">
+        <div className="rounded-xl border border-teal-300/25 bg-[#176f64] p-6 shadow-[0_14px_35px_rgba(0,0,0,0.25)]">
           <div className="flex items-center justify-between mb-6">
-            <h3 className="text-xl font-bold text-gray-900">Filter Products</h3>
+            <h3 className="text-3xl font-semibold text-white">Filter Products</h3>
             {hasActiveFilters && (
               <button
                 onClick={onClearFilters}
-                className="flex items-center space-x-1 text-red-600 hover:text-red-700 font-medium transition-colors"
+                className="flex items-center space-x-1 font-medium text-teal-200 transition-colors hover:text-white"
               >
                 <X size={16} />
                 <span>Clear All</span>
@@ -83,17 +83,17 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             {/* Brand Filter */}
             <div>
-              <h4 className="font-semibold text-gray-900 mb-3">Brand</h4>
+              <h4 className="mb-3 text-base font-semibold uppercase tracking-wide text-teal-100">Brand</h4>
               <div className="space-y-2 max-h-40 overflow-y-auto">
                 {availableBrands.map((brand) => (
-                  <label key={brand} className="flex items-center space-x-2 cursor-pointer">
+                  <label key={brand} className="flex cursor-pointer items-center space-x-2 text-teal-50/90">
                     <input
                       type="checkbox"
                       checked={filters.brand.includes(brand)}
                       onChange={() => onFilterChange('brand', brand)}
-                      className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
+                      className="rounded border-teal-200/60 bg-transparent text-teal-300 focus:ring-teal-300"
                     />
-                    <span className="text-gray-700">{brand}</span>
+                    <span>{brand}</span>
                   </label>
                 ))}
               </div>
@@ -102,17 +102,17 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
             {/* Capacity Filter */}
             {productType !== 'Gazebo' && (
               <div>
-                <h4 className="font-semibold text-gray-900 mb-3">Capacity</h4>
+                <h4 className="mb-3 text-base font-semibold uppercase tracking-wide text-teal-100">Capacity</h4>
                 <div className="space-y-2">
                   {capacityOptions.map((option) => (
-                    <label key={option.value} className="flex items-center space-x-2 cursor-pointer">
+                    <label key={option.value} className="flex cursor-pointer items-center space-x-2 text-teal-50/90">
                       <input
                         type="checkbox"
                         checked={filters.capacity.includes(option.value)}
                         onChange={() => onFilterChange('capacity', option.value)}
-                        className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
+                        className="rounded border-teal-200/60 bg-transparent text-teal-300 focus:ring-teal-300"
                       />
-                      <span className="text-gray-700">{option.label}</span>
+                      <span>{option.label}</span>
                     </label>
                   ))}
                 </div>
@@ -121,17 +121,17 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
 
             {/* Size Filter */}
             <div>
-              <h4 className="font-semibold text-gray-900 mb-3">Size (Length)</h4>
+              <h4 className="mb-3 text-base font-semibold uppercase tracking-wide text-teal-100">Size (Length)</h4>
               <div className="space-y-2">
                 {sizeOptions.map((option) => (
-                  <label key={option.value} className="flex items-center space-x-2 cursor-pointer">
+                  <label key={option.value} className="flex cursor-pointer items-center space-x-2 text-teal-50/90">
                     <input
                       type="checkbox"
                       checked={filters.size.includes(option.value)}
                       onChange={() => onFilterChange('size', option.value)}
-                      className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
+                      className="rounded border-teal-200/60 bg-transparent text-teal-300 focus:ring-teal-300"
                     />
-                    <span className="text-gray-700">{option.label}</span>
+                    <span>{option.label}</span>
                   </label>
                 ))}
               </div>
@@ -140,17 +140,17 @@ const ProductFilters: React.FC<ProductFiltersProps> = ({
             {/* Jets Filter */}
             {productType !== 'Gazebo' && (
               <div>
-                <h4 className="font-semibold text-gray-900 mb-3">Number of Jets</h4>
+                <h4 className="mb-3 text-base font-semibold uppercase tracking-wide text-teal-100">Number of Jets</h4>
                 <div className="space-y-2">
                   {jetOptions.map((option) => (
-                    <label key={option.value} className="flex items-center space-x-2 cursor-pointer">
+                    <label key={option.value} className="flex cursor-pointer items-center space-x-2 text-teal-50/90">
                       <input
                         type="checkbox"
                         checked={filters.jets.includes(option.value)}
                         onChange={() => onFilterChange('jets', option.value)}
-                        className="rounded border-gray-300 text-teal-600 focus:ring-teal-500"
+                        className="rounded border-teal-200/60 bg-transparent text-teal-300 focus:ring-teal-300"
                       />
-                      <span className="text-gray-700">{option.label}</span>
+                      <span>{option.label}</span>
                     </label>
                   ))}
                 </div>
