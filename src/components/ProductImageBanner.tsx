@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
+import { useNavigate } from 'react-router';
 
 interface ProductImageBannerProps {
   productName: string;
@@ -8,255 +9,163 @@ interface ProductImageBannerProps {
   product: any;
 }
 
-const ProductImageBanner: React.FC<ProductImageBannerProps> = ({ 
-  productName, 
-  imageUrls, 
-  description,
-  product
+const TYPE_TO_CATEGORY: Record<string, string> = {
+  'Spa': 'hot-tubs',
+  'Swim Spa': 'swim-spas',
+  'Contrast Therapy Spa': 'contrast-therapy-spas',
+};
+
+const ProductImageBanner: React.FC<ProductImageBannerProps> = ({
+  productName,
+  imageUrls,
+  product,
 }) => {
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
-  
-  // Convert image URLs object to array
+  const navigate = useNavigate();
+
   const images = Object.values(imageUrls || {});
-  
-  console.log('ProductImageBanner - Full product object:', product);
-  console.log('ProductImageBanner - product_description:', product?.product_description);
-  console.log('ProductImageBanner - product_specifications:', product?.product_specifications);
-  
-  // Extract description from product_description.Description - this should be the main description
-  const getProductDescription = () => {
-    if (product?.product_description && typeof product.product_description === 'object') {
-      const desc = product.product_description as Record<string, any>;
-      console.log('Extracting description:', desc.Description);
-      return desc.Description;
-    }
-    console.log('No description found, using fallback');
-    return null; // Return null instead of fallback text
-  };
-  
-  // Extract specifications from product_specifications array
+
   const getSpecification = (category: string, field: string) => {
     if (product?.product_specifications && Array.isArray(product.product_specifications)) {
       const categorySpec = product.product_specifications.find((spec: any) => spec[category]);
-      const value = categorySpec?.[category]?.[field];
-      console.log(`Extracting ${category} -> ${field}:`, value);
-      return value;
+      return categorySpec?.[category]?.[field] ?? null;
     }
-    console.log(`No specification found for ${category} -> ${field}`);
     return null;
   };
-  
-  const productDescription = getProductDescription();
+
   const capacity = getSpecification('General Specifications', 'Capacity');
   const measurements = getSpecification('General Specifications', 'Measurements (inch)');
   const seats = getSpecification('General Specifications', 'Seats');
   const dryWeight = getSpecification('General Specifications', 'Dry Weight (lbs)');
-  
-  // Extract gallons from product_description
-  const getGallons = () => {
-    if (product?.product_description && typeof product.product_description === 'object') {
-      const desc = product.product_description as Record<string, any>;
-      return desc.Gallons;
-    }
-    return null;
-  };
-  
-  const gallons = getGallons();
-  
-  console.log('Final values:');
-  console.log('- Description:', productDescription);
-  console.log('- Capacity:', capacity);
-  console.log('- Measurements:', measurements);
-  console.log('- Seats:', seats);
-  console.log('- Dry Weight:', dryWeight);
-  console.log('- Gallons:', gallons);
-  
-  if (images.length === 0) {
-    return (
-      <div className="bg-custom-dark py-12">
-        <div className="container mx-auto px-4">
-          <div className="bg-teal-600 rounded-2xl p-8 shadow-2xl">
-            <div className="text-white text-center">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">{productName}</h1>
-              <div className="h-1 w-24 bg-white mb-6 mx-auto"></div>
-              
-              {/* Product Specifications */}
-              <div className="space-y-3">
-                {capacity && (
-                  <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left gap-1 sm:gap-3">
-                    <span className="text-white font-semibold sm:w-32">Capacity:</span>
-                    <span className="text-teal-100">{capacity} People</span>
-                  </div>
-                )}
-                {measurements && (
-                  <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left gap-1 sm:gap-3">
-                    <span className="text-white font-semibold sm:w-32">Measurements:</span>
-                    <span className="text-teal-100">{measurements}</span>
-                  </div>
-                )}
-                {seats && (
-                  <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left gap-1 sm:gap-3">
-                    <span className="text-white font-semibold sm:w-32">Number of Seats:</span>
-                    <span className="text-teal-100">{seats}</span>
-                  </div>
-                )}
-                {dryWeight && (
-                  <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left gap-1 sm:gap-3">
-                    <span className="text-white font-semibold sm:w-32">Dry Weight:</span>
-                    <span className="text-teal-100">{dryWeight} lbs</span>
-                  </div>
-                )}
-                {gallons && (
-                  <div className="flex flex-col sm:flex-row items-center justify-center sm:justify-start text-center sm:text-left gap-1 sm:gap-3">
-                    <span className="text-white font-semibold sm:w-32">Gallons:</span>
-                    <span className="text-teal-100">{gallons}</span>
-                  </div>
-                )}
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    );
-  }
+  const gallons =
+    product?.product_description && typeof product.product_description === 'object'
+      ? (product.product_description as Record<string, any>).Gallons ?? null
+      : null;
 
-  const nextImage = () => {
-    setSelectedImageIndex((prev) => (prev + 1) % images.length);
-  };
+  const category = TYPE_TO_CATEGORY[product?.product_type] ?? '';
+  const quoteUrl = `/get-a-quote?category=${category}&product=${encodeURIComponent(productName)}`;
 
-  const prevImage = () => {
-    setSelectedImageIndex((prev) => (prev - 1 + images.length) % images.length);
-  };
+  const nextImage = () => setSelectedImageIndex((prev) => (prev + 1) % images.length);
+  const prevImage = () => setSelectedImageIndex((prev) => (prev - 1 + images.length) % images.length);
+
+  const fallbackImage =
+    'https://images.pexels.com/photos/261327/pexels-photo-261327.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop';
+
+  const specRows = [
+    capacity && { label: 'Capacity', value: `${capacity} People` },
+    measurements && { label: 'Measurements', value: `${measurements} inches` },
+    seats && { label: 'Number of Seats', value: seats },
+    dryWeight && { label: 'Dry Weight', value: `${dryWeight} lbs` },
+    gallons && { label: 'Gallons', value: gallons },
+  ].filter(Boolean) as { label: string; value: string }[];
 
   return (
-    <div className="bg-custom-dark py-12">
-      <div className="container mx-auto px-4">
-        <div className="bg-teal-700 rounded-2xl p-4 md:p-8 shadow-2xl">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 md:gap-8 items-center">
-            {/* Image Gallery Section */}
-            <div className="space-y-3 md:space-y-4">
-              {/* Main Image */}
-              <div className="relative bg-white rounded-xl overflow-hidden shadow-lg">
-                <img
-                  src={images[selectedImageIndex]}
-                  alt={`${productName} - Image ${selectedImageIndex + 1}`}
-                  loading="eager"
-                  decoding="async"
-                  fetchpriority="high"
-                  className={`w-full h-64 md:h-80 bg-black ${
-                    product?.product_company === 'Aspen Spas' 
-                      ? 'object-cover' 
-                      : 'object-contain'
-                  }`}
-                  onError={(e) => {
-                    const target = e.target as HTMLImageElement;
-                    target.src = 'https://images.pexels.com/photos/261327/pexels-photo-261327.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop';
-                  }}
-                />
-                
-                {/* Navigation Arrows */}
-                {images.length > 1 && (
-                  <>
-                    <button
-                      onClick={prevImage}
-                      className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-1 md:p-2 rounded-full transition-all duration-200"
-                    >
-                      <ChevronLeft size={16} className="md:w-5 md:h-5" />
-                    </button>
-                    <button
-                      onClick={nextImage}
-                      className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 bg-black bg-opacity-50 hover:bg-opacity-70 text-white p-1 md:p-2 rounded-full transition-all duration-200"
-                    >
-                      <ChevronRight size={16} className="md:w-5 md:h-5" />
-                    </button>
-                  </>
-                )}
-              </div>
-
-              {/* Thumbnail Gallery */}
+    <section className="bg-[#0f5b53] px-4 py-12 md:px-6 md:py-16">
+      <div className="container mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 items-center gap-8 lg:grid-cols-2 lg:gap-12">
+          {/* Image Gallery */}
+          <div className="space-y-3 md:space-y-4">
+            <div className="relative overflow-hidden rounded-xl bg-white shadow-lg">
+              <img
+                src={images[selectedImageIndex] ?? fallbackImage}
+                alt={`${productName} - Image ${selectedImageIndex + 1}`}
+                loading="eager"
+                decoding="async"
+                fetchpriority="high"
+                className={`h-64 w-full bg-black md:h-80 ${
+                  product?.product_company === 'Aspen Spas' ? 'object-cover' : 'object-contain'
+                }`}
+                onError={(e) => {
+                  (e.target as HTMLImageElement).src = fallbackImage;
+                }}
+              />
               {images.length > 1 && (
-                <div className="flex justify-center space-x-1 md:space-x-2 overflow-x-auto pb-2">
-                  {images.map((image, index) => (
-                    <button
-                      key={index}
-                      onClick={() => setSelectedImageIndex(index)}
-                      className={`flex-shrink-0 w-16 h-16 md:w-20 md:h-20 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
-                        selectedImageIndex === index
-                          ? 'border-white shadow-lg'
-                          : 'border-transparent hover:border-white hover:border-opacity-50'
-                      }`}
-                    >
-                      <img
-                        src={image}
-                        alt={`${productName} thumbnail ${index + 1}`}
-                        loading="lazy"
-                        decoding="async"
-                        className={`w-full h-full bg-black ${
-                          product?.product_company === 'Aspen Spas' 
-                            ? 'object-cover' 
-                            : 'object-contain'
-                        }`}
-                        onError={(e) => {
-                          const target = e.target as HTMLImageElement;
-                          target.src = 'https://images.pexels.com/photos/261327/pexels-photo-261327.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop';
-                        }}
-                      />
-                    </button>
-                  ))}
-                </div>
+                <>
+                  <button
+                    onClick={prevImage}
+                    className="absolute left-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-1 text-white transition hover:bg-black/70 md:left-4 md:p-2"
+                  >
+                    <ChevronLeft size={16} className="md:h-5 md:w-5" />
+                  </button>
+                  <button
+                    onClick={nextImage}
+                    className="absolute right-2 top-1/2 -translate-y-1/2 rounded-full bg-black/50 p-1 text-white transition hover:bg-black/70 md:right-4 md:p-2"
+                  >
+                    <ChevronRight size={16} className="md:h-5 md:w-5" />
+                  </button>
+                </>
               )}
             </div>
 
-            {/* Product Info Section */}
-            <div className="text-white">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4 text-center lg:text-left">{productName}</h1>
-              <div className="h-1 w-24 bg-white mb-4 md:mb-6 mx-auto lg:mx-0"></div>
-              
-              {/* Product Description */}
-              {product?.product_description?.Description && (
-                <p className="text-lg md:text-xl text-teal-100 leading-relaxed mb-6 md:mb-8 text-center lg:text-left">
-                  {product.product_description.Description}
-                </p>
-              )}
-              
-              {/* Product Specifications */}
-              <div className="space-y-2 md:space-y-3">
-                {capacity && (
-                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-3 text-center sm:text-left">
-                    <span className="text-white font-semibold sm:w-32">Capacity:</span>
-                    <span className="text-teal-100">{capacity} People</span>
-                  </div>
-                )}
-                {measurements && (
-                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-3 text-center sm:text-left">
-                    <span className="text-white font-semibold sm:w-32">Measurements:</span>
-                    <span className="text-teal-100">{measurements} inches</span>
-                  </div>
-                )}
-                {seats && (
-                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-3 text-center sm:text-left">
-                    <span className="text-white font-semibold sm:w-32">Number of Seats:</span>
-                    <span className="text-teal-100">{seats}</span>
-                  </div>
-                )}
-                {dryWeight && (
-                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-3 text-center sm:text-left">
-                    <span className="text-white font-semibold sm:w-32">Dry Weight:</span>
-                    <span className="text-teal-100">{dryWeight} lbs</span>
-                  </div>
-                )}
-                {gallons && (
-                  <div className="flex flex-col sm:flex-row items-center sm:items-start gap-1 sm:gap-3 text-center sm:text-left">
-                    <span className="text-white font-semibold sm:w-32">Gallons:</span>
-                    <span className="text-teal-100">{gallons}</span>
-                  </div>
-                )}
+            {images.length > 1 && (
+              <div className="flex justify-center space-x-1 overflow-x-auto pb-2 md:space-x-2">
+                {images.map((image, index) => (
+                  <button
+                    key={index}
+                    onClick={() => setSelectedImageIndex(index)}
+                    className={`h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg border-2 transition-all duration-200 md:h-20 md:w-20 ${
+                      selectedImageIndex === index
+                        ? 'border-white shadow-lg'
+                        : 'border-transparent hover:border-white/50'
+                    }`}
+                  >
+                    <img
+                      src={image}
+                      alt={`${productName} thumbnail ${index + 1}`}
+                      loading="lazy"
+                      decoding="async"
+                      className={`h-full w-full bg-black ${
+                        product?.product_company === 'Aspen Spas' ? 'object-cover' : 'object-contain'
+                      }`}
+                      onError={(e) => {
+                        (e.target as HTMLImageElement).src = fallbackImage;
+                      }}
+                    />
+                  </button>
+                ))}
               </div>
-            </div>
+            )}
+          </div>
+
+          {/* Product Info */}
+          <div className="text-white">
+            {product?.product_type && (
+              <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-400">
+                {product.product_type}
+              </p>
+            )}
+            <h1 className="mt-4 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
+              {productName}
+            </h1>
+            <div className="mt-4 h-1 w-24 bg-teal-400" />
+
+            {product?.product_description?.Description && (
+              <p className="mt-5 text-lg font-medium leading-relaxed text-teal-100/80 md:text-xl">
+                {product.product_description.Description}
+              </p>
+            )}
+
+            {specRows.length > 0 && (
+              <div className="mt-6 space-y-2 md:mt-8 md:space-y-3">
+                {specRows.map(({ label, value }) => (
+                  <div key={label} className="flex flex-col gap-0.5 sm:flex-row sm:gap-3">
+                    <span className="w-40 font-semibold text-white">{label}:</span>
+                    <span className="text-teal-100/80">{value}</span>
+                  </div>
+                ))}
+              </div>
+            )}
+
+            <button
+              onClick={() => navigate(quoteUrl)}
+              className="mt-8 rounded-md bg-teal-400 px-7 py-3 text-lg font-semibold text-white transition hover:bg-teal-300"
+            >
+              Get a Quote
+            </button>
           </div>
         </div>
       </div>
-    </div>
+    </section>
   );
 };
 

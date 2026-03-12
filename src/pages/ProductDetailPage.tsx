@@ -101,7 +101,6 @@ const ProductDetailPage = () => {
         <ProductImageBanner
           productName={product.product_name}
           imageUrls={imageUrls ?? {}}
-          description={description}
           product={product}
         />
       </div>

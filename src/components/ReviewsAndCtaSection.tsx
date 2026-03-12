@@ -47,6 +47,25 @@ const ReviewsAndCtaSection = () => {
               </article>
             ))}
           </div>
+
+          <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
+            <a
+              href="https://www.google.com/maps/place/D's+Outdoor+Living/@33.8297721,-112.1291324,17z/data=!4m8!3m7!1s0x872b6374802b7563:0xcc42f446a15c5a2!8m2!3d33.8297721!4d-112.1265575!9m1!1b1!16s%2Fg%2F11y980g79f?entry=ttu&g_ep=EgoyMDI2MDMxMC4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-teal-300/50 bg-[#176f64] px-6 py-3 text-base font-semibold text-white transition hover:bg-teal-700/60"
+            >
+              <span className="text-amber-300">★★★★★</span> View all Phoenix Location Reviews
+            </a>
+            <a
+              href="https://www.google.com/maps/place/D's+Outdoor+Living/@33.5864133,-112.3451572,17z/data=!4m8!3m7!1s0x872b454f44e0bb3b:0x98fabbc31cfb0b6a!8m2!3d33.5864133!4d-112.3425823!9m1!1b1!16s%2Fg%2F11xfr3r9f8?entry=ttu&g_ep=EgoyMDI2MDMxMC4wIKXMDSoASAFQAw%3D%3D"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center justify-center gap-2 rounded-md border border-teal-300/50 bg-[#176f64] px-6 py-3 text-base font-semibold text-white transition hover:bg-teal-700/60"
+            >
+              <span className="text-amber-300">★★★★★</span> View all Surprise Location Reviews
+            </a>
+          </div>
         </div>
       </section>
 
