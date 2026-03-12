@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Header from '../components/Header';
 import Footer from '../components/Footer';
 
@@ -283,8 +283,23 @@ const PhoenixPage = () => {
 
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(0);
 
+  const phoenixAreas = [
+    'Desert Hills / North Phoenix', 'Anthem', 'Cave Creek',
+    'Deer Valley', 'Peoria', 'Scottsdale', 'Glendale',
+  ];
+
+  const whyUsItems = [
+    'Family-owned Arizona business with personalized service',
+    'Authorized dealer for Aspen Spas, Nordic Hot Tubs, and Coast Spas',
+    'In-stock inventory plus full special-order options',
+    'Statewide delivery with in-house electrical coordination',
+    'Professional installation and startup guidance',
+    'Ongoing maintenance and service plans available',
+    'Manufacturer warranties and financing options',
+  ];
+
   return (
-    <div className="location-theme min-h-screen bg-[#0a3d35]">
+    <div className="min-h-screen bg-[#0a3d35]">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(phoenixStructuredData) }}
@@ -292,366 +307,334 @@ const PhoenixPage = () => {
 
       <Header />
 
-      <div className="pt-32 py-16">
-        <div className="container mx-auto px-4">
-          {/* Updated H1/H2 for GBP + NAP consistency */}
-          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white text-center">
-            D&apos;s Outdoor Living — Phoenix, AZ Showroom
+      {/* Hero / Intro */}
+      <section className="bg-[#0a3d35] px-4 pb-16 pt-32 md:px-6">
+        <div className="container mx-auto max-w-5xl text-center">
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-400">Phoenix Showroom</p>
+          <h1 className="mt-4 text-5xl font-bold leading-tight text-white md:text-6xl">
+            D&apos;s Outdoor Living — Phoenix, AZ
           </h1>
-          <h2 className="mt-4 text-xl md:text-2xl lg:text-3xl font-semibold text-teal-200 text-center">
+          <div className="mx-auto mt-5 h-1 w-24 bg-teal-400" />
+          <h2 className="mt-5 text-xl font-medium text-teal-100/80 md:text-2xl">
             Hot Tubs, Swim Spas &amp; Contrast Therapy Spas Serving Phoenix and the North Valley
           </h2>
-
-          {/* Phoenix showroom overview (top text block) */}
-          <section className="mt-10 max-w-4xl mx-auto text-teal-100 space-y-4 text-base md:text-lg leading-relaxed">
+          <div className="mx-auto mt-10 max-w-4xl space-y-4 text-left text-base font-medium leading-relaxed text-teal-100/80 md:text-lg">
             <p>
-              Welcome to <strong>D&apos;s Outdoor Living in Phoenix</strong> — your local destination for premium hot tubs,
-              swim spas, and contrast therapy spas. Our Phoenix showroom serves customers throughout the North Valley
-              and across Arizona, offering both in-stock models for faster delivery and special-order options for
-              complete customization.
+              Welcome to <strong className="text-white">D&apos;s Outdoor Living in Phoenix</strong> — your local
+              destination for premium hot tubs, swim spas, and contrast therapy spas. Our Phoenix showroom serves
+              customers throughout the North Valley and across Arizona, offering both in-stock models for faster
+              delivery and special-order options for complete customization.
             </p>
-
             <p>
-              Whether you&apos;re searching for a backyard relaxation spa, a fitness-focused swim spa, or a contrast therapy
-              setup, our team takes a consultative approach to help you choose the right solution for your space,
-              lifestyle, and budget. You can explore our current selection of
-              <a href="/phoenix/hot-tubs" className="text-white underline mx-1">Phoenix hot tubs</a>,
-              <a href="/phoenix/swim-spas" className="text-white underline mx-1">Phoenix swim spas</a>, and
-              <a href="/phoenix/contrast-therapy-spas" className="text-white underline mx-1">Phoenix contrast therapy spas</a>
+              Whether you&apos;re searching for a backyard relaxation spa, a fitness-focused swim spa, or a contrast
+              therapy setup, our team takes a consultative approach to help you choose the right solution for your
+              space, lifestyle, and budget. You can explore our current selection of{' '}
+              <a href="/phoenix/hot-tubs" className="text-teal-300 underline hover:text-white">Phoenix hot tubs</a>,{' '}
+              <a href="/phoenix/swim-spas" className="text-teal-300 underline hover:text-white">Phoenix swim spas</a>, and{' '}
+              <a href="/phoenix/contrast-therapy-spas" className="text-teal-300 underline hover:text-white">Phoenix contrast therapy spas</a>{' '}
               directly from this location.
             </p>
-
             <p>
-              Our Phoenix showroom operates <strong>by appointment</strong> to ensure every customer receives
-              personalized guidance. From model selection to delivery, electrical coordination, installation, and ongoing
-              maintenance, we handle the entire process in-house — making spa ownership simple and stress-free.
+              Our Phoenix showroom operates <strong className="text-white">by appointment</strong> to ensure every
+              customer receives personalized guidance. From model selection to delivery, electrical coordination,
+              installation, and ongoing maintenance, we handle the entire process in-house — making spa ownership
+              simple and stress-free.
             </p>
-          </section>
+          </div>
+        </div>
+      </section>
 
-          <h3 className="mt-24 text-xl md:text-2xl lg:text-3xl font-semibold text-white text-center">
-            Products Available at Our Phoenix Location
-          </h3>
-
-          <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-6">
-            <div className="flex flex-col items-center gap-3">
-              <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
-                <div className="relative h-56">
-                  <img
-                    src="https://i.imgur.com/DhGg8Q9.png"
-                    alt="Phoenix hot tub showroom at D's Outdoor Living"
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover brightness-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <h3 className="text-2xl md:text-3xl font-bold text-white text-center drop-shadow-lg tracking-wide">
-                      Phoenix Hot Tubs
-                    </h3>
-                  </div>
-                </div>
-              </div>
-              <a
-                href="/phoenix/hot-tubs"
-                className="text-teal-200 hover:text-white transition-colors text-center text-lg md:text-xl lg:text-2xl"
-              >
-                Hot Tubs at our Phoenix showroom
-              </a>
-            </div>
-
-            <div className="flex flex-col items-center gap-3">
-              <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
-                <div className="relative h-56">
-                  <img
-                    src="https://i.imgur.com/G4nM8Hz.png"
-                    alt="Phoenix swim spa inventory at D's Outdoor Living"
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover brightness-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <h3 className="text-2xl md:text-3xl font-bold text-white text-center drop-shadow-lg tracking-wide">
-                      Phoenix Swim Spas
-                    </h3>
-                  </div>
-                </div>
-              </div>
-              <a
-                href="/phoenix/swim-spas"
-                className="text-teal-200 hover:text-white transition-colors text-center text-lg md:text-xl lg:text-2xl"
-              >
-                Swim Spas at our Phoenix showroom
-              </a>
-            </div>
-
-            <div className="flex flex-col items-center gap-3">
-              <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
-                <div className="relative h-56">
-                  <img
-                    src="https://i.imgur.com/J4mylLL.jpeg"
-                    alt="Phoenix contrast therapy spa display at D's Outdoor Living"
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover brightness-110"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
-                  <div className="absolute inset-0 flex items-center justify-center">
-                    <h3 className="text-2xl md:text-3xl font-bold text-white text-center drop-shadow-lg tracking-wide">
-                      Phoenix Contrast Therapy Spas
-                    </h3>
-                  </div>
-                </div>
-              </div>
-              <a
-                href="/phoenix/contrast-therapy-spas"
-                className="text-teal-200 hover:text-white transition-colors text-center text-lg md:text-xl lg:text-2xl"
-              >
-                Contrast Therapy Spas at our Phoenix showroom
-              </a>
-            </div>
+      {/* Products Available */}
+      <section className="bg-[#0f5b53] px-4 py-16 md:px-6 md:py-20">
+        <div className="container mx-auto max-w-6xl">
+          <div className="text-center">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-400">Browse Our Products</p>
+            <h2 className="mt-4 text-5xl font-bold leading-tight text-white md:text-6xl">
+              Products at Our Phoenix Location
+            </h2>
           </div>
 
-          {/* Areas served section */}
-          <section className="mt-24 max-w-4xl mx-auto text-teal-100">
-            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
-              Areas We Serve from Our Phoenix Showroom
-            </h2>
-
-            <p className="text-base md:text-lg leading-relaxed mb-4 text-center">
-              While our showroom is located in Phoenix, we provide delivery, installation, and service statewide. Many of
-              our customers come from nearby communities including:
-            </p>
-
-            <ul className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-center text-base md:text-lg">
-              <li>Desert Hills / North Phoenix</li>
-              <li>Anthem</li>
-              <li>Cave Creek</li>
-              <li>Deer Valley</li>
-              <li>Peoria</li>
-              <li>Scottsdale</li>
-              <li>Glendale</li>
-            </ul>
-
-            <p className="mt-4 text-base md:text-lg leading-relaxed text-center">
-              If you&apos;re located elsewhere in Arizona, contact us — we regularly coordinate deliveries statewide.
-            </p>
-          </section>
-
-          {/* What to expect section */}
-          <section className="mt-24 max-w-4xl mx-auto text-teal-100">
-            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
-              What to Expect When Buying a Spa in Phoenix
-            </h2>
-
-            <div className="space-y-5 text-base md:text-lg leading-relaxed">
-              <p>
-                Purchasing a spa from D&apos;s Outdoor Living includes full white-glove support from start to finish. Once
-                you select your model, we coordinate delivery, placement, and professional installation directly —
-                including <strong>electrical coordination handled by our team</strong>.
-              </p>
-
-              <p>
-                In-stock spas are typically delivered within days to a couple of weeks, while special-order models vary by
-                brand and configuration. On installation day, we handle positioning, water fill, startup, and walk you
-                through proper operation so you&apos;re comfortable using your spa immediately.
-              </p>
-
-              <p>
-                After installation, we continue supporting Phoenix customers with optional maintenance plans covering
-                drain and refill service, chemical balancing, filter cleaning, and cover care — helping protect your
-                investment long-term. If you&apos;re exploring specific categories, you can start with
-                <a href="/phoenix/hot-tubs" className="text-white underline mx-1">hot tubs</a>,
-                <a href="/phoenix/swim-spas" className="text-white underline mx-1">swim spas</a>, or
-                <a href="/phoenix/contrast-therapy-spas" className="text-white underline mx-1">contrast therapy spas</a>.
-              </p>
-            </div>
-          </section>
-
-          {/* Why choose us in Phoenix */}
-          <section className="mt-24 max-w-4xl mx-auto text-teal-100">
-            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
-              Why Phoenix Homeowners Choose D&apos;s Outdoor Living
-            </h2>
-
-            <ul className="space-y-3 text-base md:text-lg leading-relaxed list-disc list-inside">
-              <li>Family-owned Arizona business with personalized service</li>
-              <li>Authorized dealer for Aspen Spas, Nordic Hot Tubs, and Coast Spas</li>
-              <li>In-stock inventory plus full special-order options</li>
-              <li>Statewide delivery with in-house electrical coordination</li>
-              <li>Professional installation and startup guidance</li>
-              <li>Ongoing maintenance and service plans available</li>
-              <li>Manufacturer warranties and financing options</li>
-            </ul>
-
-            <p className="mt-4 text-base md:text-lg leading-relaxed text-center">
-              Our goal is simple: provide Phoenix customers with high-quality spas, transparent pricing, and long-term
-              support — all backed by local expertise.
-            </p>
-          </section>
-
-          {/* Location details */}
-          <div className="mt-32">
-            <h2 className="text-xl md:text-2xl lg:text-3xl font-bold text-white text-center">
-              Location Details
-            </h2>
-
-            <div className="mt-8 flex flex-col items-center gap-10">
-              <div className="w-full max-w-4xl flex flex-col items-center">
-                <h3 className="text-xl md:text-2xl font-semibold text-teal-200 mb-4 text-center">
-                  Store Details
-                </h3>
-
-                <div className="bg-white/95 rounded-2xl shadow-2xl px-6 py-6 md:px-8 md:py-8 w-full">
-                  <div className="flex flex-col md:flex-row items-center md:items-stretch gap-8">
-                    <div className="space-y-6 text-gray-700 text-center md:text-left md:w-1/2">
-                      <div>
-                        <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Address</p>
-                        <p className="text-lg font-medium">3106 W Blue Eagle Ln</p>
-                        <p className="text-lg font-medium">Phoenix AZ 85086</p>
-                        <p className="text-sm text-gray-600 font-medium mt-2">
-                          <strong>By appointment only</strong> — call to arrange
-                        </p>
-                      </div>
-
-                      <div>
-                        <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Phone Number</p>
-                        <p className="text-lg font-medium">(480) 997-9447</p>
-                      </div>
-
-                      <div>
-                        <p className="text-sm uppercase tracking-wide text-gray-500 font-semibold">Hours</p>
-                        <p className="text-lg font-medium">Mon-Sat: 10am-5pm</p>
-                        <p className="text-lg font-medium">Sunday: 11am-4pm</p>
-                      </div>
-                    </div>
-
-                    <div className="relative w-full md:w-1/2 overflow-hidden rounded-2xl shadow-xl border border-white/70 bg-white/70">
-                      <img
-                        src={showroomImages[activeImageIndex]}
-                        alt="Inside D's Outdoor Living Phoenix showroom"
-                        className="w-full h-64 md:h-full object-cover"
-                        loading="lazy"
-                        decoding="async"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent"></div>
-
-                      <button
-                        type="button"
-                        aria-label="Previous showroom image"
-                        onClick={() =>
-                          setActiveImageIndex((prev) =>
-                            prev === 0 ? showroomImages.length - 1 : prev - 1
-                          )
-                        }
-                        className="absolute left-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 text-gray-700 w-9 h-9 flex items-center justify-center shadow-md hover:bg-white"
-                      >
-                        ‹
-                      </button>
-
-                      <button
-                        type="button"
-                        aria-label="Next showroom image"
-                        onClick={() =>
-                          setActiveImageIndex((prev) => (prev + 1) % showroomImages.length)
-                        }
-                        className="absolute right-3 top-1/2 -translate-y-1/2 rounded-full bg-white/80 text-gray-700 w-9 h-9 flex items-center justify-center shadow-md hover:bg-white"
-                      >
-                        ›
-                      </button>
-
-                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">
-                        {showroomImages.map((image, index) => (
-                          <button
-                            key={image}
-                            type="button"
-                            aria-label={`Showroom image ${index + 1}`}
-                            onClick={() => setActiveImageIndex(index)}
-                            className={`h-2.5 w-2.5 rounded-full transition ${
-                              index === activeImageIndex ? 'bg-white' : 'bg-white/50'
-                            }`}
-                          />
-                        ))}
-                      </div>
+          <div className="mt-10 grid grid-cols-1 gap-6 md:mt-12 md:grid-cols-3">
+            {[
+              {
+                href: '/phoenix/hot-tubs',
+                src: 'https://i.imgur.com/DhGg8Q9.png',
+                alt: "Phoenix hot tub showroom at D's Outdoor Living",
+                label: 'Phoenix Hot Tubs',
+                linkText: 'Hot Tubs at our Phoenix showroom',
+              },
+              {
+                href: '/phoenix/swim-spas',
+                src: 'https://i.imgur.com/G4nM8Hz.png',
+                alt: "Phoenix swim spa inventory at D's Outdoor Living",
+                label: 'Phoenix Swim Spas',
+                linkText: 'Swim Spas at our Phoenix showroom',
+              },
+              {
+                href: '/phoenix/contrast-therapy-spas',
+                src: 'https://i.imgur.com/J4mylLL.jpeg',
+                alt: "Phoenix contrast therapy spa display at D's Outdoor Living",
+                label: 'Phoenix Contrast Therapy Spas',
+                linkText: 'Contrast Therapy Spas at our Phoenix showroom',
+              },
+            ].map((card) => (
+              <div key={card.href} className="flex flex-col items-center gap-3">
+                <div className="relative w-full overflow-hidden rounded-2xl border border-white/10 shadow-[0_20px_40px_rgba(0,0,0,0.35)]">
+                  <div className="relative h-56">
+                    <img
+                      src={card.src}
+                      alt={card.alt}
+                      loading="lazy"
+                      decoding="async"
+                      className="h-full w-full object-cover brightness-110"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent" />
+                    <div className="absolute inset-0 flex items-center justify-center">
+                      <h3 className="text-center text-2xl font-bold tracking-wide text-white drop-shadow-lg md:text-3xl">
+                        {card.label}
+                      </h3>
                     </div>
                   </div>
                 </div>
+                <a href={card.href} className="text-center text-lg text-teal-300 transition-colors hover:text-white md:text-xl lg:text-2xl">
+                  {card.linkText}
+                </a>
               </div>
+            ))}
+          </div>
+        </div>
+      </section>
 
-              <div className="w-full max-w-4xl">
-                <h3 className="text-xl md:text-2xl font-semibold text-teal-200 mb-4 text-center">
-                  Directions
-                </h3>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3314.3233041527756!2d-112.12913242332463!3d33.82977207324146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b623a36116041%3A0x4ca9f1b83643a675!2s3106%20W%20Blue%20Eagle%20Ln%2C%20Desert%20Hills%2C%20AZ%2085086!5e0!3m2!1sen!2sus!4v1769036376021!5m2!1sen!2sus"
-                  width="600"
-                  height="450"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full rounded-2xl shadow-2xl"
-                  title="Directions to D's Outdoor Living Phoenix showroom"
-                />
-              </div>
-            </div>
+      {/* Areas Served */}
+      <section className="bg-[#0a3d35] px-4 py-16 md:px-6 md:py-20">
+        <div className="container mx-auto max-w-5xl text-center">
+          <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-400">Service Area</p>
+          <h2 className="mt-4 text-5xl font-bold leading-tight text-white md:text-6xl">Areas We Serve</h2>
+          <div className="mx-auto mt-5 h-1 w-24 bg-teal-400" />
+          <p className="mx-auto mt-8 max-w-3xl text-base font-medium leading-relaxed text-teal-100/80 md:text-lg">
+            While our showroom is located in Phoenix, we provide delivery, installation, and service statewide. Many
+            of our customers come from nearby communities including:
+          </p>
+          <div className="mt-8 flex flex-wrap justify-center gap-3">
+            {phoenixAreas.map((area) => (
+              <span
+                key={area}
+                className="rounded-full border border-teal-300/40 bg-teal-300/10 px-4 py-2 text-sm font-medium text-teal-100"
+              >
+                {area}
+              </span>
+            ))}
+          </div>
+          <p className="mt-8 text-base font-medium leading-relaxed text-teal-100/80 md:text-lg">
+            If you&apos;re located elsewhere in Arizona, contact us — we regularly coordinate deliveries statewide.
+          </p>
+        </div>
+      </section>
+
+      {/* What to Expect */}
+      <section className="bg-[#0f5b53] px-4 py-16 md:px-6 md:py-20">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-400">The Process</p>
+            <h2 className="mt-4 text-5xl font-bold leading-tight text-white md:text-6xl">What to Expect</h2>
+            <div className="mx-auto mt-5 h-1 w-24 bg-teal-400" />
+          </div>
+          <div className="mx-auto mt-10 max-w-4xl space-y-5 text-base font-medium leading-relaxed text-teal-100/80 md:text-lg">
+            <p>
+              Purchasing a spa from D&apos;s Outdoor Living includes full white-glove support from start to finish. Once
+              you select your model, we coordinate delivery, placement, and professional installation directly —
+              including <strong className="text-white">electrical coordination handled by our team</strong>.
+            </p>
+            <p>
+              In-stock spas are typically delivered within days to a couple of weeks, while special-order models vary
+              by brand and configuration. On installation day, we handle positioning, water fill, startup, and walk
+              you through proper operation so you&apos;re comfortable using your spa immediately.
+            </p>
+            <p>
+              After installation, we continue supporting Phoenix customers with optional maintenance plans covering
+              drain and refill service, chemical balancing, filter cleaning, and cover care — helping protect your
+              investment long-term. If you&apos;re exploring specific categories, you can start with{' '}
+              <a href="/phoenix/hot-tubs" className="text-teal-300 underline hover:text-white">hot tubs</a>,{' '}
+              <a href="/phoenix/swim-spas" className="text-teal-300 underline hover:text-white">swim spas</a>, or{' '}
+              <a href="/phoenix/contrast-therapy-spas" className="text-teal-300 underline hover:text-white">contrast therapy spas</a>.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Why Choose Us */}
+      <section className="bg-[#0a3d35] px-4 py-16 md:px-6 md:py-20">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-400">Why Us</p>
+            <h2 className="mt-4 text-5xl font-bold leading-tight text-white md:text-6xl">
+              Why Phoenix Homeowners Choose D&apos;s
+            </h2>
+            <div className="mx-auto mt-5 h-1 w-24 bg-teal-400" />
+          </div>
+          <ul className="mx-auto mt-10 max-w-3xl space-y-3">
+            {whyUsItems.map((item) => (
+              <li key={item} className="flex items-start gap-3 text-base font-medium leading-relaxed text-teal-100/80 md:text-lg">
+                <span className="mt-1 flex-shrink-0 text-teal-400">✓</span>
+                {item}
+              </li>
+            ))}
+          </ul>
+          <p className="mx-auto mt-8 max-w-3xl text-center text-base font-medium leading-relaxed text-teal-100/80 md:text-lg">
+            Our goal is simple: provide Phoenix customers with high-quality spas, transparent pricing, and long-term
+            support — all backed by local expertise.
+          </p>
+        </div>
+      </section>
+
+      {/* Location Details */}
+      <section className="bg-[#0f5b53] px-4 py-16 md:px-6 md:py-20">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-400">Visit Us</p>
+            <h2 className="mt-4 text-5xl font-bold leading-tight text-white md:text-6xl">Location Details</h2>
+            <div className="mx-auto mt-5 h-1 w-24 bg-teal-400" />
           </div>
 
-          {/* Mini FAQ above accordion */}
-          <section className="mt-20 max-w-4xl mx-auto text-teal-100">
-            <h2 className="text-2xl md:text-3xl font-bold text-white text-center mb-6">
-              Common Questions About Our Phoenix Showroom
-            </h2>
+          <div className="mt-12 flex flex-col items-center gap-10">
+            <div className="w-full max-w-4xl">
+              <div className="rounded-2xl bg-white/95 px-6 py-6 shadow-2xl md:px-8 md:py-8">
+                <div className="flex flex-col items-center gap-8 md:flex-row md:items-stretch">
+                  <div className="space-y-6 text-center text-gray-700 md:w-1/2 md:text-left">
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">Address</p>
+                      <p className="text-lg font-medium">3106 W Blue Eagle Ln</p>
+                      <p className="text-lg font-medium">Phoenix AZ 85086</p>
+                      <p className="mt-2 text-sm font-medium text-gray-600">
+                        <strong>By appointment only</strong> — call to arrange
+                      </p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">Phone Number</p>
+                      <p className="text-lg font-medium">(480) 997-9447</p>
+                    </div>
+                    <div>
+                      <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">Hours</p>
+                      <p className="text-lg font-medium">Mon-Sat: 10am-5pm</p>
+                      <p className="text-lg font-medium">Sunday: 11am-4pm</p>
+                    </div>
+                  </div>
 
-            <div className="space-y-3 text-base md:text-lg leading-relaxed">
-              <p>
-                <strong>Do you stock hot tubs in Phoenix?</strong> Yes — we maintain rotating in-stock inventory across our brands.
-              </p>
-              <p>
-                <strong>How soon can delivery happen?</strong> In-stock models are typically delivered within days to a couple of weeks.
-              </p>
-              <p>
-                <strong>Do you offer maintenance plans?</strong> Yes — we provide ongoing service options to keep your spa running perfectly.
-              </p>
-            </div>
-          </section>
-
-          {/* Accordion FAQ */}
-          <div className="mt-12">
-            <h2 className="text-2xl md:text-3xl font-bold text-white text-center">
-              Phoenix Showroom – Frequently Asked Questions
-            </h2>
-
-            <div className="mt-8 max-w-4xl mx-auto space-y-4 text-teal-200">
-              {faqItems.map((item, index) => {
-                const isOpen = openFaqIndex === index;
-                return (
-                  <div key={item.question} className="bg-white/5 border border-white/10 rounded-2xl p-6 md:p-8">
+                  <div className="relative w-full overflow-hidden rounded-2xl border border-white/70 bg-white/70 shadow-xl md:w-1/2">
+                    <img
+                      src={showroomImages[activeImageIndex]}
+                      alt="Inside D's Outdoor Living Phoenix showroom"
+                      className="h-64 w-full object-cover md:h-full"
+                      loading="lazy"
+                      decoding="async"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/35 via-transparent to-transparent" />
                     <button
                       type="button"
-                      onClick={() => setOpenFaqIndex(isOpen ? null : index)}
-                      className="w-full flex items-center justify-between gap-4 text-left"
-                      aria-expanded={isOpen}
+                      aria-label="Previous showroom image"
+                      onClick={() => setActiveImageIndex((prev) => (prev === 0 ? showroomImages.length - 1 : prev - 1))}
+                      className="absolute left-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-gray-700 shadow-md hover:bg-white"
                     >
-                      <span className="text-lg md:text-xl font-semibold text-white">{item.question}</span>
-                      <span
-                        className={`text-2xl text-teal-200 transition-transform duration-200 ${
-                          isOpen ? 'rotate-45' : ''
-                        }`}
-                        aria-hidden="true"
-                      >
-                        +
-                      </span>
+                      ‹
                     </button>
-                    {isOpen && <div className="mt-4">{item.answer}</div>}
+                    <button
+                      type="button"
+                      aria-label="Next showroom image"
+                      onClick={() => setActiveImageIndex((prev) => (prev + 1) % showroomImages.length)}
+                      className="absolute right-3 top-1/2 flex h-9 w-9 -translate-y-1/2 items-center justify-center rounded-full bg-white/80 text-gray-700 shadow-md hover:bg-white"
+                    >
+                      ›
+                    </button>
+                    <div className="absolute bottom-3 left-1/2 flex -translate-x-1/2 gap-2">
+                      {showroomImages.map((image, index) => (
+                        <button
+                          key={image}
+                          type="button"
+                          aria-label={`Showroom image ${index + 1}`}
+                          onClick={() => setActiveImageIndex(index)}
+                          className={`h-2.5 w-2.5 rounded-full transition ${index === activeImageIndex ? 'bg-white' : 'bg-white/50'}`}
+                        />
+                      ))}
+                    </div>
                   </div>
-                );
-              })}
+                </div>
+              </div>
+            </div>
+
+            <div className="w-full max-w-4xl">
+              <h3 className="mb-4 text-center text-xl font-semibold text-teal-200 md:text-2xl">Directions</h3>
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3314.3233041527756!2d-112.12913242332463!3d33.82977207324146!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x872b623a36116041%3A0x4ca9f1b83643a675!2s3106%20W%20Blue%20Eagle%20Ln%2C%20Desert%20Hills%2C%20AZ%2085086!5e0!3m2!1sen!2sus!4v1769036376021!5m2!1sen!2sus"
+                width="600"
+                height="450"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+                className="w-full rounded-2xl shadow-2xl"
+                title="Directions to D's Outdoor Living Phoenix showroom"
+              />
             </div>
           </div>
-
         </div>
-      </div>
+      </section>
+
+      {/* FAQ */}
+      <section className="bg-[#0a3d35] px-4 py-16 md:px-6 md:py-20">
+        <div className="container mx-auto max-w-5xl">
+          <div className="text-center">
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-400">Got Questions?</p>
+            <h2 className="mt-4 text-5xl font-bold leading-tight text-white md:text-6xl">
+              Phoenix Showroom FAQ
+            </h2>
+            <div className="mx-auto mt-5 h-1 w-24 bg-teal-400" />
+          </div>
+
+          <div className="mx-auto mt-8 max-w-4xl space-y-3 text-base font-medium leading-relaxed text-teal-100/80 md:text-lg">
+            <p>
+              <strong className="text-white">Do you stock hot tubs in Phoenix?</strong>{' '}
+              Yes — we maintain rotating in-stock inventory across our brands.
+            </p>
+            <p>
+              <strong className="text-white">How soon can delivery happen?</strong>{' '}
+              In-stock models are typically delivered within days to a couple of weeks.
+            </p>
+            <p>
+              <strong className="text-white">Do you offer maintenance plans?</strong>{' '}
+              Yes — we provide ongoing service options to keep your spa running perfectly.
+            </p>
+          </div>
+
+          <div className="mx-auto mt-10 max-w-4xl space-y-4 text-teal-100/80">
+            {faqItems.map((item, index) => {
+              const isOpen = openFaqIndex === index;
+              return (
+                <div key={item.question} className="overflow-hidden rounded-xl border border-teal-300/20 bg-[#176f64]">
+                  <button
+                    type="button"
+                    onClick={() => setOpenFaqIndex(isOpen ? null : index)}
+                    className="flex w-full items-center justify-between gap-4 px-6 py-4 text-left transition-colors hover:bg-[#1c7a6d]"
+                    aria-expanded={isOpen}
+                  >
+                    <span className="text-base font-semibold text-white md:text-lg">{item.question}</span>
+                    <span
+                      className={`flex-shrink-0 text-2xl text-teal-400 transition-transform duration-200 ${isOpen ? 'rotate-45' : ''}`}
+                      aria-hidden="true"
+                    >
+                      +
+                    </span>
+                  </button>
+                  {isOpen && (
+                    <div className="border-t border-teal-300/20 px-6 py-4">
+                      {item.answer}
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+      </section>
 
       <Footer />
     </div>
@@ -659,4 +642,3 @@ const PhoenixPage = () => {
 };
 
 export default PhoenixPage;
-
