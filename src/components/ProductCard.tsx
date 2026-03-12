@@ -3,6 +3,12 @@ import { useNavigate } from 'react-router';
 import { ArrowRight } from 'lucide-react';
 import { InventoryItem } from '../lib/supabase';
 
+const TYPE_TO_CATEGORY: Record<string, string> = {
+  'Spa': 'hot-tubs',
+  'Swim Spa': 'swim-spas',
+  'Contrast Therapy Spa': 'contrast-therapy-spas',
+};
+
 interface ProductCardProps {
   product: InventoryItem;
 }
@@ -126,16 +132,28 @@ const ProductCard: React.FC<ProductCardProps> = ({ product }) => {
             )}
           </div>
 
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              handleProductClick();
-            }}
-            className="mt-auto flex w-full items-center justify-center space-x-2 rounded-md bg-teal-400 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-teal-300 md:py-3 md:text-base"
-          >
-            <span>View Product</span>
-            <ArrowRight size={16} />
-          </button>
+          <div className="mt-auto flex gap-2">
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                handleProductClick();
+              }}
+              className="flex flex-1 items-center justify-center space-x-2 rounded-md bg-teal-400 py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-teal-300 md:py-3 md:text-base"
+            >
+              <span>View Product</span>
+              <ArrowRight size={16} />
+            </button>
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                const category = TYPE_TO_CATEGORY[product.product_type] || '';
+                navigate(`/get-a-quote?category=${category}&product=${encodeURIComponent(product.product_name)}`);
+              }}
+              className="flex flex-1 items-center justify-center rounded-md border border-teal-300/50 bg-transparent py-2 text-sm font-semibold text-white transition-colors duration-300 hover:bg-teal-700/50 md:py-3 md:text-base"
+            >
+              Get a Quote
+            </button>
+          </div>
         </div>
       </div>
     </div>

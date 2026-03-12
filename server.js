@@ -4,6 +4,7 @@ import express from 'express';
 import compression from 'compression';
 import { fileURLToPath } from 'node:url';
 import { getServerSupabase } from './server/supabase-server.js';
+import { Resend } from 'resend';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const isProd = process.env.NODE_ENV === 'production';
@@ -431,6 +432,113 @@ app.post('/internal/indexnow/submit', async (req, res) => {
     });
   } catch (err) {
     return res.status(500).json({ error: String(err) });
+  }
+});
+
+// ---------------------------------------------------------------------------
+// Quote form submission
+// ---------------------------------------------------------------------------
+const resend = new Resend(process.env.RESEND_API_KEY);
+
+const PRODUCT_LABELS = {
+  'hot-tubs': 'Hot Tubs',
+  'swim-spas': 'Swim Spas',
+  'contrast-therapy-spas': 'Contrast Therapy Spas'
+};
+
+const LOCATION_LABELS = {
+  phoenix: 'Phoenix',
+  mesa: 'Mesa',
+  surprise: 'Surprise'
+};
+
+app.post('/api/quote', async (req, res) => {
+  try {
+    const { firstName, lastName, email, phone, interestedIn, productName, preferredLocation, message } = req.body || {};
+
+    if (!firstName || !lastName || !email || !phone) {
+      return res.status(400).json({ error: 'Missing required fields.' });
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!emailRegex.test(email)) {
+      return res.status(400).json({ error: 'Invalid email address.' });
+    }
+
+    const productLabel = PRODUCT_LABELS[interestedIn] || interestedIn || 'Not specified';
+    const locationLabel = LOCATION_LABELS[preferredLocation] || preferredLocation || 'Not specified';
+    const fullName = `${firstName} ${lastName}`;
+
+    // Email to business
+    const notifyHtml = `
+      <div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#111">
+        <div style="background:#0a3d35;padding:24px 32px;border-radius:8px 8px 0 0">
+          <h1 style="color:#fff;margin:0;font-size:22px">New Quote Request</h1>
+          <p style="color:#a7f3d0;margin:6px 0 0">D's Outdoor Living — dsoutdoorliving.com</p>
+        </div>
+        <div style="background:#f9fafb;padding:32px;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 8px 8px">
+          <table style="width:100%;border-collapse:collapse">
+            <tr><td style="padding:10px 0;border-bottom:1px solid #e5e7eb;color:#6b7280;width:40%">Name</td><td style="padding:10px 0;border-bottom:1px solid #e5e7eb;font-weight:600">${fullName}</td></tr>
+            <tr><td style="padding:10px 0;border-bottom:1px solid #e5e7eb;color:#6b7280">Email</td><td style="padding:10px 0;border-bottom:1px solid #e5e7eb"><a href="mailto:${email}">${email}</a></td></tr>
+            <tr><td style="padding:10px 0;border-bottom:1px solid #e5e7eb;color:#6b7280">Phone</td><td style="padding:10px 0;border-bottom:1px solid #e5e7eb"><a href="tel:${phone}">${phone}</a></td></tr>
+            <tr><td style="padding:10px 0;border-bottom:1px solid #e5e7eb;color:#6b7280">Category</td><td style="padding:10px 0;border-bottom:1px solid #e5e7eb">${productLabel}</td></tr>
+            ${productName ? `<tr><td style="padding:10px 0;border-bottom:1px solid #e5e7eb;color:#6b7280">Product</td><td style="padding:10px 0;border-bottom:1px solid #e5e7eb;font-weight:600">${productName}</td></tr>` : ''}
+            <tr><td style="padding:10px 0;border-bottom:1px solid #e5e7eb;color:#6b7280">Preferred Location</td><td style="padding:10px 0;border-bottom:1px solid #e5e7eb">${locationLabel}</td></tr>
+            <tr><td style="padding:10px 0;color:#6b7280;vertical-align:top">Message</td><td style="padding:10px 0">${message ? message.replace(/\n/g, '<br>') : '<em style="color:#9ca3af">None</em>'}</td></tr>
+          </table>
+        </div>
+      </div>`;
+
+    // Auto-reply to customer
+    const replyHtml = `
+      <div style="font-family:sans-serif;max-width:600px;margin:0 auto;color:#111">
+        <div style="background:#0a3d35;padding:24px 32px;border-radius:8px 8px 0 0">
+          <h1 style="color:#fff;margin:0;font-size:22px">We received your quote request!</h1>
+          <p style="color:#a7f3d0;margin:6px 0 0">D's Outdoor Living — Arizona's Trusted Spa Dealers</p>
+        </div>
+        <div style="background:#f9fafb;padding:32px;border:1px solid #e5e7eb;border-top:none;border-radius:0 0 8px 8px">
+          <p>Hi ${firstName},</p>
+          <p>Thanks for reaching out! Our team will contact you within <strong>1 business hour</strong> to discuss your options.</p>
+          <p style="margin-bottom:4px"><strong>Here's what you submitted:</strong></p>
+          <table style="width:100%;border-collapse:collapse;margin-top:12px">
+            <tr><td style="padding:8px 0;border-bottom:1px solid #e5e7eb;color:#6b7280;width:40%">Category</td><td style="padding:8px 0;border-bottom:1px solid #e5e7eb">${productLabel}</td></tr>
+            ${productName ? `<tr><td style="padding:8px 0;border-bottom:1px solid #e5e7eb;color:#6b7280">Product</td><td style="padding:8px 0;border-bottom:1px solid #e5e7eb;font-weight:600">${productName}</td></tr>` : ''}
+            <tr><td style="padding:8px 0;border-bottom:1px solid #e5e7eb;color:#6b7280">Preferred Location</td><td style="padding:8px 0;border-bottom:1px solid #e5e7eb">${locationLabel}</td></tr>
+            ${message ? `<tr><td style="padding:8px 0;color:#6b7280;vertical-align:top">Your Message</td><td style="padding:8px 0">${message.replace(/\n/g, '<br>')}</td></tr>` : ''}
+          </table>
+          <hr style="margin:24px 0;border:none;border-top:1px solid #e5e7eb">
+          <p style="color:#6b7280;font-size:14px">Questions in the meantime? Call us at <a href="tel:4809979447" style="color:#0a3d35">(480) 997-9447</a> or reply to this email.</p>
+          <p style="color:#6b7280;font-size:14px;margin-bottom:0">— The D's Outdoor Living Team</p>
+        </div>
+      </div>`;
+
+    const TO_ADDRESS = process.env.QUOTE_TO_EMAIL || 'jbodoia@gmail.com';
+    const FROM_ADDRESS = process.env.QUOTE_FROM_EMAIL || 'onboarding@resend.dev';
+
+    const [notifyResult, replyResult] = await Promise.all([
+      resend.emails.send({
+        from: FROM_ADDRESS,
+        to: TO_ADDRESS,
+        subject: `New Quote Request — ${fullName}`,
+        html: notifyHtml
+      }),
+      resend.emails.send({
+        from: FROM_ADDRESS,
+        to: email,
+        subject: "We received your quote request — D's Outdoor Living",
+        html: replyHtml
+      })
+    ]);
+
+    if (notifyResult.error || replyResult.error) {
+      console.error('Resend error:', notifyResult.error || replyResult.error);
+      return res.status(500).json({ error: 'Failed to send email. Please try again.' });
+    }
+
+    return res.status(200).json({ ok: true });
+  } catch (err) {
+    console.error('Quote route error:', err);
+    return res.status(500).json({ error: 'An unexpected error occurred.' });
   }
 });
 
