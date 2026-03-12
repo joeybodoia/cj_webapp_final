@@ -131,7 +131,7 @@ const ProductImageBanner: React.FC<ProductImageBannerProps> = ({
           <div className="text-white">
             {product?.product_type && (
               <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-400">
-                {product.product_type}
+                {product.product_type === 'Spa' ? 'Hot Tub' : product.product_type}
               </p>
             )}
             <h1 className="mt-4 text-4xl font-bold leading-tight text-white md:text-5xl lg:text-6xl">
