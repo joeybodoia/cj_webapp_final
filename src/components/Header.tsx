@@ -11,6 +11,7 @@ const Header = () => {
   const [isLocationsOpen, setIsLocationsOpen] = useState(false);
   const productsMenuRef = useRef<HTMLDivElement | null>(null);
   const locationsMenuRef = useRef<HTMLDivElement | null>(null);
+  const mobileMenuRef = useRef<HTMLElement | null>(null);
   const location = useLocation();
   const isHomePage = location.pathname === '/';
   const navTextShadow = { textShadow: '0 0 2px rgba(42, 45, 50, 0.7)' };
@@ -67,6 +68,8 @@ const Header = () => {
     if (!isProductsOpen && !isLocationsOpen) return;
     const handlePointerDown = (event: MouseEvent | TouchEvent) => {
       const target = event.target as Node;
+      // Don't close dropdowns when tapping inside the mobile menu
+      if (mobileMenuRef.current && mobileMenuRef.current.contains(target)) return;
       if (isProductsOpen && productsMenuRef.current && !productsMenuRef.current.contains(target)) {
         setIsProductsOpen(false);
       }
@@ -241,7 +244,7 @@ const Header = () => {
 
         {/* Mobile Navigation */}
         {isMenuOpen && (
-          <nav className="md:hidden border-t border-white/15 bg-[#0f5b53]/95 py-4">
+          <nav ref={mobileMenuRef} className="md:hidden border-t border-white/15 bg-[#0f5b53]/95 py-4">
             <div className="flex flex-col space-y-4">
               <button
                 onClick={() => setIsProductsOpen((prev) => !prev)}
