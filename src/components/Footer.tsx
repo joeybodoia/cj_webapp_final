@@ -31,11 +31,11 @@ const Footer = () => {
             <div className="mt-5 space-y-3 text-lg text-teal-100/90">
               <p className="flex items-center gap-2">
                 <Phone size={16} className="text-teal-300" />
-                (480) 997-9447
+                <a href="tel:+14809979447" className="hover:text-white transition-colors">(480) 997-9447</a>
               </p>
               <p className="flex items-center gap-2 break-all">
                 <Mail size={16} className="text-teal-300" />
-                CJ@ds-outdoorliving.com
+                <a href="mailto:CJ@ds-outdoorliving.com" className="hover:text-white transition-colors">CJ@ds-outdoorliving.com</a>
               </p>
             </div>
           </div>

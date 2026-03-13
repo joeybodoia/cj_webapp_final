@@ -1,4 +1,4 @@
-import React, { useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import OurStory from './OurStory';
@@ -383,7 +383,7 @@ const Header = () => {
                   What&apos;s Included in a Maintenance Plan?
                 </h2>
                 <p className="mt-3 text-base font-medium text-teal-100/85 md:text-lg">
-                  Call or text today to get a quote: <span className="font-semibold text-white">(480) 997-9781</span>
+                  Call or text today to get a quote: <a href="tel:+14809979781" className="font-semibold text-white hover:text-white transition-colors">(480) 997-9781</a>
                 </p>
               </div>
               <button
@@ -426,9 +426,9 @@ const Header = () => {
 
               <div className="rounded-xl border border-teal-300/30 bg-[#0a4b43]/75 px-5 py-4 text-base text-teal-50/90">
                 <p className="text-lg font-semibold text-white">D&apos;s Outdoor Living</p>
-                <p>Office: (480) 997-9447</p>
+                <p>Office: <a href="tel:+14809979447" className="hover:text-white transition-colors">(480) 997-9447</a></p>
                 <p>Website: dsoutdoorliving.com</p>
-                <p>Email: service@dsoutdoorliving.com</p>
+                <p>Email: <a href="mailto:service@dsoutdoorliving.com" className="hover:text-teal-100 transition-colors">service@dsoutdoorliving.com</a></p>
               </div>
             </div>
           </div>

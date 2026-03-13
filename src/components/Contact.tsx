@@ -7,12 +7,15 @@ const Contact = () => {
       icon: Phone,
       title: 'Phone',
       content: '(480) 997-9447',
+      contentHref: 'tel:+14809979447',
     },
     {
       icon: Mail,
       title: 'Email',
       content: 'Sales: CJ@ds-outdoorliving.com',
+      contentHref: 'mailto:CJ@ds-outdoorliving.com',
       secondary: 'Service: service@ds-outdoorliving.com',
+      secondaryHref: 'mailto:service@ds-outdoorliving.com',
     },
   ];
 
@@ -23,18 +26,21 @@ const Contact = () => {
       line2: 'Phoenix AZ 85086',
       note: 'By appointment only, call to arrange.',
       phone: '(480) 997-9447',
+      phoneHref: 'tel:+14809979447',
     },
     {
       name: 'Surprise',
       line1: '11304 North Dysart Road',
       line2: 'Surprise AZ 85379 Suite 104',
       phone: '(480) 997-9447',
+      phoneHref: 'tel:+14809979447',
     },
     {
       name: 'Mesa',
       line1: '10550 E Baseline Rd',
       line2: 'Mesa AZ 85209 Booth #C1-19',
       phone: '(480) 997-9781',
+      phoneHref: 'tel:+14809979781',
     },
   ];
 
@@ -61,8 +67,18 @@ const Contact = () => {
                 </span>
                 <h3 className="text-2xl font-semibold text-white md:text-3xl">{method.title}</h3>
               </div>
-              <p className="text-lg text-teal-50/90 md:text-xl">{method.content}</p>
-              {method.secondary ? <p className="mt-2 text-lg text-teal-50/90 md:text-xl">{method.secondary}</p> : null}
+              {method.contentHref ? (
+                <a href={method.contentHref} className="text-lg text-teal-50/90 hover:text-white transition-colors md:text-xl">{method.content}</a>
+              ) : (
+                <p className="text-lg text-teal-50/90 md:text-xl">{method.content}</p>
+              )}
+              {method.secondary ? (
+                method.secondaryHref ? (
+                  <a href={method.secondaryHref} className="mt-2 block text-lg text-teal-50/90 hover:text-white transition-colors md:text-xl">{method.secondary}</a>
+                ) : (
+                  <p className="mt-2 text-lg text-teal-50/90 md:text-xl">{method.secondary}</p>
+                )
+              ) : null}
             </article>
           ))}
         </div>
@@ -87,7 +103,7 @@ const Contact = () => {
 
                 <div className="mt-4 flex items-center gap-2 border-t border-white/10 pt-3">
                   <Phone size={16} className="text-teal-300" />
-                  <p className="text-lg text-teal-50/90">{location.phone}</p>
+                  <a href={location.phoneHref} className="text-lg text-teal-50/90 hover:text-white transition-colors">{location.phone}</a>
                 </div>
               </article>
             ))}

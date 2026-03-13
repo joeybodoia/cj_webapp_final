@@ -473,7 +473,7 @@ const MesaPage = () => {
                     </div>
                     <div>
                       <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">Phone Number</p>
-                      <p className="text-lg font-medium">(480) 997-9781</p>
+                      <a href="tel:+14809979781" className="text-lg font-medium hover:text-white transition-colors">(480) 997-9781</a>
                     </div>
                     <div>
                       <p className="text-sm font-semibold uppercase tracking-wide text-gray-500">Hours</p>
