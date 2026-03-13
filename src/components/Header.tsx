@@ -1,5 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
-import { Link, useLocation } from 'react-router';
+import { Link, useLocation, useNavigate } from 'react-router';
 import { Menu, X } from 'lucide-react';
 import OurStory from './OurStory';
 
@@ -13,6 +13,7 @@ const Header = () => {
   const locationsMenuRef = useRef<HTMLDivElement | null>(null);
   const mobileMenuRef = useRef<HTMLElement | null>(null);
   const location = useLocation();
+  const navigate = useNavigate();
   const isHomePage = location.pathname === '/';
   const navTextShadow = { textShadow: '0 0 2px rgba(42, 45, 50, 0.7)' };
   const openOurStory = () => {
@@ -27,8 +28,8 @@ const Header = () => {
         element.scrollIntoView({ behavior: 'smooth' });
       }
     } else {
-      // Navigate to home page with hash
-      window.location.href = `/#${sectionId}`;
+      // Navigate to home page with hash (SPA navigation so HomePage useEffect can scroll)
+      navigate({ pathname: '/', hash: `#${sectionId}` });
     }
     setIsMenuOpen(false);
   };

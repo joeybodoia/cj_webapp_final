@@ -1,9 +1,21 @@
 import React from 'react';
+import { useLocation, useNavigate } from 'react-router';
 import { Mail, MapPin, Phone } from 'lucide-react';
 
 const Footer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
+
   const openOurStoryModal = () => {
     window.dispatchEvent(new Event('open-our-story'));
+  };
+
+  const scrollToContact = () => {
+    if (location.pathname === '/') {
+      document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
+    } else {
+      navigate({ pathname: '/', hash: '#contact' });
+    }
   };
 
   return (
@@ -88,9 +100,9 @@ const Footer = () => {
                 </button>
               </li>
               <li>
-                <a href="/#contact" className="transition-colors hover:text-white">
+                <button onClick={scrollToContact} className="text-left transition-colors hover:text-white">
                   Contact
-                </a>
+                </button>
               </li>
               <li>
                 <a href="/get-a-quote" className="transition-colors hover:text-white">
