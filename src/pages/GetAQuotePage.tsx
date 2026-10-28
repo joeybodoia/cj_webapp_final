@@ -336,7 +336,6 @@ const GetAQuotePage = () => {
                           Select nearest showroom...
                         </option>
                         <option value="phoenix">Phoenix</option>
-                        <option value="mesa">Mesa</option>
                         <option value="surprise">Surprise</option>
                       </select>
                     </div>

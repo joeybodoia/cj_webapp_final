@@ -35,13 +35,6 @@ const Contact = () => {
       phone: '(480) 997-9447',
       phoneHref: 'tel:+14809979447',
     },
-    {
-      name: 'Mesa',
-      line1: '10550 E Baseline Rd',
-      line2: 'Mesa AZ 85209 Booth #C1-19',
-      phone: '(480) 997-9781',
-      phoneHref: 'tel:+14809979781',
-    },
   ];
 
   return (
@@ -86,7 +79,7 @@ const Contact = () => {
         <div className="mx-auto mt-8 max-w-6xl border-t border-white/15 pt-8 md:mt-10 md:pt-10">
           <h3 className="text-center text-3xl font-semibold text-white md:text-4xl">Our Locations</h3>
 
-          <div className="mt-6 grid grid-cols-1 gap-5 md:mt-8 md:grid-cols-3">
+          <div className="mt-6 grid grid-cols-1 gap-5 md:mt-8 md:grid-cols-2">
             {locations.map((location) => (
               <article
                 key={location.name}

@@ -26,7 +26,7 @@ const Footer = () => {
             <p className="text-sm font-bold uppercase tracking-[0.2em] text-teal-400">D&apos;s Outdoor Living</p>
             <h3 className="mt-3 text-4xl font-bold leading-tight text-white">Arizona Spa Experts</h3>
             <p className="mt-4 text-lg leading-relaxed text-teal-100/80">
-              Premium hot tubs, swim spas, and contrast therapy spas serving Phoenix, Surprise, and Mesa.
+              Premium hot tubs, swim spas, and contrast therapy spas serving Phoenix and Surprise.
             </p>
             <div className="mt-5 space-y-3 text-lg text-teal-100/90">
               <p className="flex items-center gap-2">
@@ -57,14 +57,6 @@ const Footer = () => {
                   <p className="font-semibold text-white">Surprise</p>
                   <p>11304 North Dysart Road, Suite 104</p>
                   <p>Surprise, AZ 85379</p>
-                </div>
-              </div>
-              <div className="flex items-start gap-2">
-                <MapPin size={16} className="mt-1 text-teal-300" />
-                <div>
-                  <p className="font-semibold text-white">Mesa</p>
-                  <p>10550 E Baseline Rd, Booth #C1-19</p>
-                  <p>Mesa, AZ 85209</p>
                 </div>
               </div>
             </div>
@@ -114,7 +106,7 @@ const Footer = () => {
         </div>
 
         <div className="mt-10 border-t border-white/15 pt-6 text-center text-sm text-teal-100/70 md:text-base">
-          © 2026 D&apos;s Outdoor Living. All rights reserved. Serving Phoenix, Surprise, Mesa, and surrounding Arizona areas.
+          © 2026 D&apos;s Outdoor Living. All rights reserved. Serving Phoenix, Surprise, and surrounding Arizona areas.
         </div>
       </div>
     </footer>

@@ -191,26 +191,6 @@ const getSeoMeta = (pathname) => {
       description:
         'Visit our Surprise showroom for premium spas, swim spas, and outdoor living products. In-stock inventory available.'
     },
-    '/mesa': {
-      title: 'Mesa Showroom | D’s Outdoor Living',
-      description:
-        'Visit our Mesa showroom for premium spas, swim spas, and outdoor living products. In-stock inventory available.'
-    },
-    '/mesa/hot-tubs': {
-      title: 'Hot Tubs in Mesa, AZ | D’s Outdoor Living',
-      description:
-        'Shop hot tubs in Mesa with delivery and installation coordination. Visit our Mesa showroom.'
-    },
-    '/mesa/swim-spas': {
-      title: 'Swim Spas in Mesa, AZ | D’s Outdoor Living',
-      description:
-        'Explore swim spas in Mesa for fitness and relaxation. Delivery and installation coordination available.'
-    },
-    '/mesa/contrast-therapy-spas': {
-      title: 'Contrast Therapy Spas in Mesa, AZ | D’s Outdoor Living',
-      description:
-        'Contrast therapy spas in Mesa for recovery and wellness. Visit our Mesa showroom.'
-    },
     '/surprise/hot-tubs': {
       title: 'Hot Tubs in Surprise, AZ | D’s Outdoor Living',
       description:
@@ -309,6 +289,24 @@ if (isProd) {
     return next();
   });
 }
+
+// Keep existing Mesa links useful after closing the showroom.
+const retiredLocationRedirects = new Map([
+  ['/mesa', '/#contact'],
+  ['/mesa/hot-tubs', '/hot-tubs'],
+  ['/mesa/swim-spas', '/swim-spas'],
+  ['/mesa/contrast-therapy-spas', '/contrast-therapy-spas']
+]);
+
+app.use((req, res, next) => {
+  if (req.method !== 'GET' && req.method !== 'HEAD') return next();
+  const destination = retiredLocationRedirects.get(getRequestPathname(req));
+  if (!destination) return next();
+
+  const target = new URL(destination, getCanonicalBase(req));
+  target.search = new URL(req.originalUrl, getCanonicalBase(req)).search;
+  return res.redirect(301, `${target.pathname}${target.search}${target.hash}`);
+});
 
 /**
  * IndexNow key file route (must be defined BEFORE the catch-all '*')
@@ -448,7 +446,6 @@ const PRODUCT_LABELS = {
 
 const LOCATION_LABELS = {
   phoenix: 'Phoenix',
-  mesa: 'Mesa',
   surprise: 'Surprise'
 };
 
@@ -463,6 +460,10 @@ app.post('/api/quote', async (req, res) => {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailRegex.test(email)) {
       return res.status(400).json({ error: 'Invalid email address.' });
+    }
+
+    if (preferredLocation && (typeof preferredLocation !== 'string' || !Object.hasOwn(LOCATION_LABELS, preferredLocation))) {
+      return res.status(400).json({ error: 'Please select Phoenix or Surprise as your preferred location.' });
     }
 
     const productLabel = PRODUCT_LABELS[interestedIn] || interestedIn || 'Not specified';
